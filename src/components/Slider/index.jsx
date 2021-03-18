@@ -57,16 +57,10 @@ function Slider() {
           <img className={style.image} src={img} alt="Slider item" />
         </div>
       ))}
-      <button
-        className={style.prevBtn}
-        // onClick={() => setIndex(index - 1)}
-      >
+      <button className={style.prevBtn}>
         <img src={arrowLeft} alt="Arrow left" />
       </button>
-      <button
-        className={style.nextBtn}
-        // onClick={() => setIndex(index - 1)}
-      >
+      <button className={style.nextBtn}>
         <img src={arrowRight} alt="Arrow right" />
       </button>
     </section>

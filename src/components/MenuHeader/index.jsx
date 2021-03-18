@@ -9,7 +9,6 @@ function MenuHeader({ bgActive }) {
 
   const onClickHamburgerOrMenu = () => {
     setOpen((prevState) => !prevState);
-    console.log('object :>> ');
   };
   return (
     <>

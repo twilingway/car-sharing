@@ -21,10 +21,6 @@
       margin-left: 96px;
       margin-bottom: 8px;
       margin-right: 10px;
-      // @include responsive($laptop) {
-      //   margin-left: 64px;
-      //   margin-right: 0px;
-      // }
 
       .title {
         max-width: 495px;
@@ -54,7 +50,7 @@
 
   .prevBtn {
     left: 0%;
-    // @extend %btnSliderSides;
+
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
@@ -67,14 +63,14 @@
 
   .prevBtn:hover {
     left: 0%;
-    // @extend %btnSliderSides;
+
     background: rgba(35, 173, 99, 0.2);
     cursor: url('../../assets/pointer.svg'), auto;
   }
 
   .nextBtn {
     right: 0%;
-    // @extend %btnSliderSides;
+
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
@@ -87,7 +83,7 @@
 
   .nextBtn:hover {
     right: 0%;
-    // @extend %btnSliderSides;
+
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
