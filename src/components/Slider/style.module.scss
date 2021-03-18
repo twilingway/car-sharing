@@ -1,0 +1,102 @@
+.slider {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+
+  .slide {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 1;
+    transition: all 0.3s linear;
+
+    .content {
+      position: absolute;
+      z-index: 1;
+      background: none;
+      margin-top: 237px;
+      margin-left: 96px;
+      margin-bottom: 8px;
+      margin-right: 10px;
+      // @include responsive($laptop) {
+      //   margin-left: 64px;
+      //   margin-right: 0px;
+      // }
+
+      .title {
+        max-width: 495px;
+        font-weight: 500;
+        font-size: 40px;
+        line-height: 47px;
+        color: white;
+        font-weight: bold;
+      }
+
+      .info {
+        max-width: 495px;
+        font-weight: 300;
+        font-size: 24px;
+        line-height: 100%;
+        color: white;
+      }
+    }
+
+    .image {
+      position: absolute;
+      z-index: 0;
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  .prevBtn {
+    left: 0%;
+    // @extend %btnSliderSides;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 64px;
+    height: 100%;
+    background: none;
+    border: none;
+    outline: none;
+  }
+
+  .prevBtn:hover {
+    left: 0%;
+    // @extend %btnSliderSides;
+    background: rgba(35, 173, 99, 0.2);
+    cursor: url('../../assets/pointer.svg'), auto;
+  }
+
+  .nextBtn {
+    right: 0%;
+    // @extend %btnSliderSides;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 64px;
+    height: 100%;
+    background: none;
+    border: none;
+    outline: none;
+  }
+
+  .nextBtn:hover {
+    right: 0%;
+    // @extend %btnSliderSides;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 64px;
+    height: 100%;
+    background: none;
+    border: none;
+    outline: none;
+    background: rgba(35, 173, 99, 0.2);
+    cursor: url('../../assets/pointer.svg'), auto;
+  }
+}
