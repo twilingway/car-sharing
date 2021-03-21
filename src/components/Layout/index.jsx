@@ -1,5 +1,7 @@
+/* eslint-disable react/jsx-boolean-value */
 import React from 'react';
 import city from '../../assets/city.svg';
+import Button from '../Button';
 import style from './style.module.scss';
 
 function Layout() {
@@ -20,7 +22,7 @@ function Layout() {
         </section>
         <section className={style.footer}>
           <div>Поминутная аренда авто твоего города</div>
-          <button type="button">Забронировать</button>
+          <Button name="Забронировать" />
         </section>
       </main>
 

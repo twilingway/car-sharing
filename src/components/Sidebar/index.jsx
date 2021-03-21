@@ -1,10 +1,10 @@
 import React from 'react';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import style from './style.module.scss';
+import Language from '../Language';
 
-// eslint-disable-next-line react/prop-types
-function SideBar({ isOpen, bgActive = false, onClickHamburger }) {
+function SideBar({ isOpen, bgActive, onClickHamburger }) {
   return (
     <nav className={classNames(style.root, { [style.bgActive]: bgActive })}>
       <div className={style.navWrapper}>
@@ -13,20 +13,27 @@ function SideBar({ isOpen, bgActive = false, onClickHamburger }) {
           role="button"
           onClick={onClickHamburger}
           onKeyPress={onClickHamburger}
-          className={classNames(style.menuButton, { [style.active]: isOpen })}
+          className={classNames(style.menuButton, {
+            [style.active]: isOpen === true,
+          })}
         >
           <span />
         </div>
-        <p className={style.brand}>LOGO</p>
+        {!isOpen && <Language />}
       </div>
     </nav>
   );
 }
 
-// NavBar.propTypes = {
-//   isOpen: PropTypes.bool.isRequired,
-//   bgActive: PropTypes.bool.isRequired,
-//   onClickHamburger: PropTypes.func.isRequired,
-// };
+SideBar.propTypes = {
+  isOpen: PropTypes.bool,
+  bgActive: PropTypes.bool,
+  onClickHamburger: PropTypes.func.isRequired,
+};
+
+SideBar.defaultProps = {
+  isOpen: null,
+  bgActive: false,
+};
 
 export default SideBar;

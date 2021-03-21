@@ -1,6 +1,11 @@
 import React from 'react';
 import classNames from 'classnames';
 import { Link } from 'react-router-dom';
+
+import { ReactComponent as Telegram } from '../../assets/telegram_white.svg';
+import { ReactComponent as Facebook } from '../../assets/facebook_white.svg';
+import { ReactComponent as Instagram } from '../../assets/instagram_white.svg';
+
 import style from './style.module.scss';
 
 const MENU = [
@@ -47,6 +52,17 @@ function Menu({ isOpen, onClickMenu }) {
           ))}
         </ul>
       </div>
+      <section className={style.network}>
+        <Link to="/#">
+          <Telegram />
+        </Link>
+        <Link to="/#">
+          <Facebook />
+        </Link>
+        <Link to="/#">
+          <Instagram />
+        </Link>
+      </section>
     </div>
   );
 }

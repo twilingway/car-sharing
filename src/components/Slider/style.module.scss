@@ -1,98 +1,145 @@
-.slider {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  position: relative;
-  overflow: hidden;
+.carousel {
+  flex: 0 1 50%;
 
-  .slide {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    opacity: 1;
-    transition: all 0.3s linear;
+  .slider {
+    position: relative;
+    overflow: hidden;
+    margin-left: auto;
+    margin-right: auto;
+    // width: 100%;
+    // height: 100%;
+    // display: flex;
+    // align-items: center;
+    //position: relative;
+    // overflow: hidden;
+    .container {
+      .wrapper {
+        position: relative;
+        overflow: hidden;
+        .items {
+          display: flex;
+          .item {
+            flex: 0 0 100%;
+            max-width: 100%;
+            height: 100vh;
+            transition: 0.6s;
+            transform: translateX(-000%);
 
-    .content {
-      position: absolute;
-      z-index: 1;
-      background: none;
-      margin-top: 237px;
-      margin-left: 96px;
-      margin-bottom: 8px;
-      margin-right: 10px;
+            .content {
+              position: absolute;
+              z-index: 1;
+              background: none;
+              margin-top: 237px;
+              margin-left: 96px;
+              margin-bottom: 8px;
+              margin-right: 10px;
 
-      .title {
-        max-width: 495px;
-        font-weight: 500;
-        font-size: 40px;
-        line-height: 47px;
-        color: white;
-        font-weight: bold;
-      }
+              .title {
+                max-width: 495px;
+                font-weight: 500;
+                font-size: 40px;
+                line-height: 47px;
+                color: white;
+                font-weight: bold;
+              }
 
-      .info {
-        max-width: 495px;
-        font-weight: 300;
-        font-size: 24px;
-        line-height: 100%;
-        color: white;
+              .info {
+                max-width: 495px;
+                font-weight: 300;
+                font-size: 24px;
+                line-height: 100%;
+                color: white;
+              }
+            }
+
+            .image {
+              position: absolute;
+              z-index: 0;
+              width: 100%;
+              height: 100%;
+            }
+          }
+        }
       }
     }
 
-    .image {
+    .prevBtn {
+      left: 0%;
+
       position: absolute;
-      z-index: 0;
-      width: 100%;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 64px;
       height: 100%;
+      background: none;
+      border: none;
+      outline: none;
     }
-  }
 
-  .prevBtn {
-    left: 0%;
+    .prevBtn:hover {
+      left: 0%;
 
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 64px;
-    height: 100%;
-    background: none;
-    border: none;
-    outline: none;
-  }
+      background: rgba(35, 173, 99, 0.2);
+      cursor: url('../../assets/pointer.svg'), auto;
+    }
 
-  .prevBtn:hover {
-    left: 0%;
+    .nextBtn {
+      right: 0%;
 
-    background: rgba(35, 173, 99, 0.2);
-    cursor: url('../../assets/pointer.svg'), auto;
-  }
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 64px;
+      height: 100%;
+      background: none;
+      border: none;
+      outline: none;
+    }
 
-  .nextBtn {
-    right: 0%;
+    .nextBtn:hover {
+      right: 0%;
 
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 64px;
-    height: 100%;
-    background: none;
-    border: none;
-    outline: none;
-  }
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 64px;
+      height: 100%;
+      background: none;
+      border: none;
+      outline: none;
+      background: rgba(35, 173, 99, 0.2);
+      cursor: url('../../assets/pointer.svg'), auto;
+    }
+    .indicators {
+      position: absolute;
+      right: 0;
+      bottom: 19px;
+      left: 0;
+      padding-left: 0;
+      margin: 0 15%;
 
-  .nextBtn:hover {
-    right: 0%;
+      ul {
+        display: flex;
+        justify-content: center;
 
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 64px;
-    height: 100%;
-    background: none;
-    border: none;
-    outline: none;
-    background: rgba(35, 173, 99, 0.2);
-    cursor: url('../../assets/pointer.svg'), auto;
+        li {
+          list-style: none;
+          svg {
+            justify-content: center;
+            width: 8px;
+            height: 8px;
+            margin-right: 3px;
+            margin-left: 3px;
+            cursor: var(--cursor-pointer);
+
+            &.active {
+              circle {
+                fill: var(--primary-accent);
+              }
+            }
+          }
+        }
+      }
+    }
   }
 }
