@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-boolean-value */
 import React from 'react';
 import city from '../../assets/city.svg';
 import Button from '../Button';

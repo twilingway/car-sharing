@@ -1,4 +1,3 @@
-/* eslint-disable react/button-has-type */
 import React, { useState } from 'react';
 import classNames from 'classnames';
 
@@ -90,10 +89,18 @@ function Slider() {
             </div>
           </div>
 
-          <button className={style.prevBtn} onClick={handlePrevButton}>
+          <button
+            type="button"
+            className={style.prevBtn}
+            onClick={handlePrevButton}
+          >
             <img src={arrowLeft} alt="Arrow left" />
           </button>
-          <button className={style.nextBtn} onClick={handleNextButton}>
+          <button
+            type="button"
+            className={style.nextBtn}
+            onClick={handleNextButton}
+          >
             <img src={arrowRight} alt="Arrow right" />
           </button>
         </div>

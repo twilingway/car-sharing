@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import Menu from '../Menu';
 import SideBar from '../Sidebar';
 
-// eslint-disable-next-line react/prop-types
 function MenuHeader({ bgActive }) {
-  // eslint-disable-next-line no-unused-vars
   const [isOpen, setOpen] = useState(null);
 
   const onClickHamburgerOrMenu = () => {
@@ -21,5 +20,13 @@ function MenuHeader({ bgActive }) {
     </>
   );
 }
+
+MenuHeader.propTypes = {
+  bgActive: PropTypes.bool,
+};
+
+MenuHeader.defaultProps = {
+  bgActive: null,
+};
 
 export default MenuHeader;

@@ -1,18 +1,11 @@
-@import '../../styles/global.scss';
-
 .root {
   display: flex;
-  // position: fixed;
   z-index: 9999;
   width: 64px;
   height: 100vh;
-  // padding: 1rem;
+
   justify-content: center;
 }
-
-// .root.bgActive {
-//   background: #181d23;
-// }
 
 .root .navWrapper {
   display: flex;
@@ -23,13 +16,6 @@
   background: var(--sidebar-background);
 }
 
-// .root .brand {
-//   font-size: 1.6rem;
-//   color: #fafafa;
-//   cursor: default;
-// }
-
-/***** Menu Button *****/
 .menuButton {
   position: relative;
   height: 22px;
@@ -87,9 +73,3 @@
   transform: rotate(225deg);
   top: 0px;
 }
-
-// @media only screen and (max-width: 849px) {
-//   #navbar {
-//     background: #181d23aa;
-//   }
-// }

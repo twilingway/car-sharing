@@ -1,5 +1,6 @@
 import React from 'react';
 import classNames from 'classnames';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
 import { ReactComponent as Telegram } from '../../assets/telegram_white.svg';
@@ -31,7 +32,6 @@ const MENU = [
   },
 ];
 
-// eslint-disable-next-line react/prop-types
 function Menu({ isOpen, onClickMenu }) {
   return (
     <div
@@ -68,5 +68,14 @@ function Menu({ isOpen, onClickMenu }) {
     </div>
   );
 }
+
+Menu.propTypes = {
+  isOpen: PropTypes.bool,
+  onClickMenu: PropTypes.func.isRequired,
+};
+
+Menu.defaultProps = {
+  isOpen: null,
+};
 
 export default Menu;
