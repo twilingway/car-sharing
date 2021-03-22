@@ -40,29 +40,31 @@ function Menu({ isOpen, onClickMenu }) {
         [style.deactive]: isOpen === false,
       })}
     >
-      {/* <div className={style.overlay} /> */}
-      <div className={style.menuItems}>
-        <ul>
-          {MENU.map(({ title, to, id }) => (
-            <li key={id}>
-              <Link to={to} onClick={onClickMenu}>
-                {title}
-              </Link>
-            </li>
-          ))}
-        </ul>
+      <div className={style.container}>
+        <div className={style.menuItems}>
+          <ul>
+            {MENU.map(({ title, to, id }) => (
+              <li key={id}>
+                <Link to={to} onClick={onClickMenu}>
+                  {title}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+        <section className={style.network}>
+          <Link to="/#">
+            <Telegram />
+          </Link>
+          <Link to="/#">
+            <Facebook />
+          </Link>
+          <Link to="/#">
+            <Instagram />
+          </Link>
+        </section>
       </div>
-      <section className={style.network}>
-        <Link to="/#">
-          <Telegram />
-        </Link>
-        <Link to="/#">
-          <Facebook />
-        </Link>
-        <Link to="/#">
-          <Instagram />
-        </Link>
-      </section>
+      <div className={style.darkside} />
     </div>
   );
 }
