@@ -17,9 +17,6 @@ function App() {
             <MenuHeader bgActive={!match.isExact} />
             <Switch>
               <Route path="/" exact component={MainPage} />
-              {/* <Route path="/game" component={GamePage} />
-              <Route path="/about" component={AboutPage} />
-              <Route path="/contact" component={ContactPage} /> */}
               <Route render={() => <Redirect to="/404" />} />
             </Switch>
           </div>

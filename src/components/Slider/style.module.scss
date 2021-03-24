@@ -12,6 +12,7 @@
   .slider {
     position: relative;
     overflow: hidden;
+
     margin-left: auto;
     margin-right: auto;
 
@@ -30,13 +31,17 @@
 
             .content {
               position: absolute;
-              z-index: 1;
-              background: none;
+
+              display: flex;
+              flex-direction: column;
               align-content: center;
-              margin-top: 237px;
+
+              top: 25%;
               margin-left: 96px;
               margin-right: 96px;
-              max-width: 495px;
+
+              background: none;
+              z-index: 1;
 
               @media (max-width: 1024px) {
                 margin-left: 64px;
@@ -108,7 +113,7 @@
 
     .prevBtn:hover {
       background: rgba(35, 173, 99, 0.2);
-      cursor: url('../../assets/pointer.svg'), auto;
+      cursor: var(--cursor-pointer);
     }
 
     .nextBtn {
@@ -129,7 +134,7 @@
 
     .nextBtn:hover {
       background: rgba(35, 173, 99, 0.2);
-      cursor: url('../../assets/pointer.svg'), auto;
+      cursor: var(--cursor-pointer);
     }
     .indicators {
       position: absolute;

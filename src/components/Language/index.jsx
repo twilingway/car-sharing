@@ -27,6 +27,4 @@ function Language() {
   );
 }
 
-Language.propTypes = {};
-
 export default Language;
