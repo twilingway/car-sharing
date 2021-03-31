@@ -1,0 +1,30 @@
+.body {
+  display: flex;
+  flex: 1 0 calc(50% - 32px);
+  flex-direction: column;
+
+  @media (max-width: 1440px) {
+    flex: 1 0 calc((100% - 64px) / 5 * 3);
+  }
+
+  @media (max-width: 1024px) {
+  }
+
+  @media (max-width: 425px) {
+    flex: 0 1 100%;
+  }
+
+  .main {
+    display: flex;
+    height: 100%;
+
+    //flex: 1 1 auto;
+    // display: flex;
+    // flex-direction: row;
+
+    @media (max-width: 1024px) {
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+}

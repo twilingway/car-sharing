@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import Menu from '../Menu';
+// import Menu from '../Menu';
 import SideBar from '../Sidebar';
 
 function MenuHeader({ bgActive }) {
@@ -11,7 +11,7 @@ function MenuHeader({ bgActive }) {
   };
   return (
     <>
-      <Menu isOpen={isOpen} onClickMenu={onClickHamburgerOrMenu} />
+      {/* <Menu isOpen={isOpen} onClickMenu={onClickHamburgerOrMenu} /> */}
       <SideBar
         isOpen={isOpen}
         bgActive={bgActive}

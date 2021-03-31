@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import style from './style.module.scss';
+import style from './language.module.scss';
 
 function Language() {
   const [lang, setLang] = useState('Рус');

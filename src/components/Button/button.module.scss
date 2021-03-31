@@ -4,6 +4,7 @@
   border-radius: 8px;
 
   border: none;
+  outline: none;
 
   &.loading {
     background: linear-gradient(90deg, #0ec261 2.61%, #039f67 112.6%);
@@ -13,8 +14,17 @@
     background: linear-gradient(90deg, #0b934a 2.61%, #026e47 112.6%);
   }
 
+  &:hover {
+    background: linear-gradient(90deg, #0b934a 2.61%, #026e47 112.6%);
+    cursor: var(--cursor-pointer);
+  }
+
   &.disable {
     background: #eeeeee;
+    &:hover {
+      background: #eeeeee;
+      cursor: var(--cursor);
+    }
   }
 
   .text {
@@ -45,11 +55,6 @@
         transform: rotate(360deg);
       }
     }
-  }
-
-  &:hover {
-    background: linear-gradient(90deg, #0b934a 2.61%, #026e47 112.6%);
-    cursor: var(--cursor-pointer);
   }
 
   &[data-background='0'] {

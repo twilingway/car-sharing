@@ -4,9 +4,16 @@ import classNames from 'classnames';
 
 import { ReactComponent as Ellipse } from '../../assets/ellipse.svg';
 
-import style from './style.module.scss';
+import style from './button.module.scss';
 
-function Button({ name, disabled, loading, className, dataBackground }) {
+function Button({
+  name,
+  disabled,
+  loading,
+  className,
+  dataBackground,
+  onClickHandler,
+}) {
   return (
     <button
       type="button"
@@ -16,6 +23,7 @@ function Button({ name, disabled, loading, className, dataBackground }) {
       })}
       disabled={disabled}
       data-background={dataBackground}
+      onClick={onClickHandler}
     >
       <span
         className={classNames(style.text, {
@@ -33,7 +41,8 @@ Button.propTypes = {
   disabled: PropTypes.bool,
   loading: PropTypes.bool,
   className: PropTypes.string,
-  dataBackground: PropTypes.string,
+  dataBackground: PropTypes.number,
+  onClickHandler: PropTypes.func,
 };
 
 Button.defaultProps = {
@@ -41,5 +50,6 @@ Button.defaultProps = {
   loading: false,
   className: null,
   dataBackground: null,
+  onClickHandler: null,
 };
 export default Button;

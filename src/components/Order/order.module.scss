@@ -1,0 +1,98 @@
+.order {
+  display: flex;
+  justify-content: center;
+  flex: 1 0 calc((100% - 32px) / 6 * 2);
+  max-width: 384px;
+  height: 100%;
+  padding: 0 64px 0 32px;
+  border-left: 1px solid #eeeeee;
+
+  .wrap {
+    display: flex;
+    flex-direction: column;
+    max-width: 287px;
+    // align-items: flex-end;
+
+    .yourOrder {
+      display: flex;
+      justify-content: flex-end;
+
+      font-weight: 500;
+      font-size: 18px;
+      line-height: 21px;
+
+      padding-top: 64px;
+      padding-bottom: 26px;
+    }
+
+    .params {
+      display: flex;
+      justify-content: space-between;
+      padding-bottom: 16px;
+      width: 100%;
+      .paramsName {
+        display: flex;
+        align-items: flex-end;
+        flex-grow: 0;
+        margin-right: auto;
+
+        font-style: normal;
+        font-weight: 300;
+        font-size: 14px;
+        line-height: 16px;
+        //width: max-content;
+      }
+      .empty {
+        content: '';
+        flex-grow: 1;
+        margin: 0 12px;
+        border-bottom: 1px dotted #999999;
+      }
+      .description {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        flex-grow: 0;
+        //flex-basis: 100px;
+
+        font-weight: 300;
+        font-size: 14px;
+        line-height: 16px;
+
+        color: var(--grey-dark);
+
+        .city {
+          max-width: 170px;
+          text-align: right;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+        .street {
+          max-width: 170px;
+          text-align: right;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+      }
+    }
+
+    .price {
+      font-weight: 500;
+      font-size: 16px;
+      line-height: 16px;
+
+      padding-top: 32px;
+    }
+
+    .button {
+      padding-top: 32px;
+
+      button {
+        width: 287px;
+        height: 48px;
+      }
+    }
+  }
+}

@@ -1,11 +1,12 @@
 .carousel {
-  flex: 0 1 50%;
+  flex: 1 0 calc(50% - 32px);
 
-  @media (max-width: 1024px) {
+  @media (max-width: 1440px) {
     min-width: 270px;
+    flex: 1 0 calc((100% - 64px) / 5 * 2);
   }
 
-  @media (max-width: 768px) {
+  @media (max-width: 1023px) {
     display: none;
   }
 

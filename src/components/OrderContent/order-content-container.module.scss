@@ -1,0 +1,47 @@
+.container {
+  display: flex;
+  flex: 1 0 calc((100% - 32px) / 6 * 4);
+  padding-left: 64px;
+
+  display: flex;
+  flex-direction: column;
+  // flex: 0 0 80px;
+  // background-color: blue;
+
+  @media (max-width: 767px) {
+    padding: 0 0 16px 0;
+
+    flex: 0 0 calc(100% / 4 * 2);
+  }
+
+  .autocomplete {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    max-width: max-content;
+    position: relative;
+    left: 0px;
+    padding-top: 32px;
+    padding-bottom: 45px;
+
+    .city {
+      padding-bottom: 13px;
+    }
+  }
+
+  .carList {
+    // display: flex;
+    // flex-direction: column;
+    // align-items: flex-end;
+    // max-width: max-content;
+    // position: relative;
+    // left: 0px;
+    // padding-top: 32px;
+    // padding-bottom: 45px;
+    //display: flex;
+    //flex-direction: column;
+    //flex: 0 0 300px;
+    // background-color: yellow;
+    // color: black;
+  }
+}

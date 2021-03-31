@@ -1,0 +1,65 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 96px;
+  padding: 0 64px;
+
+  @media (min-width: 2048px) {
+    width: 1376px;
+    margin: 0px auto;
+  }
+
+  @media (max-width: 425px) {
+    margin: 16px 0 0 0;
+    flex-direction: column;
+    align-items: flex-end;
+  }
+
+  .logo {
+    flex: 1 0 auto;
+
+    font-style: normal;
+    font-weight: bold;
+    font-size: 30px;
+    line-height: 35px;
+
+    color: var(--primary-accent);
+
+    margin: 0 16px 0 0;
+  }
+
+  .city {
+    display: flex;
+    align-items: center;
+    margin-left: 0px;
+
+    @media (max-width: 425px) {
+      margin: 9px 0 0 0;
+    }
+
+    .autocomplete {
+      position: relative;
+
+      display: flex;
+
+      justify-content: flex-end;
+
+      font-style: normal;
+      font-weight: normal;
+      font-size: 14px;
+      line-height: 16px;
+
+      input {
+        white-space: pre;
+        text-align: right;
+        color: var(--grey-dark);
+        padding-bottom: 0px;
+
+        &:focus {
+          text-align: left;
+        }
+      }
+    }
+  }
+}

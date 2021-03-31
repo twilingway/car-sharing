@@ -1,0 +1,30 @@
+.crumbs {
+  display: flex;
+  //align-content: center;
+  align-items: center;
+  width: 100%;
+  min-height: 32px;
+  border-top: 1px solid var(--grey-light);
+  border-bottom: 1px solid var(--grey-light);
+  ul {
+    padding-left: 64px;
+    display: flex;
+    flex-wrap: wrap;
+    //justify-content: center;
+    //align-items: flex-start;
+    li {
+      display: flex;
+      font-style: normal;
+      font-weight: bold;
+      font-size: 14px;
+      line-height: 16px;
+
+      color: var(--grey-dark);
+
+      list-style: none;
+      span {
+        padding: 0 16px;
+      }
+    }
+  }
+}

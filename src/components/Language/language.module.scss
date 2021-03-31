@@ -5,7 +5,7 @@
 
   height: 48px;
   width: 48px;
-  margin-bottom: 15px;
+  margin-bottom: 6px;
 
   color: var(--primary-accent);
 
@@ -15,6 +15,8 @@
   line-height: 15px;
 
   text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+
+  outline: none;
 
   &:hover {
     border: 2px solid white;

@@ -1,0 +1,13 @@
+.cars {
+  display: flex;
+  flex-wrap: wrap;
+
+  flex: 1 1 auto;
+  overflow-y: auto;
+  height: 100px;
+}
+
+.type {
+  padding-top: 32px;
+  padding-bottom: 48px;
+}

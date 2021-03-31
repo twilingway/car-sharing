@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import style from './style.module.scss';
+import style from './sidebar.module.scss';
 import Language from '../Language';
 
 function SideBar({ isOpen, bgActive, onClickHamburger }) {

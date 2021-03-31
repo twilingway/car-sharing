@@ -1,0 +1,136 @@
+.autocomplete {
+  display: flex;
+  justify-content: flex-end;
+  width: auto;
+
+  font-family: Roboto;
+  font-style: normal;
+  font-size: 14px;
+  line-height: 16px;
+
+  .label {
+    text-align: end;
+
+    color: var(--primary-black);
+  }
+  .container {
+    position: relative;
+
+    label {
+      display: flex;
+
+      .fake {
+        padding-left: 8px;
+        outline: none;
+        color: var(--grey-dark);
+      }
+      .input {
+        margin-left: 8px;
+        padding-left: 4px;
+        z-index: 1;
+        outline: none;
+        border: none;
+
+        color: var(--primary-black);
+
+        &.focus {
+          width: 100%;
+          border-bottom: 1px solid var(--grey-dark);
+          text-align: left;
+        }
+        &.hidden {
+          display: none;
+        }
+        &:hover {
+          cursor: pointer;
+        }
+
+        &.border {
+          border-bottom: 1px solid var(--grey-dark);
+        }
+      }
+
+      .clearInput {
+        position: absolute;
+        right: 4px;
+        z-index: 2;
+        height: 8px;
+        width: 8px;
+
+        cursor: var(--cursor-pointer);
+      }
+    }
+  }
+
+  .datalist {
+    display: none;
+    overflow-y: auto;
+    max-height: 12vh;
+    background-color: #ffffff;
+    &.display {
+      display: flex;
+      flex-direction: column;
+      position: absolute;
+      width: 170px;
+      border: 1px solid var(--primary-accent);
+      margin-left: 8px;
+      z-index: 999;
+      opacity: 1;
+    }
+  }
+  .option {
+    padding-left: 4px;
+    margin-top: 3px;
+    margin-bottom: 3px;
+    font-style: normal;
+    font-weight: 300;
+    font-size: 14px;
+    line-height: 16px;
+
+    width: 100%;
+    background-color: #ffffff;
+    color: var(--grey-dark);
+
+    &:hover {
+      cursor: pointer;
+      color: var(--primary-accent);
+      background-color: var(--grey-light);
+    }
+  }
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+  background-color: white;
+}
+::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background-color: var(--grey-dark);
+}
+::-webkit-input-placeholder {
+  /* WebKit, Blink, Edge */
+  color: var(--grey-dark);
+}
+:-moz-placeholder {
+  /* Mozilla Firefox 4 to 18 */
+  color: var(--grey-dark);
+  opacity: 1;
+}
+::-moz-placeholder {
+  /* Mozilla Firefox 19+ */
+  color: var(--grey-dark);
+  opacity: 1;
+}
+:-ms-input-placeholder {
+  /* Internet Explorer 10-11 */
+  color: var(--grey-dark);
+}
+::-ms-input-placeholder {
+  /* Microsoft Edge */
+  color: var(--grey-dark);
+}
+
+::placeholder {
+  /* Most modern browsers support this now. */
+  color: var(--grey-dark);
+}

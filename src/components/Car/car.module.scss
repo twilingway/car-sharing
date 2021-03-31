@@ -1,0 +1,43 @@
+.content {
+  display: flex;
+  flex-direction: column;
+  width: 369px;
+  height: 224px;
+  outline: none;
+
+  border: 1px solid var(--grey-light);
+
+  &:hover {
+    cursor: pointer;
+    border: 1px solid var(--grey-dark);
+  }
+
+  &.select {
+    border: 1px solid var(--primary-accent);
+  }
+
+  .name {
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 21px;
+    padding: 16px 16px 0 16px;
+  }
+  .price {
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 16px;
+    padding: 0 16px;
+
+    color: var(--grey-dark);
+  }
+
+  .image {
+    display: flex;
+    margin-top: auto;
+    margin-bottom: 16px;
+    align-self: flex-end;
+    justify-content: flex-end;
+  }
+}

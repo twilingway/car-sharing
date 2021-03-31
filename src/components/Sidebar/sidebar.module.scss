@@ -1,7 +1,8 @@
 .root {
   display: flex;
   z-index: 9999;
-  width: 64px;
+  //width: 100%;
+  flex: 0 0 64px;
   height: 100vh;
   justify-content: center;
 }

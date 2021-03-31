@@ -1,0 +1,52 @@
+.footer {
+  display: flex;
+  height: 100%;
+  align-items: flex-end;
+
+  .container {
+    display: flex;
+    justify-content: space-between;
+
+    width: 100%;
+    padding-bottom: 20px;
+
+    font-style: normal;
+    font-weight: normal;
+    font-size: 13px;
+    line-height: 15px;
+
+    @media (max-width: 425px) {
+      flex-direction: column-reverse;
+      align-items: flex-end;
+      justify-content: space-evenly;
+
+      height: 72px;
+
+      padding: 0 16px;
+      background: var(--sidebar-background);
+    }
+
+    .info {
+      p {
+        color: var(--grey-dark);
+        @media (max-width: 425px) {
+          color: var(--grey-light);
+        }
+      }
+    }
+    .phone {
+      margin: 0 24px 0 12px;
+
+      @media (max-width: 425px) {
+        margin: 0;
+      }
+
+      p {
+        color: #121212;
+        @media (max-width: 425px) {
+          color: var(--primary-accent);
+        }
+      }
+    }
+  }
+}
