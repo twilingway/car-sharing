@@ -21,8 +21,16 @@
 
       color: var(--grey-dark);
 
+      &.active {
+        color: var(--primary-accent);
+      }
+
       list-style: none;
-      span {
+
+      .name {
+        overflow: none;
+      }
+      .span {
         padding: 0 16px;
       }
     }
