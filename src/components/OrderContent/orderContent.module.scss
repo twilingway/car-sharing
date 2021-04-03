@@ -1,5 +1,19 @@
 .content {
   display: flex;
-  flex: 1 0 calc((100% - 32px) / 6 * 4);
+  flex: 1 0 calc(100% / 5 * 3);
   flex-direction: column;
+
+  @media (max-width: 1024px) {
+    flex: 1 0 100%;
+    align-items: center;
+  }
+
+  @media (max-width: 768px) {
+    flex: 1 0 100%;
+    align-items: center;
+  }
+
+  @media (max-width: 425px) {
+    align-items: center;
+  }
 }

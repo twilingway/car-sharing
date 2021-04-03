@@ -4,6 +4,8 @@ import { getOrderSelect, setStep } from '../../store/order';
 
 import Order from './Order';
 
+import style from './order-container.module.scss';
+
 const BUTTONNAME = [
   {
     id: 1,
@@ -28,16 +30,17 @@ function OrderContainer() {
   const dispatch = useDispatch();
 
   const handleOrderButtonClick = (id) => {
-    console.log('object id:>> ', id);
     dispatch(setStep(id + 1));
   };
 
   return (
-    <Order
-      order={orderRedux}
-      buttonName={BUTTONNAME}
-      onClickHandler={handleOrderButtonClick}
-    />
+    <div className={style.wrapper}>
+      <Order
+        order={orderRedux}
+        buttonName={BUTTONNAME}
+        onClickHandler={handleOrderButtonClick}
+      />
+    </div>
   );
 }
 

@@ -9,11 +9,20 @@
     font-size: 14px;
     line-height: 16px;
     color: var(--primary-black);
+
+    @media (max-width: 767px) {
+      padding: 0 16px;
+    }
   }
 
   .map {
     display: flex;
     padding-top: 16px;
+    padding-right: 32px;
+
+    @media (max-width: 767px) {
+      padding: 16px 16px 0 16px;
+    }
 
     img {
       max-width: 100%;

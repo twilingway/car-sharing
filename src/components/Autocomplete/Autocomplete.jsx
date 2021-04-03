@@ -1,11 +1,7 @@
-/* eslint-disable jsx-a11y/mouse-events-have-key-events */
 /* eslint-disable react/no-array-index-key */
-/* eslint-disable jsx-a11y/control-has-associated-label */
-/* eslint-disable no-console */
-/* eslint-disable no-unused-vars */
-/* eslint-disable react/prop-types */
-
+/* eslint-disable react/forbid-prop-types */
 import React, { useEffect, useLayoutEffect, useRef, useState } from 'react';
+import PropTypes from 'prop-types';
 import cn from 'classnames';
 import { ReactComponent as X } from '../../assets/x.svg';
 import useComponentVisible from '../../hooks/useComponentVisible';
@@ -147,5 +143,23 @@ function Autocomplete({
     </div>
   );
 }
+
+Autocomplete.propTypes = {
+  options: PropTypes.array.isRequired,
+  label: PropTypes.string,
+  placeholder: PropTypes.string,
+  isBorder: PropTypes.bool,
+  isFake: PropTypes.bool,
+  defaultOption: PropTypes.string,
+  onOptionSelect: PropTypes.func.isRequired,
+};
+
+Autocomplete.defaultProps = {
+  label: '',
+  placeholder: '',
+  isBorder: false,
+  isFake: false,
+  defaultOption: '',
+};
 
 export default Autocomplete;

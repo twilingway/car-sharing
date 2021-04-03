@@ -28,7 +28,7 @@ function BreadCrumbs({ crumbs, lastStep, step, onStepClick }) {
                 {name}
               </span>
               <span className={style.span}>
-                {id !== crumbs.length - 1 && <Crumb />}
+                {id !== crumbs.length && <Crumb />}
               </span>
             </li>
           ))}

@@ -29,7 +29,6 @@ function BreadCrumbsContainer() {
 
   const handleSetStepClick = (id) => {
     dispatch(setStep(id));
-    console.log('id :>> ', id);
   };
 
   return (

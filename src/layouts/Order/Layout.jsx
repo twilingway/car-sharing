@@ -10,8 +10,12 @@ import style from './layout.module.scss';
 function Layout() {
   return (
     <section className={style.body}>
-      <Header />
-      <BreadCrumbsContainer />
+      <div className={style.header}>
+        <Header />
+      </div>
+      <div className={style.breadcrumbs}>
+        <BreadCrumbsContainer />
+      </div>
 
       <main className={style.main}>
         <OrderContentContainer />

@@ -6,10 +6,30 @@
 
   border-top: 1px solid var(--grey-light);
   border-bottom: 1px solid var(--grey-light);
+
+  @media (min-width: 1440px) {
+    justify-content: center;
+  }
   ul {
-    padding-left: 64px;
     display: flex;
     flex-wrap: wrap;
+
+    width: 100%;
+
+    max-width: 1440px;
+
+    padding: 0 128px 0 128px;
+
+    @media (max-width: 1439px) {
+      padding: 0 32px 0 96px;
+    }
+
+    @media (max-width: 1023px) {
+      padding: 0 16px 0 118px;
+    }
+    @media (max-width: 767px) {
+      padding: 4px 16px 4px 16px;
+    }
 
     li {
       display: flex;

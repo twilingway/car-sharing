@@ -2,11 +2,9 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getMenuStatusSelect, setMenuStatus } from '../../store/menu';
 import Menu from '../Menu';
-import SideBar from '../Sidebar';
+import SideBar from './SideBar';
 
-// import style from './menu-header.module.scss';
-
-function MenuHeader() {
+function SideBarContainer() {
   const menuIsActiveRedux = useSelector(getMenuStatusSelect);
   const dispatch = useDispatch();
 
@@ -24,4 +22,4 @@ function MenuHeader() {
   );
 }
 
-export default MenuHeader;
+export default SideBarContainer;

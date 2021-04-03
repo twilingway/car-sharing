@@ -144,7 +144,7 @@ function OrderContentContainer() {
   }, [orderCity, orderStreet]);
 
   return (
-    <section className={style.container}>
+    <section className={style.wrapper}>
       <OrderContent>
         {step === 1 && (
           <>

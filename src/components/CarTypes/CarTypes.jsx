@@ -6,7 +6,7 @@ function CarTypes() {
   return (
     <section className={style.type}>
       <fieldset id="group1" className={style.group}>
-        <input type="radio" name="group1" />
+        <input type="radio" name="group1" checked />
         <span>Все</span>
         <input type="radio" name="group1" />
         <span>Эконом</span>
