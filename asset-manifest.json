@@ -1,0 +1,39 @@
+{
+  "files": {
+    "main.css": "/car-sharing/static/css/main.2b44e3e2.chunk.css",
+    "main.js": "/car-sharing/static/js/main.1149b0e1.chunk.js",
+    "main.js.map": "/car-sharing/static/js/main.1149b0e1.chunk.js.map",
+    "runtime-main.js": "/car-sharing/static/js/runtime-main.5b28b2e6.js",
+    "runtime-main.js.map": "/car-sharing/static/js/runtime-main.5b28b2e6.js.map",
+    "static/js/2.1a028a2a.chunk.js": "/car-sharing/static/js/2.1a028a2a.chunk.js",
+    "static/js/2.1a028a2a.chunk.js.map": "/car-sharing/static/js/2.1a028a2a.chunk.js.map",
+    "index.html": "/car-sharing/index.html",
+    "static/css/main.2b44e3e2.chunk.css.map": "/car-sharing/static/css/main.2b44e3e2.chunk.css.map",
+    "static/js/2.1a028a2a.chunk.js.LICENSE.txt": "/car-sharing/static/js/2.1a028a2a.chunk.js.LICENSE.txt",
+    "static/media/arrows-left.dd0226d1.svg": "/car-sharing/static/media/arrows-left.dd0226d1.svg",
+    "static/media/arrows-right.9d87137d.svg": "/car-sharing/static/media/arrows-right.9d87137d.svg",
+    "static/media/city.dd9d4bed.svg": "/car-sharing/static/media/city.dd9d4bed.svg",
+    "static/media/creta.4938ffbb.png": "/car-sharing/static/media/creta.4938ffbb.png",
+    "static/media/crumb.ce81e742.svg": "/car-sharing/static/media/crumb.ce81e742.svg",
+    "static/media/dot.9f512525.svg": "/car-sharing/static/media/dot.9f512525.svg",
+    "static/media/elantra.436bdf3e.png": "/car-sharing/static/media/elantra.436bdf3e.png",
+    "static/media/ellipse.d9a4e522.svg": "/car-sharing/static/media/ellipse.d9a4e522.svg",
+    "static/media/facebook_white.c1876cc3.svg": "/car-sharing/static/media/facebook_white.c1876cc3.svg",
+    "static/media/hundai.8e447acd.png": "/car-sharing/static/media/hundai.8e447acd.png",
+    "static/media/instagram_white.98094ec4.svg": "/car-sharing/static/media/instagram_white.98094ec4.svg",
+    "static/media/slider1.9369f2aa.png": "/car-sharing/static/media/slider1.9369f2aa.png",
+    "static/media/slider2.ea68d8b3.png": "/car-sharing/static/media/slider2.ea68d8b3.png",
+    "static/media/slider3.4e22dc96.png": "/car-sharing/static/media/slider3.4e22dc96.png",
+    "static/media/slider4.be695f13.png": "/car-sharing/static/media/slider4.be695f13.png",
+    "static/media/sonata.b3aa49f5.png": "/car-sharing/static/media/sonata.b3aa49f5.png",
+    "static/media/telegram_white.e8137bbe.svg": "/car-sharing/static/media/telegram_white.e8137bbe.svg",
+    "static/media/x.13854ee1.svg": "/car-sharing/static/media/x.13854ee1.svg",
+    "static/media/yandexMap.3bb9f4a1.png": "/car-sharing/static/media/yandexMap.3bb9f4a1.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.5b28b2e6.js",
+    "static/js/2.1a028a2a.chunk.js",
+    "static/css/main.2b44e3e2.chunk.css",
+    "static/js/main.1149b0e1.chunk.js"
+  ]
+}
