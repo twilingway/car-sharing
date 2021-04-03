@@ -1,5 +1,11 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import CarList from './CarList';
+import {
+  setAnything,
+  getModelSelect,
+  setLatStepValidate,
+} from '../../store/order';
 
 import Elantra from '../../images/elantra.png';
 import Hyndai from '../../images/hundai.png';
@@ -15,7 +21,7 @@ const CARS = [
   },
   {
     id: 1,
-    name: 'i30 N',
+    name: 'Hyndai, i30 N',
     price: '10 000 - 32 000 ₽',
     img: Hyndai,
   },
@@ -74,7 +80,7 @@ const CARS = [
     img: Creta,
   },
   {
-    id: 10,
+    id: 11,
     name: 'SONATA',
     price: '10 000 - 32 000 ₽',
     img: Sonata,
@@ -82,7 +88,21 @@ const CARS = [
 ];
 
 function CarListContainer() {
-  return <CarList cars={CARS} />;
+  const orderModel = useSelector(getModelSelect);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (orderModel !== null) {
+      dispatch(setLatStepValidate(2));
+    } else {
+      dispatch(setLatStepValidate(1));
+    }
+  }, [orderModel]);
+
+  const handleCarSelect = (model) => {
+    dispatch(setAnything({ name: 'model', data: model }));
+  };
+  return <CarList cars={CARS} onCarSelect={handleCarSelect} />;
 }
 
 export default CarListContainer;

@@ -1,14 +1,147 @@
-import React, { useState } from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import OrderContent from './OrderContent';
-import AutocompleteContainer from '../Autocomplete';
+import Autocomplete from '../Autocomplete';
 import YandexMapContainer from '../YandexMap';
 import CarListContainer from '../CarList/CarListContainer';
+import {
+  getCitySelect,
+  setCity,
+  getStreetSelect,
+  setStreet,
+  setLatStepValidate,
+  getOrderSelect,
+} from '../../store/order';
 
 import style from './order-content-container.module.scss';
 
+const options2 = [
+  { value: 'Ульяновск', label: 'Ульяновск' },
+  { value: 'Саранск', label: 'Саранск' },
+  { value: 'Самара', label: 'Самара' },
+  { value: 'Ульяновск', label: 'Ульяновск' },
+  { value: 'Саранск', label: 'Саранск' },
+  { value: 'Самара', label: 'Самара' },
+  { value: 'Ульяновск', label: 'Ульяновск' },
+  { value: 'Саранск', label: 'Саранск' },
+  { value: 'Самара', label: 'Самара' },
+  { value: 'Ульяновск', label: 'Ульяновск' },
+  { value: 'Саранск', label: 'Саранск' },
+  { value: 'Самара', label: 'Самара' },
+  { value: 'Ульяновск', label: 'Ульяновск' },
+  { value: 'Саранск', label: 'Саранск' },
+  { value: 'Самара', label: 'Самара' },
+  { value: 'Ульяновск', label: 'Ульяновск' },
+  { value: 'Саранск', label: 'Саранск' },
+  { value: 'Самара', label: 'Самара' },
+  { value: 'Ульяновск', label: 'Ульяновск' },
+  { value: 'Саранск', label: 'Саранск' },
+  { value: 'Самара', label: 'Самара' },
+  { value: 'Ульяновск', label: 'Ульяновск' },
+  { value: 'Саранск', label: 'Саранск' },
+  { value: 'Самара', label: 'Самара' },
+  { value: 'Ульяновск', label: 'Ульяновск' },
+  { value: 'Саранск', label: 'Саранск' },
+  { value: 'Самара', label: 'Самара' },
+  { value: 'Ульяновск', label: 'Ульяновск' },
+  { value: 'Саранск', label: 'Саранск' },
+  { value: 'Самара', label: 'Самара' },
+  { value: 'Ульяновск', label: 'Ульяновск' },
+  { value: 'Саранск', label: 'Саранск' },
+  { value: 'Самара', label: 'Самара' },
+  { value: 'Ульяновск', label: 'Ульяновск' },
+  { value: 'Саранск', label: 'Саранск' },
+  { value: 'Самара', label: 'Самара' },
+  { value: 'Ульяновск', label: 'Ульяновск' },
+  { value: 'Саранск', label: 'Саранск' },
+  { value: 'Самара', label: 'Самара' },
+  { value: 'Ульяновск', label: 'Ульяновск' },
+  { value: 'Саранск', label: 'Саранск' },
+  { value: 'Самара', label: 'Самара' },
+  { value: 'Ульяновск', label: 'Ульяновск' },
+  { value: 'Саранск', label: 'Саранск' },
+  { value: 'Самара', label: 'Самара' },
+  { value: 'Ульяновск', label: 'Ульяновск' },
+  { value: 'Саранск', label: 'Саранск' },
+  { value: 'Самара', label: 'Самара' },
+  { value: 'Ульяновск', label: 'Ульяновск' },
+  { value: 'Саранск', label: 'Саранск' },
+  { value: 'Самара', label: 'Самара' },
+  { value: 'Ульяновск', label: 'Ульяновск' },
+  { value: 'Саранск', label: 'Саранск' },
+  { value: 'Самара', label: 'Самара' },
+  { value: 'Ульяновск', label: 'Ульяновск' },
+  { value: 'Саранск', label: 'Саранск' },
+  { value: 'Самара', label: 'Самара' },
+  { value: 'Ульяновск', label: 'Ульяновск' },
+  { value: 'Саранск', label: 'Саранск' },
+  { value: 'Самара', label: 'Самара' },
+  { value: 'Ульяновск', label: 'Ульяновск' },
+  { value: 'Саранск', label: 'Саранск' },
+  { value: 'Самара', label: 'Самара' },
+  { value: 'Ульяновск', label: 'Ульяновск' },
+  { value: 'Саранск', label: 'Саранск' },
+  { value: 'Самара', label: 'Самара' },
+  { value: 'Ульяновск', label: 'Ульяновск' },
+  { value: 'Саранск', label: 'Саранск' },
+  { value: 'Самара', label: 'Самара' },
+  { value: 'Ульяновск', label: 'Ульяновск' },
+  { value: 'Саранск', label: 'Саранск' },
+  { value: 'Самара', label: 'Самара' },
+  { value: 'Ульяновск', label: 'Ульяновск' },
+  { value: 'Саранск', label: 'Саранск' },
+  { value: 'Самара', label: 'Самара' },
+  { value: 'Ульяновск', label: 'Ульяновск' },
+  { value: 'Саранск', label: 'Саранск' },
+  { value: 'Самара', label: 'Самара' },
+  { value: 'Ульяновск', label: 'Ульяновск' },
+  { value: 'Саранск', label: 'Саранск' },
+  { value: 'Самара', label: 'Самара' },
+  { value: 'Ульяновск', label: 'Ульяновск' },
+  { value: 'Саранск', label: 'Саранск' },
+  { value: 'Самара', label: 'Самара' },
+  { value: 'Ульяновск', label: 'Ульяновск' },
+  { value: 'Саранск', label: 'Саранск' },
+  { value: 'Самара', label: 'Самара' },
+  { value: 'Ульяновск', label: 'Ульяновск' },
+  { value: 'Саранск', label: 'Саранск' },
+  { value: 'Самара', label: 'Самара' },
+];
+
+const STREET = [
+  { value: 'Улица 1', label: 'Улица 1' },
+  { value: 'Улица 2', label: 'Улица 2' },
+  { value: 'Улица 2', label: 'Улица 2' },
+];
+
 function OrderContentContainer() {
   // eslint-disable-next-line no-unused-vars
-  const [step, setStep] = useState(1);
+
+  const orderCity = useSelector(getCitySelect);
+  const orderStreet = useSelector(getStreetSelect);
+
+  const orderRedux = useSelector(getOrderSelect);
+  const { step, lastStepValidate } = orderRedux;
+
+  const dispatch = useDispatch();
+
+  const handleSelectCity = (city) => {
+    dispatch(setCity(city));
+  };
+
+  const handleSelectStreet = (street) => {
+    dispatch(setStreet(street));
+  };
+
+  useEffect(() => {
+    if (orderCity !== '' && orderStreet !== '') {
+      if (lastStepValidate < step) {
+        dispatch(setLatStepValidate(step));
+      }
+    } else if (orderCity === '' || orderStreet === '') {
+      dispatch(setLatStepValidate(0));
+    }
+  }, [orderCity, orderStreet]);
 
   return (
     <section className={style.container}>
@@ -17,17 +150,23 @@ function OrderContentContainer() {
           <>
             <div className={style.autocomplete}>
               <div className={style.city}>
-                <AutocompleteContainer
+                <Autocomplete
+                  options={options2}
                   label="Город"
                   placeholder="Выберите город"
                   isBorder
+                  onOptionSelect={handleSelectCity}
+                  defaultOption={orderCity}
                 />
               </div>
               <div className={style.street}>
-                <AutocompleteContainer
+                <Autocomplete
+                  options={STREET}
                   label="Пункт выдачи"
                   placeholder="Начните вводить пункт ..."
                   isBorder
+                  onOptionSelect={handleSelectStreet}
+                  defaultOption={orderStreet}
                 />
               </div>
             </div>

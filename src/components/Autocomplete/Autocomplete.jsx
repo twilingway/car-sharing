@@ -18,6 +18,8 @@ function Autocomplete({
   placeholder,
   isBorder,
   isFake = false,
+  defaultOption,
+  onOptionSelect,
 }) {
   const {
     ref,
@@ -25,24 +27,23 @@ function Autocomplete({
     setIsComponentVisible,
   } = useComponentVisible(false);
 
-  const [selectedOption, setSelectedOption] = useState('');
   const [isFocus, setIsFocus] = useState(false);
   const [isFakeClick, setIsFakeClick] = useState(false);
 
   const textInput = useRef(null);
 
   const handleChange = (event) => {
-    setSelectedOption(event.target.value);
+    onOptionSelect(event.target.value);
   };
 
   const handleOnOptionClick = (event) => {
-    setSelectedOption(event.target.value);
+    onOptionSelect(event.target.value);
     setIsComponentVisible(false);
     setIsFocus(false);
   };
 
   const handleOnCloseClick = () => {
-    setSelectedOption('');
+    onOptionSelect('');
   };
 
   useLayoutEffect(() => {
@@ -64,7 +65,7 @@ function Autocomplete({
       <span className={style.label}>{label}</span>
       <div className={style.container} ref={ref}>
         <label htmlFor="input">
-          {isFake && selectedOption === '' && !isFakeClick && (
+          {isFake && defaultOption === '' && !isFakeClick && (
             <span
               className={style.fake}
               role="button"
@@ -75,7 +76,7 @@ function Autocomplete({
               {placeholder}
             </span>
           )}
-          {isFake && selectedOption !== '' && !isFakeClick && (
+          {isFake && defaultOption !== '' && !isFakeClick && (
             <span
               className={style.fake}
               role="button"
@@ -83,7 +84,7 @@ function Autocomplete({
               onClick={() => setIsFakeClick(true)}
               onKeyDown={() => setIsFakeClick(true)}
             >
-              {selectedOption}
+              {defaultOption}
             </span>
           )}
 
@@ -98,12 +99,13 @@ function Autocomplete({
             placeholder={placeholder}
             onChange={handleChange}
             onClick={() => setIsComponentVisible(true)}
+            onKeyDown={() => setIsComponentVisible(true)}
             onFocus={() => setIsFocus(true)}
-            value={selectedOption}
+            value={defaultOption}
             ref={textInput}
           />
 
-          {selectedOption !== '' && isFocus && (
+          {defaultOption !== '' && isFocus && (
             <X className={style.clearInput} onClick={handleOnCloseClick} />
           )}
         </label>
@@ -115,7 +117,7 @@ function Autocomplete({
             })}
           >
             {options.map((item, index) =>
-              selectedOption === '' && selectedOption === null ? (
+              defaultOption ? (
                 <option
                   key={index}
                   className={style.option}
@@ -127,7 +129,7 @@ function Autocomplete({
               ) : (
                 item.value
                   .toLowerCase()
-                  .includes(selectedOption.toLowerCase()) && (
+                  .includes(defaultOption.toLowerCase()) && (
                   <option
                     key={index}
                     className={style.option}

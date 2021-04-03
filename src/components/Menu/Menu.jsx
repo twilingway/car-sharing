@@ -1,5 +1,5 @@
 import React from 'react';
-import classNames from 'classnames';
+import cn from 'classnames';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
@@ -7,41 +7,41 @@ import { ReactComponent as Telegram } from '../../assets/telegram_white.svg';
 import { ReactComponent as Facebook } from '../../assets/facebook_white.svg';
 import { ReactComponent as Instagram } from '../../assets/instagram_white.svg';
 
-import style from './style.module.scss';
+import style from './menu.module.scss';
 
 const MENU = [
   {
     id: '1',
     title: 'ПАРКОВКА',
-    to: '/parking',
+    to: '/',
   },
   {
     id: '2',
     title: 'СТРАХОВКА',
-    to: '/insurance',
+    to: '/',
   },
   {
     id: '3',
     title: 'БЕНЗИН',
-    to: '/petrol',
+    to: '/',
   },
   {
     id: '4',
     title: 'ОБСЛУЖИВАНИЕ',
-    to: '/service',
+    to: '/',
   },
 ];
 
-function Menu({ isOpen, onClickMenu }) {
+function Menu({ onClickMenu }) {
   return (
     <div
-      className={classNames(style.menuContainer, {
-        [style.active]: isOpen === true,
-        [style.deactive]: isOpen === false,
+      className={cn(style.wrapper, {
+        [style.active]: true,
+        // [style.deactive]: isOpen === false,
       })}
     >
       <div className={style.container}>
-        <div className={style.menuItems}>
+        <div className={style.list}>
           <ul>
             {MENU.map(({ title, to, id }) => (
               <li key={id}>
@@ -53,15 +53,15 @@ function Menu({ isOpen, onClickMenu }) {
           </ul>
         </div>
         <section className={style.network}>
-          <Link to="/#">
+          <a href="https://web.telegram.org/">
             <Telegram />
-          </Link>
-          <Link to="/#">
+          </a>
+          <a href="https://www.facebook.com/">
             <Facebook />
-          </Link>
-          <Link to="/#">
+          </a>
+          <a href="https://www.instagram.com/">
             <Instagram />
-          </Link>
+          </a>
         </section>
       </div>
       <div className={style.darkside} />
@@ -70,12 +70,12 @@ function Menu({ isOpen, onClickMenu }) {
 }
 
 Menu.propTypes = {
-  isOpen: PropTypes.bool,
+  // isOpen: PropTypes.bool,
   onClickMenu: PropTypes.func.isRequired,
 };
 
 Menu.defaultProps = {
-  isOpen: null,
+  // isOpen: null,
 };
 
 export default Menu;

@@ -1,32 +1,57 @@
 .header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  height: 96px;
-  padding: 0 64px;
+  position: fixed;
+  width: 50%;
+  top: 0;
+  left: 0;
+  z-index: 10;
 
-  @media (min-width: 2048px) {
-    width: 1376px;
-    margin: 0px auto;
+  @media (max-width: 1439px) {
+    width: calc(100% / 5 * 3);
   }
 
-  @media (max-width: 425px) {
-    margin: 16px 0 0 0;
-    flex-direction: column;
-    align-items: flex-end;
+  @media (max-width: 1023px) {
+    width: 100%;
   }
 
-  .logo {
-    flex: 1 0 auto;
+  .container {
+    .body {
+      color: var(--primary-black);
+      position: relative;
+      z-index: 2;
+      display: flex;
+      justify-content: space-between;
+      height: 96px;
+      align-items: center;
+      padding: 0 64px 0 128px;
 
-    font-style: normal;
-    font-weight: bold;
-    font-size: 30px;
-    line-height: 35px;
+      @media (max-width: 1439px) {
+        padding: 0 32px 0 96px;
+      }
 
-    color: var(--primary-accent);
+      @media (max-width: 1023px) {
+        padding: 0 32px 0 118px;
+      }
 
-    margin: 0 16px 0 0;
+      @media (max-width: 767px) {
+        padding: 0 16px;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+      }
+
+      .logo {
+        font-style: normal;
+        font-weight: bold;
+        font-size: 30px;
+        line-height: 35px;
+        color: var(--primary-accent);
+
+        @media (max-width: 767px) {
+          position: absolute;
+          top: 16px;
+          padding-left: 36px;
+        }
+      }
+    }
   }
 
   .city {
@@ -34,32 +59,15 @@
     align-items: center;
     margin-left: 0px;
 
-    @media (max-width: 425px) {
-      margin: 9px 0 0 0;
+    @media (max-width: 767px) {
+      position: absolute;
+      top: 62px;
     }
 
     .autocomplete {
       position: relative;
-
       display: flex;
-
       justify-content: flex-end;
-
-      font-style: normal;
-      font-weight: normal;
-      font-size: 14px;
-      line-height: 16px;
-
-      input {
-        white-space: pre;
-        text-align: right;
-        color: var(--grey-dark);
-        padding-bottom: 0px;
-
-        &:focus {
-          text-align: left;
-        }
-      }
     }
   }
 }

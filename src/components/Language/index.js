@@ -1,3 +1,3 @@
-import Language from './Language';
+import LanguageContainer from './LanguageContainer';
 
-export default Language;
+export default LanguageContainer;

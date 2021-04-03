@@ -11,7 +11,6 @@ import style from './slider.module.scss';
 import Button from '../Button';
 
 function Slider({ data }) {
-  console.log('data :>> ', data);
   const [index, setIndex] = useState(0);
 
   const handlePrevButton = () => {

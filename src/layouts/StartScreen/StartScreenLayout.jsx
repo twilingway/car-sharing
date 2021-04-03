@@ -1,7 +1,7 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 
-import HeaderContainer from '../../components/Header';
+import Header from '../../components/Header';
 import FooterContainer from '../../components/Footer';
 import Button from '../../components/Button';
 
@@ -15,7 +15,7 @@ function StartScreenLayout() {
   };
   return (
     <div className={style.layout}>
-      <HeaderContainer />
+      <Header />
 
       <main className={style.main}>
         <section className={style.title}>
@@ -25,7 +25,7 @@ function StartScreenLayout() {
         <section className={style.info}>
           <div>Поминутная аренда авто твоего города</div>
         </section>
-        <section className={style.footers}>
+        <section className={style.footer}>
           <Button name="Забронировать" onClickHandler={handleOnClick} />
         </section>
       </main>

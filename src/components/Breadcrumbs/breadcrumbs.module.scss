@@ -1,17 +1,16 @@
 .crumbs {
   display: flex;
-  //align-content: center;
   align-items: center;
   width: 100%;
   min-height: 32px;
+
   border-top: 1px solid var(--grey-light);
   border-bottom: 1px solid var(--grey-light);
   ul {
     padding-left: 64px;
     display: flex;
     flex-wrap: wrap;
-    //justify-content: center;
-    //align-items: flex-start;
+
     li {
       display: flex;
       font-style: normal;
@@ -21,14 +20,19 @@
 
       color: var(--grey-dark);
 
+      &.validated {
+        color: var(--primary-dark);
+      }
+
       &.active {
         color: var(--primary-accent);
+        outline: none;
       }
 
       list-style: none;
 
       .name {
-        overflow: none;
+        outline: none;
       }
       .span {
         padding: 0 16px;

@@ -1,25 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import cn from 'classnames';
+import Hamburger from '../Hamburger';
+
+import LanguageContainer from '../Language';
+
 import style from './sidebar.module.scss';
-import Language from '../Language';
 
 function SideBar({ isOpen, bgActive, onClickHamburger }) {
   return (
-    <nav className={classNames(style.root, { [style.bgActive]: bgActive })}>
+    <nav className={cn(style.root, { [style.bgActive]: bgActive })}>
       <div className={style.navWrapper}>
-        <div
-          tabIndex={0}
-          role="button"
-          onClick={onClickHamburger}
-          onKeyPress={onClickHamburger}
-          className={classNames(style.menuButton, {
-            [style.active]: isOpen === true,
-          })}
-        >
-          <span />
+        <div className={style.hamburger}>
+          <Hamburger onClickHamburger={onClickHamburger} isOpen={isOpen} />
         </div>
-        {!isOpen && <Language />}
+        <LanguageContainer isOpen={isOpen} />
       </div>
     </nav>
   );

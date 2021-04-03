@@ -27,7 +27,7 @@ a {
   text-decoration: none;
   color: #ffffff;
   &:hover {
-    cursor: url('../assets/pointer.svg'), auto;
+    cursor: pointer;
     color: var(--primary-accent);
   }
 }

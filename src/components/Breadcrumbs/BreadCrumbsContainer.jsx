@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getStep, setStep } from '../../store/order';
+import { getLastStepSelect, getStepSelect, setStep } from '../../store/order';
 import BreadCrumbs from './BreadCrumbs';
 
 const CRUMBS = [
@@ -23,7 +23,8 @@ const CRUMBS = [
 ];
 
 function BreadCrumbsContainer() {
-  const step = useSelector(getStep);
+  const lastStepValidate = useSelector(getLastStepSelect);
+  const step = useSelector(getStepSelect);
   const dispatch = useDispatch();
 
   const handleSetStepClick = (id) => {
@@ -32,7 +33,12 @@ function BreadCrumbsContainer() {
   };
 
   return (
-    <BreadCrumbs crumbs={CRUMBS} step={step} onStepClick={handleSetStepClick} />
+    <BreadCrumbs
+      crumbs={CRUMBS}
+      lastStep={lastStepValidate}
+      step={step}
+      onStepClick={handleSetStepClick}
+    />
   );
 }
 

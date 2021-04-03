@@ -1,3 +1,3 @@
-import AutocompleteContainer from './AutocompleteContainer';
+import Autocomplete from './Autocomplete';
 
-export default AutocompleteContainer;
+export default Autocomplete;

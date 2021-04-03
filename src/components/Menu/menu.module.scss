@@ -1,26 +1,33 @@
-.menuContainer {
-  display: flex;
+.wrapper {
   position: fixed;
-
-  height: 100vh;
+  top: 0;
+  left: 0;
+  display: flex;
   width: 100%;
-  z-index: -1;
-  opacity: 0;
+  height: 100%;
+  // background-color: var(--primary-black);
+  z-index: 50;
 
   .container {
-    flex: 0 1 calc(50% + 128px);
-    height: 100%;
-
     display: flex;
     flex-direction: column;
     justify-content: center;
+
+    flex: 1 0 50%;
+
+    height: 100%;
+    width: 50%;
 
     overflow: hidden;
     padding-left: 128px;
     background: #151b1f;
 
-    @media (max-width: 768px) {
-      flex: 0 1 100%;
+    @media (max-width: 1439px) {
+      flex: 1 0 calc(100% / 5 * 3);
+    }
+
+    @media (max-width: 1023px) {
+      flex: 1 0 100%;
     }
 
     @media (max-width: 425px) {
@@ -29,12 +36,14 @@
       justify-content: left;
     }
 
-    .menuItems {
+    .list {
+      display: block;
       ul {
         margin-bottom: 40px;
         li {
-          list-style-type: none;
+          list-style: none;
           margin: 3% 0 16px 0;
+
           a {
             font-style: normal;
             font-weight: 500;
@@ -68,28 +77,33 @@
 
   .darkside {
     display: flex;
-    flex: 0 1 50%;
+    flex: 1 0 50%;
     height: 100vh;
 
     background: rgba(21, 27, 31, 0.81);
+
+    @media (max-width: 1439px) {
+      flex: 0 1 calc(100% / 5 * 2);
+    }
+
     @media (max-width: 768px) {
       display: none;
     }
   }
 }
 
-.menuContainer.deactive {
+.wrapper.deactive {
   animation: fade-out 600ms forwards;
 }
 
 @keyframes fade-out {
   0% {
     opacity: 1;
-    z-index: 999;
+    z-index: 50;
   }
   50% {
     opacity: 1;
-    z-index: 999;
+    z-index: 50;
   }
   100% {
     opacity: 0;
@@ -97,7 +111,8 @@
   }
 }
 
-.menuContainer.active {
+.wrapper.active {
+  animation: fade-in 0ms forwards;
   animation: fade-in 300ms forwards;
 }
 
@@ -108,6 +123,6 @@
   }
   to {
     opacity: 1;
-    z-index: 999;
+    z-index: 50;
   }
 }

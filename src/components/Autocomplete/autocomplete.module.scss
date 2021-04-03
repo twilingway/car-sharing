@@ -23,6 +23,9 @@
         padding-left: 8px;
         outline: none;
         color: var(--grey-dark);
+        &:hover {
+          cursor: pointer;
+        }
       }
       .input {
         margin-left: 8px;

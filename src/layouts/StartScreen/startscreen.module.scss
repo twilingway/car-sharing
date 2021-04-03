@@ -1,31 +1,43 @@
 .layout {
-  // margin: 0 0 0 64px;
   display: flex;
-  flex: 1 0 calc(50% - 32px);
   flex-direction: column;
-  padding-left: 64px;
+  flex: 1 0 calc(50% - 2px);
 
-  @media (max-width: 1440px) {
-    //  margin: 0 0 0 32px;
-    flex: 1 0 calc((100% - 64px) / 5 * 3);
-  }
+  height: 100vh;
 
-  @media (max-width: 1024px) {
-    // margin: 0 0 0 32px;
-    //flex: 1 0 100%;
+  @media (max-width: 1439px) {
+    flex: 1 0 calc(100% / 5 * 3 - 2px);
   }
 
   @media (max-width: 425px) {
-    //  margin: 0 auto;
     flex: 0 1 100%;
   }
+  .header {
+  }
+
   .main {
-    position: absolute;
-    top: 25%;
+    padding-top: 162px;
+    padding-left: 128px;
+
+    @media (max-width: 1439px) {
+      padding-left: 96px;
+    }
+
+    @media (max-width: 1023px) {
+      padding-left: 118px;
+    }
+
+    @media (max-width: 767px) {
+      padding-left: 16px;
+    }
+
+    @media (max-height: 600px) {
+      padding-top: 80px;
+    }
 
     @media (max-width: 425px) {
+      padding-left: 0;
       width: 100%;
-      top: 19%;
     }
 
     .title {
@@ -36,22 +48,26 @@
       font-style: normal;
       font-weight: bold;
 
-      font-size: calc((100vw - 425px) / (1440 - 425) * (70 - 32) + 32px);
-      line-height: calc((100vw - 425px) / (1440 - 425) * (66 - 32) + 32px);
-      @media (max-width: 767px) {
-        font-size: calc((100vw - 425px) / (767 - 425) * (70 - 32) + 32px);
-        line-height: calc((100vw - 425px) / (767 - 425) * (66 - 32) + 32px);
-      }
+      font-size: 70px;
+      line-height: 100%;
+
       @media (max-width: 425px) {
         padding: 0 16px;
         font-size: 32px;
         line-height: 100%;
+      }
+
+      @media (max-height: 460px) {
+        font-size: 50px;
       }
       .need {
         margin-top: 4px;
         color: var(--primary-accent);
         @media (max-width: 425px) {
           margin-top: 6px;
+        }
+        @media (max-height: 460px) {
+          font-size: 50px;
         }
       }
     }
@@ -62,20 +78,16 @@
 
       font-style: normal;
       font-weight: 300;
-      font-size: calc((100vw - 425px) / (1440 - 425) * (26 - 18) + 14px);
-      line-height: calc((100vw - 425px) / (1440 - 425) * (25 - 21) + 16px);
+      font-size: 26px;
+      line-height: 30px;
 
-      @media (max-width: 767px) {
-        font-size: calc((100vw - 425px) / (767 - 425) * (26 - 18) + 18px);
-        line-height: calc((100vw - 425px) / (767 - 425) * (25 - 21) + 21px);
-      }
       @media (max-width: 425px) {
         font-size: 18px;
         line-height: 21px;
         padding: 0 16px;
       }
     }
-    .footers {
+    .footer {
       button {
         margin: 60px 0 0 0;
         height: 48px;
@@ -85,6 +97,10 @@
           margin-top: 32px;
           width: 100%;
           border-radius: 0px;
+        }
+
+        @media (max-height: 460px) {
+          margin-top: 8px;
         }
       }
     }

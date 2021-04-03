@@ -1,24 +1,16 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 import style from './language.module.scss';
 
-function Language() {
-  const [lang, setLang] = useState('Рус');
-
-  const setLanguage = () => {
-    if (lang === 'Рус') {
-      setLang('Eng');
-    } else {
-      setLang('Рус');
-    }
-  };
+// eslint-disable-next-line react/prop-types
+function Language({ lang, onChangeLanguage }) {
   return (
     <div
-      className={style.language}
+      className={style.content}
       tabIndex={-1}
       role="button"
-      onKeyPress={setLanguage}
-      onClick={setLanguage}
+      onKeyPress={onChangeLanguage}
+      onClick={onChangeLanguage}
     >
       <div>
         <p>{lang}</p>

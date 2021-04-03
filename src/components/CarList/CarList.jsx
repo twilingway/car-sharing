@@ -7,11 +7,12 @@ import CarTypes from '../CarTypes';
 import style from './car-list.module.scss';
 
 // eslint-disable-next-line react/prop-types
-function CarList({ cars }) {
+function CarList({ cars, onCarSelect }) {
   const [carSelect, setCarSelect] = useState(null);
 
-  const handleCardSelect = (id) => {
+  const handleCardSelect = (id, name) => {
     setCarSelect(id);
+    onCarSelect(name);
   };
 
   return (
@@ -25,7 +26,7 @@ function CarList({ cars }) {
             isSelect={car.id === carSelect}
             key={car.id}
             car={car}
-            onCarSelect={handleCardSelect}
+            onCarSelect={() => handleCardSelect(car.id, car.name)}
           />
         ))}
       </section>
