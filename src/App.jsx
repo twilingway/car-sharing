@@ -1,4 +1,5 @@
 import React from 'react';
+// eslint-disable-next-line no-unused-vars
 import { Switch, Route, Redirect } from 'react-router-dom';
 import classNames from 'classnames';
 import HomePage from './routes/Home';
@@ -10,7 +11,7 @@ import style from './style.module.scss';
 function App() {
   return (
     <Switch>
-      <Route path="/404" render={() => <h1>404 Not Found</h1>} />
+      {/* <Route path="/404" render={() => <h1>404 Not Found</h1>} /> */}
       <Route>
         <>
           <div className={classNames(style.wrapper)}>
@@ -19,7 +20,7 @@ function App() {
               <Switch>
                 <Route path="/" exact component={HomePage} />
                 <Route path="/order" exact component={OrderPage} />
-                <Route render={() => <Redirect to="/404" />} />
+                {/* <Route render={() => <Redirect to="/404" />} /> */}
               </Switch>
             </div>
           </div>
