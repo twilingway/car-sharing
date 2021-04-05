@@ -140,13 +140,13 @@ function OrderContentContainer() {
   };
 
   const handleConfirmClick = () => {
-    console.log('handleConfirmClick :>> ');
+    // console.log('handleConfirmClick :>> ');
     dispatch(setStep(6));
     dispatch(setLatStepValidate(5));
   };
 
   const handleReturnClick = () => {
-    console.log('Return :>> ');
+    // console.log('Return :>> ');
     dispatch(setLatStepValidate(4));
     dispatch(setStep(4));
   };
