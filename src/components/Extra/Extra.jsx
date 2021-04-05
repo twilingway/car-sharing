@@ -69,7 +69,7 @@ function Extra() {
   };
 
   const handleChangeDate = (date) => {
-    console.log('date :>> ', date);
+    // console.log('date :>> ', date);
     dispatch(setDate({ name: 'dateEnd', data: date }));
   };
 
