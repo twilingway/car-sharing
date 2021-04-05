@@ -5,12 +5,18 @@ import style from './car-type.module.scss';
 function CarTypes() {
   return (
     <section className={style.type}>
-      <fieldset id="group1" className={style.group}>
-        <input type="radio" name="group1" checked />
-        <span>Все</span>
-        <input type="radio" name="group1" />
+      <fieldset
+        id="group1"
+        className={style.group}
+        onChange={(event) => console.log('group1 :>> ', event.target.value)}
+      >
+        <label htmlFor="input">
+          <input type="radio" name="group1" value="Все" defaultChecked />
+          <span>Все</span>
+        </label>
+        <input type="radio" name="group1" value="Эконом" />
         <span>Эконом</span>
-        <input type="radio" name="group1" />
+        <input type="radio" name="group1" value="Премиум" />
         <span>Премиум</span>
       </fieldset>
     </section>

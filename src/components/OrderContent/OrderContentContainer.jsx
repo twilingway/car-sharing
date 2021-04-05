@@ -14,6 +14,8 @@ import {
 } from '../../store/order';
 
 import style from './order-content-container.module.scss';
+import ExtraContainer from '../Extra';
+import TotalContainer from '../Total';
 
 const options2 = [
   { value: 'Ульяновск', label: 'Ульяновск' },
@@ -178,6 +180,20 @@ function OrderContentContainer() {
           <>
             {/* <div className={style.carList}> */}
             <CarListContainer />
+            {/* </div> */}
+          </>
+        )}
+        {step === 3 && (
+          <>
+            {/* <div className={style.carList}> */}
+            <ExtraContainer />
+            {/* </div> */}
+          </>
+        )}
+        {step === 4 && (
+          <>
+            {/* <div className={style.carList}> */}
+            <TotalContainer />
             {/* </div> */}
           </>
         )}

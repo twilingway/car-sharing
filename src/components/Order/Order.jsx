@@ -6,7 +6,7 @@ import Button from '../Button';
 import style from './order.module.scss';
 
 function Order({ order, buttonName, onClickHandler }) {
-  const { point, model } = order;
+  const { point, model, color, tariff, services } = order;
   return (
     <div className={style.content}>
       <div className={style.yourOrder}>Ваш заказ:</div>
@@ -22,24 +22,24 @@ function Order({ order, buttonName, onClickHandler }) {
           </div>
         </div>
       </div>
-
       {model && (
         <div className={style.params}>
           <span className={style.paramsName}>Модель</span>
-          <div className={style.empty}>{}</div>
+          <div className={style.empty} />
           <div className={style.description}>
             <div>{model}</div>
           </div>
         </div>
       )}
-
-      <div className={style.params}>
-        <span className={style.paramsName}>Цвет</span>
-        <div className={style.empty}>{}</div>
-        <div className={style.description}>
-          <div>Голубой{}</div>
+      {color && (
+        <div className={style.params}>
+          <span className={style.paramsName}>Цвет</span>
+          <div className={style.empty} />
+          <div className={style.description}>
+            <div>{color}</div>
+          </div>
         </div>
-      </div>
+      )}
       <div className={style.params}>
         <span className={style.paramsName}>Длительность аренды</span>
         <div className={style.empty}>{}</div>
@@ -47,20 +47,27 @@ function Order({ order, buttonName, onClickHandler }) {
           <div>1д 2ч{}</div>
         </div>
       </div>
-      <div className={style.params}>
-        <span className={style.paramsName}>Тариф</span>
-        <div className={style.empty}>{}</div>
-        <div className={style.description}>
-          <div>На сутки{}</div>
+      {tariff && (
+        <div className={style.params}>
+          <span className={style.paramsName}>Тариф</span>
+          <div className={style.empty}>{}</div>
+          <div className={style.description}>
+            <div>{tariff}</div>
+          </div>
         </div>
-      </div>
-      <div className={style.params}>
-        <span className={style.paramsName}>Полный бак</span>
-        <div className={style.empty}>{}</div>
-        <div className={style.description}>
-          <div>Да{}</div>
-        </div>
-      </div>
+      )}
+      {Object.entries(services).map(
+        (item) =>
+          item[1] && (
+            <div className={style.params}>
+              <span className={style.paramsName}>{item[0]}</span>
+              <div className={style.empty}>{}</div>
+              <div className={style.description}>
+                <div>Да</div>
+              </div>
+            </div>
+          )
+      )}
 
       <div className={style.price}>
         <span>

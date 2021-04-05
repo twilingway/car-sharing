@@ -12,11 +12,18 @@ export const slice = createSlice({
         },
         model: null,
         color: null,
+        date: {},
         time: null,
         tariff: null,
         services: {},
     },
     reducers: {
+
+        setAnything: (state, action) => ({
+            ...state,
+            [action.payload.name]: action.payload.data
+        }),
+
         setStep: (state, action) => ({
             ...state,
             step: action.payload
@@ -40,9 +47,13 @@ export const slice = createSlice({
             point: { ...state.point, street: action.payload }
         }),
 
-        setAnything: (state, action) => ({
+        setServices: (state, action) => ({
             ...state,
-            [action.payload.name]: action.payload.data
+            services: { ...state.services, [action.payload.name]: action.payload.data }
+        }),
+        setDate: (state, action) => ({
+            ...state,
+            date: { ...state.date, [action.payload.name]: action.payload.data }
         })
 
 
@@ -55,7 +66,10 @@ export const {
     setOrderByKey,
     setCity,
     setStreet,
-    setAnything } = slice.actions;
+    setAnything,
+    setServices,
+    setDate
+} = slice.actions;
 
 export const getStepSelect = state => state.order.step;
 export const getLastStepSelect = state => state.order.lastStepValidate;
@@ -65,6 +79,8 @@ export const getOrderSelect = state => state.order;
 export const getCitySelect = state => state.order.point.city;
 export const getStreetSelect = state => state.order.point.street;
 export const getModelSelect = state => state.order.model;
+export const getServicesSelect = state => state.order.services;
+export const getDateSelect = state => state.order.date;
 
 
 export default slice.reducer;
