@@ -23,6 +23,14 @@ const BUTTONNAME = [
     id: 4,
     name: 'Заказать',
   },
+  {
+    id: 5,
+    name: 'Заказать',
+  },
+  {
+    id: 6,
+    name: 'Отменить',
+  },
 ];
 
 function OrderContainer() {

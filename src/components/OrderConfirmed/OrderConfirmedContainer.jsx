@@ -1,24 +1,24 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getOrderSelect, setLatStepValidate } from '../../store/order';
-import Total from './Total';
+import OrderConfirmed from './OrderConfirmed';
 
-import style from './total-container.module.scss';
+import style from './order-confirmed-container.module.scss';
 
-function TotalContainer() {
+function OrderConfirmedContainer() {
   const orderRedux = useSelector(getOrderSelect);
 
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(setLatStepValidate(4));
+    dispatch(setLatStepValidate(6));
   }, []);
 
   return (
     <div className={style.wrapper}>
-      <Total order={orderRedux} />
+      <OrderConfirmed order={orderRedux} />
     </div>
   );
 }
 
-export default TotalContainer;
+export default OrderConfirmedContainer;

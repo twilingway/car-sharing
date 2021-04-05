@@ -92,6 +92,23 @@
   .button {
     padding-top: 32px;
 
+    &.cancel {
+      button {
+        width: 287px;
+        height: 48px;
+        background: linear-gradient(90deg, #493013 0%, #7b0c3b 100%);
+        border-radius: 4px;
+
+        &:hover {
+          background: linear-gradient(90deg, #0b934a 2.61%, #026e47 112.6%);
+          background-blend-mode: darken;
+        }
+        &:active {
+          background: linear-gradient(90deg, #076432 2.61%, #013c27 112.6%);
+        }
+      }
+    }
+
     button {
       width: 287px;
       height: 48px;

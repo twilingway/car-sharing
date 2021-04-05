@@ -22,6 +22,13 @@ const CRUMBS = [
   },
 ];
 
+const orderNumber = [
+  {
+    id: 6,
+    name: 'Заказ номер RU58491823',
+  },
+];
+
 function BreadCrumbsContainer() {
   const lastStepValidate = useSelector(getLastStepSelect);
   const step = useSelector(getStepSelect);
@@ -33,7 +40,7 @@ function BreadCrumbsContainer() {
 
   return (
     <BreadCrumbs
-      crumbs={CRUMBS}
+      crumbs={step === 6 ? orderNumber : CRUMBS}
       lastStep={lastStepValidate}
       step={step}
       onStepClick={handleSetStepClick}

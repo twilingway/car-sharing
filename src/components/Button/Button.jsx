@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import cn from 'classnames';
 
 import { ReactComponent as Ellipse } from '../../assets/ellipse.svg';
 
@@ -17,7 +17,7 @@ function Button({
   return (
     <button
       type="button"
-      className={classNames(className, style.button, {
+      className={cn(className, style.button, {
         [style.disable]: disabled,
         [style.loading]: loading,
       })}
@@ -26,7 +26,7 @@ function Button({
       onClick={onClickHandler}
     >
       <span
-        className={classNames(style.text, {
+        className={cn(style.text, {
           [style.loading]: loading,
         })}
       >

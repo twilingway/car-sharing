@@ -15,20 +15,24 @@ function BreadCrumbs({ crumbs, lastStep, step, onStepClick }) {
               key={id}
               className={cn({
                 [style.validated]: lastStep + 1 >= id,
-                [style.active]: id === step,
+                [style.active]: id === step && step !== 6,
               })}
             >
               <span
                 className={style.name}
                 role="button"
                 tabIndex={0}
-                onClick={() => lastStep + 1 >= id && onStepClick(id)}
-                onKeyDown={() => lastStep + 1 >= id && onStepClick(id)}
+                onClick={() =>
+                  lastStep + 1 >= id && step !== 6 && onStepClick(id)
+                }
+                onKeyDown={() =>
+                  lastStep + 1 >= id && step !== 6 && onStepClick(id)
+                }
               >
                 {name}
               </span>
               <span className={style.span}>
-                {id !== crumbs.length && <Crumb />}
+                {id !== crumbs.length && step !== 6 && <Crumb />}
               </span>
             </li>
           ))}

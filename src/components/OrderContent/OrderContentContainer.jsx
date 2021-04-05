@@ -11,11 +11,15 @@ import {
   setStreet,
   setLatStepValidate,
   getOrderSelect,
+  setStep,
 } from '../../store/order';
 
 import style from './order-content-container.module.scss';
 import ExtraContainer from '../Extra';
 import TotalContainer from '../Total';
+import Modal from '../Modal';
+import Button from '../Button';
+import OrderConfirmedContainer from '../OrderConfirmed';
 
 const options2 = [
   { value: 'Ульяновск', label: 'Ульяновск' },
@@ -135,6 +139,18 @@ function OrderContentContainer() {
     dispatch(setStreet(street));
   };
 
+  const handleConfirmClick = () => {
+    console.log('handleConfirmClick :>> ');
+    dispatch(setStep(6));
+    dispatch(setLatStepValidate(5));
+  };
+
+  const handleReturnClick = () => {
+    console.log('Return :>> ');
+    dispatch(setLatStepValidate(4));
+    dispatch(setStep(4));
+  };
+
   useEffect(() => {
     if (orderCity !== '' && orderStreet !== '') {
       if (lastStepValidate < step) {
@@ -194,6 +210,38 @@ function OrderContentContainer() {
           <>
             {/* <div className={style.carList}> */}
             <TotalContainer />
+            {/* </div> */}
+          </>
+        )}
+        {step === 5 && (
+          <>
+            {/* <div className={style.carList}> */}
+            <Modal>
+              <div className={style.confirm}>
+                <div className={style.title}>Подтвердить заказ</div>
+                <div className={style.buttons}>
+                  <div className={style.buttonConfirm}>
+                    <Button
+                      name="Подтвердить"
+                      onClickHandler={handleConfirmClick}
+                    />
+                  </div>
+                  <div className={style.buttonReturn}>
+                    <Button
+                      name="Вернуться"
+                      onClickHandler={handleReturnClick}
+                    />
+                  </div>
+                </div>
+              </div>
+            </Modal>
+            {/* </div> */}
+          </>
+        )}
+        {step === 6 && (
+          <>
+            {/* <div className={style.carList}> */}
+            <OrderConfirmedContainer />
             {/* </div> */}
           </>
         )}

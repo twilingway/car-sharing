@@ -54,4 +54,54 @@
   .carList {
     color: black;
   }
+
+  .confirm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    width: 405px;
+    .title {
+      font-style: normal;
+      font-weight: normal;
+      font-size: 24px;
+      line-height: 28px;
+      padding-bottom: 32px;
+    }
+    .buttons {
+      display: flex;
+      width: 370px;
+      justify-content: space-between;
+
+      @media (max-width: 420px) {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .buttonConfirm {
+        padding-bottom: 8px;
+        button {
+          width: 177px;
+          height: 48px;
+        }
+      }
+      .buttonReturn {
+        padding-bottom: 8px;
+        button {
+          width: 177px;
+          height: 48px;
+          background: linear-gradient(90deg, #493013 0%, #7b0c3b 100%);
+          border-radius: 4px;
+
+          &:hover {
+            background: linear-gradient(90deg, #0b934a 2.61%, #026e47 112.6%);
+            background-blend-mode: darken;
+          }
+          &:active {
+            background: linear-gradient(90deg, #076432 2.61%, #013c27 112.6%);
+          }
+        }
+      }
+    }
+  }
 }

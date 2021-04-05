@@ -1,12 +1,13 @@
 /* eslint-disable react/prop-types */
 
 import React from 'react';
+import cn from 'classnames';
 import Button from '../Button';
 
 import style from './order.module.scss';
 
 function Order({ order, buttonName, onClickHandler }) {
-  const { point, model, color, tariff, services } = order;
+  const { point, model, color, tariff, services, step } = order;
   return (
     <div className={style.content}>
       <div className={style.yourOrder}>Ваш заказ:</div>
@@ -75,7 +76,7 @@ function Order({ order, buttonName, onClickHandler }) {
         </span>
         <span> от 8000 до 12000 &#x20bd;</span>
       </div>
-      <div className={style.button}>
+      <div className={cn(style.button, { [style.cancel]: step === 6 })}>
         {buttonName
           .filter((item) => item.id === order.step)
           .map((item) => (
