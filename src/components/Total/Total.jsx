@@ -1,15 +1,26 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable react/prop-types */
 import React from 'react';
+import Hyndai from '../../images/hundai.png';
 
-function Total() {
+import style from './total.module.scss';
+
+function Total({ order }) {
   return (
-    <div>
-      <div className="about">
-        <div className="carName">12</div>
-        <div className="carNumber">123</div>
-        <div className="fuel">100%</div>
-        <div className="available">12.06.2019 12:00</div>
+    <div className={style.content}>
+      <div className={style.about}>
+        <div className={style.carName}>{order.model}</div>
+        <div className={style.carNumber}>К 761 НА 73</div>
+        <div className={style.fuel}>
+          <span>Топливо</span> 100%
+        </div>
+        <div className={style.available}>
+          <span>Доступна с</span> 12.06.2019 12:00
+        </div>
       </div>
-      <div className="carImage">Image</div>
+      <div className={style.carImage}>
+        <img src={Hyndai} alt={order.model} />
+      </div>
     </div>
   );
 }

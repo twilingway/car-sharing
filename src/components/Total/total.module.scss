@@ -1,0 +1,52 @@
+.content {
+  display: flex;
+  justify-content: space-between;
+  max-width: 738px;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    align-items: center;
+    padding: 0 16px;
+  }
+  .about {
+    display: flex;
+    flex-direction: column;
+
+    .carName {
+      font-style: normal;
+      font-weight: normal;
+      font-size: 18px;
+      line-height: 21px;
+      padding-bottom: 8px;
+    }
+
+    .carNumber {
+      display: flex;
+      align-items: center;
+      width: 94px;
+      height: 24px;
+      border: 1px solid #999999;
+      box-sizing: border-box;
+      border-radius: 4px;
+      margin-bottom: 8px;
+    }
+
+    .fuel {
+      padding-bottom: 8px;
+      span {
+        font-style: normal;
+        font-weight: bold;
+        font-size: 14px;
+        line-height: 16px;
+      }
+    }
+    .available {
+      span {
+        font-style: normal;
+        font-weight: bold;
+        font-size: 14px;
+        line-height: 16px;
+      }
+    }
+  }
+}
