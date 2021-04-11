@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import OrderContent from './OrderContent';
@@ -5,218 +6,96 @@ import Autocomplete from '../Autocomplete';
 import YandexMapContainer from '../YandexMap';
 import CarListContainer from '../CarList/CarListContainer';
 import {
-  getCitySelect,
-  setCity,
-  getStreetSelect,
-  setStreet,
-  setLatStepValidate,
+  getOrderCitySelect,
+  getOrderPointSelect,
+  setOrderPoint,
+  setOrderLatStepValidate,
   getOrderSelect,
-  setStep,
+  // setOrderStep,
+  setOrderCity,
+  getOrderStepSelect,
 } from '../../store/order';
 
-import style from './order-content-container.module.scss';
 import ExtraContainer from '../Extra';
 import TotalContainer from '../Total';
-import Modal from '../Modal';
-import Button from '../Button';
-import OrderConfirmedContainer from '../OrderConfirmed';
+// import Modal from '../Modal';
+// import Button from '../Button';
+// import OrderConfirmedContainer from '../OrderConfirmed';
+import { getCityAsync, getPointsAsync, selectPoint } from '../../store/point';
+import Points from '../Points';
 
-const options2 = [
-  { value: 'Ульяновск', label: 'Ульяновск' },
-  { value: 'Саранск', label: 'Саранск' },
-  { value: 'Самара', label: 'Самара' },
-  { value: 'Ульяновск', label: 'Ульяновск' },
-  { value: 'Саранск', label: 'Саранск' },
-  { value: 'Самара', label: 'Самара' },
-  { value: 'Ульяновск', label: 'Ульяновск' },
-  { value: 'Саранск', label: 'Саранск' },
-  { value: 'Самара', label: 'Самара' },
-  { value: 'Ульяновск', label: 'Ульяновск' },
-  { value: 'Саранск', label: 'Саранск' },
-  { value: 'Самара', label: 'Самара' },
-  { value: 'Ульяновск', label: 'Ульяновск' },
-  { value: 'Саранск', label: 'Саранск' },
-  { value: 'Самара', label: 'Самара' },
-  { value: 'Ульяновск', label: 'Ульяновск' },
-  { value: 'Саранск', label: 'Саранск' },
-  { value: 'Самара', label: 'Самара' },
-  { value: 'Ульяновск', label: 'Ульяновск' },
-  { value: 'Саранск', label: 'Саранск' },
-  { value: 'Самара', label: 'Самара' },
-  { value: 'Ульяновск', label: 'Ульяновск' },
-  { value: 'Саранск', label: 'Саранск' },
-  { value: 'Самара', label: 'Самара' },
-  { value: 'Ульяновск', label: 'Ульяновск' },
-  { value: 'Саранск', label: 'Саранск' },
-  { value: 'Самара', label: 'Самара' },
-  { value: 'Ульяновск', label: 'Ульяновск' },
-  { value: 'Саранск', label: 'Саранск' },
-  { value: 'Самара', label: 'Самара' },
-  { value: 'Ульяновск', label: 'Ульяновск' },
-  { value: 'Саранск', label: 'Саранск' },
-  { value: 'Самара', label: 'Самара' },
-  { value: 'Ульяновск', label: 'Ульяновск' },
-  { value: 'Саранск', label: 'Саранск' },
-  { value: 'Самара', label: 'Самара' },
-  { value: 'Ульяновск', label: 'Ульяновск' },
-  { value: 'Саранск', label: 'Саранск' },
-  { value: 'Самара', label: 'Самара' },
-  { value: 'Ульяновск', label: 'Ульяновск' },
-  { value: 'Саранск', label: 'Саранск' },
-  { value: 'Самара', label: 'Самара' },
-  { value: 'Ульяновск', label: 'Ульяновск' },
-  { value: 'Саранск', label: 'Саранск' },
-  { value: 'Самара', label: 'Самара' },
-  { value: 'Ульяновск', label: 'Ульяновск' },
-  { value: 'Саранск', label: 'Саранск' },
-  { value: 'Самара', label: 'Самара' },
-  { value: 'Ульяновск', label: 'Ульяновск' },
-  { value: 'Саранск', label: 'Саранск' },
-  { value: 'Самара', label: 'Самара' },
-  { value: 'Ульяновск', label: 'Ульяновск' },
-  { value: 'Саранск', label: 'Саранск' },
-  { value: 'Самара', label: 'Самара' },
-  { value: 'Ульяновск', label: 'Ульяновск' },
-  { value: 'Саранск', label: 'Саранск' },
-  { value: 'Самара', label: 'Самара' },
-  { value: 'Ульяновск', label: 'Ульяновск' },
-  { value: 'Саранск', label: 'Саранск' },
-  { value: 'Самара', label: 'Самара' },
-  { value: 'Ульяновск', label: 'Ульяновск' },
-  { value: 'Саранск', label: 'Саранск' },
-  { value: 'Самара', label: 'Самара' },
-  { value: 'Ульяновск', label: 'Ульяновск' },
-  { value: 'Саранск', label: 'Саранск' },
-  { value: 'Самара', label: 'Самара' },
-  { value: 'Ульяновск', label: 'Ульяновск' },
-  { value: 'Саранск', label: 'Саранск' },
-  { value: 'Самара', label: 'Самара' },
-  { value: 'Ульяновск', label: 'Ульяновск' },
-  { value: 'Саранск', label: 'Саранск' },
-  { value: 'Самара', label: 'Самара' },
-  { value: 'Ульяновск', label: 'Ульяновск' },
-  { value: 'Саранск', label: 'Саранск' },
-  { value: 'Самара', label: 'Самара' },
-  { value: 'Ульяновск', label: 'Ульяновск' },
-  { value: 'Саранск', label: 'Саранск' },
-  { value: 'Самара', label: 'Самара' },
-  { value: 'Ульяновск', label: 'Ульяновск' },
-  { value: 'Саранск', label: 'Саранск' },
-  { value: 'Самара', label: 'Самара' },
-  { value: 'Ульяновск', label: 'Ульяновск' },
-  { value: 'Саранск', label: 'Саранск' },
-  { value: 'Самара', label: 'Самара' },
-  { value: 'Ульяновск', label: 'Ульяновск' },
-  { value: 'Саранск', label: 'Саранск' },
-  { value: 'Самара', label: 'Самара' },
-  { value: 'Ульяновск', label: 'Ульяновск' },
-  { value: 'Саранск', label: 'Саранск' },
-  { value: 'Самара', label: 'Самара' },
-];
-
-const STREET = [
-  { value: 'Улица 1', label: 'Улица 1' },
-  { value: 'Улица 2', label: 'Улица 2' },
-  { value: 'Улица 2', label: 'Улица 2' },
-];
+// import requestHttp from '../../Api/http';
 
 function OrderContentContainer() {
   // eslint-disable-next-line no-unused-vars
 
-  const orderCity = useSelector(getCitySelect);
-  const orderStreet = useSelector(getStreetSelect);
+  // const orderRedux = useSelector(getOrderSelect);
 
-  const orderRedux = useSelector(getOrderSelect);
-  const { step, lastStepValidate } = orderRedux;
+  const orderStep = useSelector(getOrderStepSelect);
 
   const dispatch = useDispatch();
 
-  const handleSelectCity = (city) => {
-    dispatch(setCity(city));
-  };
+  // const handleConfirmClick = () => {
+  //   // console.log('handleConfirmClick :>> ');
+  //   dispatch(setOrderStep(6));
+  //   dispatch(setOrderLatStepValidate(5));
 
-  const handleSelectStreet = (street) => {
-    dispatch(setStreet(street));
-  };
+  //   const body = {
+  //     orderStatusId: {
+  //       name: 'temp',
+  //       id: '607069ad2aed9a0b9b7e5530',
+  //     },
+  //     cityId: {
+  //       name: 'Ульяновск',
+  //       id: '5e26a128099b810b946c5d87',
+  //     },
 
-  const handleConfirmClick = () => {
-    // console.log('handleConfirmClick :>> ');
-    dispatch(setStep(6));
-    dispatch(setLatStepValidate(5));
-  };
+  //     pointId: {
+  //       address: 'Нариманова 1, корп.2',
+  //       name: 'База 007',
+  //       id: '5e26a148099b810b946c5d88',
+  //     },
+  //     carId: {
+  //       name: 'Hyundai, Tucson',
+  //       id: '5ea16821099b810b946c62b8',
+  //     },
+  //     color: 'Любой',
+  //     dateFrom: 0,
+  //     dateTo: 0,
+  //     rateId: {
+  //       price: 1999,
+  //       id: '5e26a0e2099b810b946c5d86',
+  //     },
+  //     price: 5000,
+  //     isFullTank: true,
+  //     isNeedChildChair: true,
+  //     isRightWheel: true,
+  //   };
+
+  //   const data = requestHttp(
+  //     'https://api-factory.simbirsoft1.com/api/db/order',
+  //     'POST',
+  //     body
+  //   ).then((res) => console.log('dataRes :>> ', res));
+  //   console.log('data :>> ', data);
+  // };
 
   const handleReturnClick = () => {
     // console.log('Return :>> ');
-    dispatch(setLatStepValidate(4));
-    dispatch(setStep(4));
+    // dispatch(setOrderLatStepValidate(4));
+    // dispatch(setOrderStep(4));
   };
 
-  useEffect(() => {
-    if (orderCity !== '' && orderStreet !== '') {
-      if (lastStepValidate < step) {
-        dispatch(setLatStepValidate(step));
-      }
-    } else if (orderCity === '' || orderStreet === '') {
-      dispatch(setLatStepValidate(0));
-    }
-  }, [orderCity, orderStreet]);
-
   return (
-    <section className={style.wrapper}>
-      <OrderContent>
-        {step === 1 && (
-          <>
-            <div className={style.autocomplete}>
-              <div className={style.city}>
-                <Autocomplete
-                  options={options2}
-                  label="Город"
-                  placeholder="Выберите город"
-                  isBorder
-                  onOptionSelect={handleSelectCity}
-                  defaultOption={orderCity}
-                />
-              </div>
-              <div className={style.street}>
-                <Autocomplete
-                  options={STREET}
-                  label="Пункт выдачи"
-                  placeholder="Начните вводить пункт ..."
-                  isBorder
-                  onOptionSelect={handleSelectStreet}
-                  defaultOption={orderStreet}
-                />
-              </div>
-            </div>
-
-            <YandexMapContainer />
-          </>
-        )}
-        {step === 2 && (
-          <>
-            {/* <div className={style.carList}> */}
-            <CarListContainer />
-            {/* </div> */}
-          </>
-        )}
-        {step === 3 && (
-          <>
-            {/* <div className={style.carList}> */}
-            <ExtraContainer />
-            {/* </div> */}
-          </>
-        )}
-        {step === 4 && (
-          <>
-            {/* <div className={style.carList}> */}
-            <TotalContainer />
-            {/* </div> */}
-          </>
-        )}
-        {step === 5 && (
-          <>
-            {/* <div className={style.carList}> */}
-            <Modal>
+    <OrderContent>
+      {orderStep === 1 && <Points />}
+      {orderStep === 2 && <CarListContainer />}
+      {orderStep === 3 && <ExtraContainer />}
+      {orderStep === 4 && <TotalContainer />}
+      {orderStep === 5 && (
+        <>
+          {/* <div className={style.carList}> */}
+          {/* <Modal>
               <div className={style.confirm}>
                 <div className={style.title}>Подтвердить заказ</div>
                 <div className={style.buttons}>
@@ -234,19 +113,18 @@ function OrderContentContainer() {
                   </div>
                 </div>
               </div>
-            </Modal>
-            {/* </div> */}
-          </>
-        )}
-        {step === 6 && (
-          <>
-            {/* <div className={style.carList}> */}
-            <OrderConfirmedContainer />
-            {/* </div> */}
-          </>
-        )}
-      </OrderContent>
-    </section>
+            </Modal> */}
+          {/* </div> */}
+        </>
+      )}
+      {orderStep === 6 && (
+        <>
+          {/* <div className={style.carList}> */}
+          {/* <OrderConfirmedContainer /> */}
+          {/* </div> */}
+        </>
+      )}
+    </OrderContent>
   );
 }
 

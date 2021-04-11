@@ -2,7 +2,7 @@ import React from 'react';
 
 import BreadCrumbsContainer from '../../components/Breadcrumbs';
 import Header from '../../components/Header';
-import OrderContainer from '../../components/Order';
+import OrderInfoContainer from '../../components/OrderInfo';
 import OrderContentContainer from '../../components/OrderContent';
 
 import style from './layout.module.scss';
@@ -18,8 +18,12 @@ function Layout() {
       </div>
 
       <main className={style.main}>
-        <OrderContentContainer />
-        <OrderContainer />
+        <section className={style.orderContentContainer}>
+          <OrderContentContainer />
+        </section>
+        <section className={style.orderContainer}>
+          <OrderInfoContainer />
+        </section>
       </main>
     </section>
   );

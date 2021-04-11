@@ -47,6 +47,7 @@ function FilterCheckbox({
           checkboxs.map((checkbox) => (
             <label htmlFor={checkbox.id}>
               <input
+                key={checkbox.id}
                 className={style.custom}
                 id={checkbox.id}
                 type="checkbox"

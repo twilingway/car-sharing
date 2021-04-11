@@ -1,6 +1,7 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react/no-array-index-key */
 /* eslint-disable react/forbid-prop-types */
-import React, { useEffect, useLayoutEffect, useRef, useState } from 'react';
+import React, { useLayoutEffect, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import cn from 'classnames';
 import { ReactComponent as X } from '../../assets/x.svg';
@@ -13,9 +14,9 @@ function Autocomplete({
   label,
   placeholder,
   isBorder,
-  isFake = false,
-  defaultOption,
+  defaultValue,
   onOptionSelect,
+  searchKey,
 }) {
   const {
     ref,
@@ -23,72 +24,41 @@ function Autocomplete({
     setIsComponentVisible,
   } = useComponentVisible(false);
 
-  const [isFocus, setIsFocus] = useState(false);
-  const [isFakeClick, setIsFakeClick] = useState(false);
+  // const [isFocus, setIsFocus] = useState(false);
+  const [inputValue, setInputValue] = useState('');
 
-  const textInput = useRef(null);
+  // const textInput = useRef(null);
 
   const handleChange = (event) => {
-    onOptionSelect(event.target.value);
+    // onOptionSelect(event.target.value);
+    setInputValue(event.target.value);
   };
 
-  const handleOnOptionClick = (event) => {
-    onOptionSelect(event.target.value);
+  const handleOnOptionClick = (option) => {
+    onOptionSelect(option);
     setIsComponentVisible(false);
-    setIsFocus(false);
+    // setIsFocus(false);
   };
 
   const handleOnCloseClick = () => {
     onOptionSelect('');
+    setInputValue('');
   };
 
   useLayoutEffect(() => {
-    if (!isComponentVisible) {
-      setIsFocus(false);
-      setIsFakeClick(false);
+    if (defaultValue) {
+      setInputValue(defaultValue);
     }
-  }, [isComponentVisible]);
-
-  useEffect(() => {
-    if (isFakeClick) {
-      setIsComponentVisible(true);
-      textInput.current.focus();
-    }
-  }, [isFakeClick]);
+  }, [defaultValue]);
 
   return (
     <div className={style.autocomplete}>
       <span className={style.label}>{label}</span>
       <div className={style.container} ref={ref}>
         <label htmlFor="input">
-          {isFake && defaultOption === '' && !isFakeClick && (
-            <span
-              className={style.fake}
-              role="button"
-              tabIndex={0}
-              onClick={() => setIsFakeClick(true)}
-              onKeyDown={() => setIsFakeClick(true)}
-            >
-              {placeholder}
-            </span>
-          )}
-          {isFake && defaultOption !== '' && !isFakeClick && (
-            <span
-              className={style.fake}
-              role="button"
-              tabIndex={0}
-              onClick={() => setIsFakeClick(true)}
-              onKeyDown={() => setIsFakeClick(true)}
-            >
-              {defaultOption}
-            </span>
-          )}
-
           <input
             className={cn(style.input, {
-              [style.hidden]: isFakeClick === false && isFake === true,
               [style.border]: isBorder === true,
-              [style.focus]: isFocus === true,
             })}
             type="text"
             autoComplete="off"
@@ -96,12 +66,11 @@ function Autocomplete({
             onChange={handleChange}
             onClick={() => setIsComponentVisible(true)}
             onKeyDown={() => setIsComponentVisible(true)}
-            onFocus={() => setIsFocus(true)}
-            value={defaultOption}
-            ref={textInput}
+            defaultValue={defaultValue}
+            value={inputValue}
           />
 
-          {defaultOption !== '' && isFocus && (
+          {defaultValue !== '' && (
             <X className={style.clearInput} onClick={handleOnCloseClick} />
           )}
         </label>
@@ -112,27 +81,28 @@ function Autocomplete({
               [style.display]: isComponentVisible,
             })}
           >
-            {options.map((item, index) =>
-              defaultOption ? (
+            {options?.map((option) =>
+              inputValue.length < 3 ? (
                 <option
-                  key={index}
+                  key={option.id}
                   className={style.option}
-                  onClick={handleOnOptionClick}
-                  value={item.label}
+                  onClick={() => handleOnOptionClick(option)}
+                  value={option.name}
                 >
-                  {item.label}
+                  {option[searchKey]}
                 </option>
               ) : (
-                item.value
+                inputValue.length >= 3 &&
+                option[searchKey]
                   .toLowerCase()
-                  .includes(defaultOption.toLowerCase()) && (
+                  .includes(inputValue.toLowerCase()) && (
                   <option
-                    key={index}
+                    key={option.id}
                     className={style.option}
-                    onClick={handleOnOptionClick}
-                    value={item.label}
+                    onClick={() => handleOnOptionClick(option)}
+                    value={option.name}
                   >
-                    {item.label}
+                    {option[searchKey]}
                   </option>
                 )
               )
@@ -149,17 +119,16 @@ Autocomplete.propTypes = {
   label: PropTypes.string,
   placeholder: PropTypes.string,
   isBorder: PropTypes.bool,
-  isFake: PropTypes.bool,
-  defaultOption: PropTypes.string,
+  defaultValue: PropTypes.string,
   onOptionSelect: PropTypes.func.isRequired,
+  searchKey: PropTypes.string.isRequired,
 };
 
 Autocomplete.defaultProps = {
   label: '',
   placeholder: '',
   isBorder: false,
-  isFake: false,
-  defaultOption: '',
+  defaultValue: '',
 };
 
 export default Autocomplete;

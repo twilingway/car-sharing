@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
@@ -38,7 +39,7 @@ function Slider({ data }) {
                 data.map(({ title, info, img, id }) => (
                   <div
                     className={style.item}
-                    key={id}
+                    // key={id}
                     style={{ transform: `translateX(-${index}00%` }}
                   >
                     <div className={style.content}>

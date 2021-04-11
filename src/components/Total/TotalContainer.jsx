@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getOrderSelect, setLatStepValidate } from '../../store/order';
+import { getOrderSelect, setOrderLatStepValidate } from '../../store/order';
 import Total from './Total';
 
 import style from './total-container.module.scss';
@@ -11,7 +11,7 @@ function TotalContainer() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(setLatStepValidate(4));
+    dispatch(setOrderLatStepValidate(4));
   }, []);
 
   return (

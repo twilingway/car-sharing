@@ -6,8 +6,19 @@ import Button from '../Button';
 
 import style from './order.module.scss';
 
-function Order({ order, buttonName, onClickHandler }) {
-  const { point, model, color, tariff, services, step } = order;
+function OrderInfo({ order, buttonName, onClickHandler }) {
+  const {
+    cityId,
+    pointId,
+    carId,
+    dateTo,
+    color,
+    rateId,
+    step,
+    isFullTank,
+    isNeedChildChair,
+    isRightWheel,
+  } = order;
   return (
     <div className={style.content}>
       <div className={style.yourOrder}>Ваш заказ:</div>
@@ -16,19 +27,19 @@ function Order({ order, buttonName, onClickHandler }) {
         <div className={style.empty}>{}</div>
         <div className={style.description}>
           <div className={style.city}>
-            {point.city ? point.city : 'Выберите город'}
+            {cityId.name ? cityId.name : 'Выберите город'}
           </div>
           <div className={style.street}>
-            {point.street ? point.street : 'Выберите пункт'}
+            {pointId.address ? pointId.address : 'Выберите пункт'}
           </div>
         </div>
       </div>
-      {model && (
+      {carId.id && (
         <div className={style.params}>
           <span className={style.paramsName}>Модель</span>
           <div className={style.empty} />
           <div className={style.description}>
-            <div>{model}</div>
+            <div>{carId.name}</div>
           </div>
         </div>
       )}
@@ -41,33 +52,52 @@ function Order({ order, buttonName, onClickHandler }) {
           </div>
         </div>
       )}
-      <div className={style.params}>
-        <span className={style.paramsName}>Длительность аренды</span>
-        <div className={style.empty}>{}</div>
-        <div className={style.description}>
-          <div>1д 2ч{}</div>
+      {dateTo !== 0 && (
+        <div className={style.params}>
+          <span className={style.paramsName}>Длительность аренды</span>
+          <div className={style.empty}>{}</div>
+          <div className={style.description}>
+            <div>1д 2ч{}</div>
+          </div>
         </div>
-      </div>
-      {tariff && (
+      )}
+      {rateId.id && (
         <div className={style.params}>
           <span className={style.paramsName}>Тариф</span>
           <div className={style.empty}>{}</div>
           <div className={style.description}>
-            <div>{tariff}</div>
+            <div>{rateId.price}</div>
           </div>
         </div>
       )}
-      {Object.entries(services).map(
-        (item) =>
-          item[1] && (
-            <div className={style.params}>
-              <span className={style.paramsName}>{item[0]}</span>
-              <div className={style.empty}>{}</div>
-              <div className={style.description}>
-                <div>Да</div>
-              </div>
-            </div>
-          )
+      {isFullTank && (
+        <div className={style.params}>
+          <span className={style.paramsName}>Полный бак</span>
+          <div className={style.empty}>{}</div>
+          <div className={style.description}>
+            <div>Да</div>
+          </div>
+        </div>
+      )}
+
+      {isNeedChildChair && (
+        <div className={style.params}>
+          <span className={style.paramsName}>Детское кресло</span>
+          <div className={style.empty}>{}</div>
+          <div className={style.description}>
+            <div>Да</div>
+          </div>
+        </div>
+      )}
+
+      {isRightWheel && (
+        <div className={style.params}>
+          <span className={style.paramsName}>Правый руль</span>
+          <div className={style.empty}>{}</div>
+          <div className={style.description}>
+            <div>Да</div>
+          </div>
+        </div>
       )}
 
       <div className={style.price}>
@@ -92,4 +122,4 @@ function Order({ order, buttonName, onClickHandler }) {
   );
 }
 
-export default Order;
+export default OrderInfo;

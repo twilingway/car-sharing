@@ -42,6 +42,11 @@
 
       &.validated {
         color: var(--primary-dark);
+        &:hover {
+          .name {
+            cursor: pointer;
+          }
+        }
       }
 
       &.active {

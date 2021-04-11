@@ -11,16 +11,16 @@ function Car({ car, onCarSelect, isSelect }) {
       tabIndex={0}
       role="button"
       onClick={() => {
-        onCarSelect(car.id);
+        onCarSelect(car.id, car.name);
       }}
       onKeyDown={() => {
-        onCarSelect(car.id);
+        onCarSelect(car.id, car.name);
       }}
     >
       <div className={style.name}>{car.name}</div>
-      <div className={style.price}>{car.price}</div>
+      <div className={style.price}>{`${car.priceMin} - ${car.priceMax} ₽`}</div>
       <div className={style.image}>
-        <img src={car.img} alt={car.name} />
+        <img src={car.thumbnail?.path} alt={car.name} />
       </div>
     </div>
   );

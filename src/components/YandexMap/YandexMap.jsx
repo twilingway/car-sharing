@@ -1,5 +1,5 @@
 import React from 'react';
-import yandexMap from '../../images/yandexMap.png';
+//  import yandexMap from '../../images/yandexMap.png';
 
 import style from './yandexMap.module.scss';
 
@@ -9,7 +9,8 @@ function YandexMap() {
       <div className={style.yandexMap}>
         <p>Выбрать на карте:</p>
         <div className={style.map}>
-          <img src={yandexMap} alt="YandexMap" />
+          {/* <img src={yandexMap} alt="YandexMap" /> */}
+          <div className={style.map} id="map" />
         </div>
       </div>
     </>

@@ -6,12 +6,26 @@ import style from './filter-radiobox.module.scss';
 function FilterRadiobox({
   id,
   radios,
+  rate,
   groupName,
+  group,
   onChangeRadio,
   defaultChecked,
   isColumn,
+  isAllRadio,
+  allRadioText = 'Все',
+  typeRadio,
 }) {
   const [active, setActive] = useState('');
+
+  const handleChangeRadio = (event) => {
+    setActive(event.target.value);
+    if (typeRadio === 'color') {
+      onChangeRadio(event.target.value);
+    } else {
+      onChangeRadio(event.target.id);
+    }
+  };
 
   useEffect(() => {
     if (defaultChecked) {
@@ -19,11 +33,6 @@ function FilterRadiobox({
       onChangeRadio(defaultChecked);
     }
   }, []);
-
-  const handleChangeRadio = (event) => {
-    onChangeRadio(event.target.value);
-    setActive(event.target.value);
-  };
 
   return (
     <section className={style.type}>
@@ -33,19 +42,61 @@ function FilterRadiobox({
         onChange={handleChangeRadio}
       >
         <legend>{groupName}</legend>
+        {isAllRadio && radios && (
+          <label htmlFor={allRadioText}>
+            <input
+              id={allRadioText}
+              type="radio"
+              name={group}
+              value={allRadioText}
+              defaultChecked={defaultChecked === allRadioText}
+            />
+            <span className={cn({ [style.active]: active === allRadioText })}>
+              {allRadioText}
+            </span>
+          </label>
+        )}
         {radios &&
           // eslint-disable-next-line react/prop-types
+          !typeRadio &&
           radios.map((radio) => (
             <label htmlFor={radio.id}>
               <input
+                key={radio.id}
                 id={radio.id}
                 type="radio"
-                name={groupName}
+                name={group}
                 value={radio.name}
                 defaultChecked={defaultChecked === radio.name}
               />
               <span className={cn({ [style.active]: active === radio.name })}>
                 {radio.name}
+              </span>
+              <span className={style.rate}>
+                {rate &&
+                  rate.map(
+                    (item) =>
+                      item.rateTypeId.id === radio.id &&
+                      `${item.price} ₽/${item.rateTypeId.unit}`
+                  )}
+              </span>
+            </label>
+          ))}
+
+        {radios &&
+          // eslint-disable-next-line react/prop-types
+          typeRadio === 'color' &&
+          radios.map((radio) => (
+            <label htmlFor={radio.id} key={radio.id}>
+              <input
+                // id={radio.id}
+                type="radio"
+                name={group}
+                value={radio}
+                defaultChecked={defaultChecked === radio}
+              />
+              <span className={cn({ [style.active]: active === radio })}>
+                {radio}
               </span>
             </label>
           ))}

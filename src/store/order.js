@@ -6,29 +6,42 @@ export const slice = createSlice({
 
         step: 1,
         lastStepValidate: 0,
-        point: {
-            city: '',
-            street: ''
+        orderStatusId: {
+            name: '',
+            id: ''
         },
-        model: null,
+        cityId: {
+            name: null,
+            id: null,
+        },
+        pointId: {
+            address: null,
+            name: null,
+            id: null,
+        },
+        carId: {
+            name: null,
+            id: null
+        },
         color: null,
-        date: {},
-        time: null,
-        tariff: null,
-        services: {},
+        dateFrom: null,
+        dateTo: null,
+        rateId: {
+            price: null,
+            id: null,
+        },
+        price: null,
+        isFullTank: false,
+        isNeedChildChair: false,
+        isRightWheel: false
     },
     reducers: {
 
-        setAnything: (state, action) => ({
-            ...state,
-            [action.payload.name]: action.payload.data
-        }),
-
-        setStep: (state, action) => ({
+        setOrderStep: (state, action) => ({
             ...state,
             step: action.payload
         }),
-        setLatStepValidate: (state, action) => ({
+        setOrderLatStepValidate: (state, action) => ({
             ...state,
             lastStepValidate: action.payload
         }),
@@ -37,50 +50,94 @@ export const slice = createSlice({
             [key]: action.payload
         }),
 
-        setCity: (state, action) => ({
+        setOrderCity: (state, action) => ({
             ...state,
-            point: { ...state.point, city: action.payload }
+            cityId: {
+                id: action.payload.id,
+                name: action.payload.name,
+            }
         }),
 
-        setStreet: (state, action) => ({
+        deleteOrderCity: (state) => ({
             ...state,
-            point: { ...state.point, street: action.payload }
+            cityId: {
+                id: null,
+                name: null,
+            }
         }),
 
-        setServices: (state, action) => ({
+        setOrderPoint: (state, action) => ({
             ...state,
-            services: { ...state.services, [action.payload.name]: action.payload.data }
+            pointId: {
+                id: action.payload.id,
+                name: action.payload.name,
+                address: action.payload.address,
+            }
         }),
-        setDate: (state, action) => ({
-            ...state,
-            date: { ...state.date, [action.payload.name]: action.payload.data }
-        })
 
+        deleteOrderPoint: (state) => ({
+            ...state,
+            pointId: {
+                id: null,
+                name: null,
+                address: null,
+            }
+        }),
+
+        setOrderCar: (state, action) => ({
+            ...state,
+            carId: {
+                // id: action.payload.id,
+                // name: action.payload.name,
+                ...action.payload
+            }
+        }),
+
+        setOrderDateFrom: (state, action) => ({
+            ...state,
+            dateFrom: action.payload
+        }),
+        setOrderDateTo: (state, action) => ({
+            ...state,
+            dateTo: action.payload
+        }),
+
+        setOrderColor: (state, action) => ({
+            ...state,
+            color: action.payload
+        }),
+        setOrderRate: (state, action) => ({
+            ...state,
+            rate: { ...action.payload }
+        }),
 
     }
 });
 
 export const {
-    setStep,
-    setLatStepValidate,
+    setOrderStep,
+    setOrderLatStepValidate,
     setOrderByKey,
-    setCity,
-    setStreet,
-    setAnything,
-    setServices,
-    setDate
+    setOrderPoint,
+    setOrderCity,
+    setOrderCar,
+    deleteOrderCity,
+    deleteOrderPoint,
+    setOrderDateFrom,
+    setOrderDateTo,
+    setOrderColor,
+    setOrderRate
 } = slice.actions;
 
-export const getStepSelect = state => state.order.step;
-export const getLastStepSelect = state => state.order.lastStepValidate;
+export const getOrderStepSelect = state => state.order.step;
+export const getOrderLastStepSelect = state => state.order.lastStepValidate;
 
 export const getOrderSelect = state => state.order;
 
-export const getCitySelect = state => state.order.point.city;
-export const getStreetSelect = state => state.order.point.street;
-export const getModelSelect = state => state.order.model;
-export const getServicesSelect = state => state.order.services;
-export const getDateSelect = state => state.order.date;
+export const getOrderCarSelect = state => state.order.carId;
 
+export const getOrderCitySelect = state => state.order.cityId;
+export const getOrderPointSelect = state => state.order.pointId;
+export const getOrderCarColorsSelect = state => state.order.carId.colors;
 
 export default slice.reducer;

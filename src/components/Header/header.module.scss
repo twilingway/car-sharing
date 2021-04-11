@@ -63,11 +63,20 @@
       position: absolute;
       top: 62px;
     }
+    img {
+      padding-right: 8px;
+    }
 
-    .autocomplete {
+    .cityName {
       position: relative;
       display: flex;
       justify-content: flex-end;
+
+      font-style: normal;
+      font-weight: normal;
+      font-size: 14px;
+      line-height: 16px;
+      color: var(--grey-dark);
     }
   }
 }

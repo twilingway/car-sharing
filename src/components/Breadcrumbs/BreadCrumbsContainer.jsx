@@ -1,6 +1,10 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getLastStepSelect, getStepSelect, setStep } from '../../store/order';
+import {
+  getOrderLastStepSelect,
+  getOrderStepSelect,
+  setOrderStep,
+} from '../../store/order';
 import BreadCrumbs from './BreadCrumbs';
 
 const CRUMBS = [
@@ -30,12 +34,12 @@ const orderNumber = [
 ];
 
 function BreadCrumbsContainer() {
-  const lastStepValidate = useSelector(getLastStepSelect);
-  const step = useSelector(getStepSelect);
+  const lastStepValidate = useSelector(getOrderLastStepSelect);
+  const step = useSelector(getOrderStepSelect);
   const dispatch = useDispatch();
 
   const handleSetStepClick = (id) => {
-    dispatch(setStep(id));
+    dispatch(setOrderStep(id));
   };
 
   return (

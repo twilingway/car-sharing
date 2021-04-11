@@ -38,5 +38,44 @@
     @media (max-width: 1024px) {
       flex-direction: column;
     }
+
+    .orderContentContainer {
+      display: flex;
+      flex-direction: column;
+
+      flex: 1 0 calc(100% / 5 * 3);
+
+      @media (min-width: 1440px) {
+        padding: 0 0 0 128px;
+      }
+
+      @media (max-width: 1439px) {
+        padding: 0 0 0 96px;
+      }
+
+      @media (max-width: 1024px) {
+        flex: 0 0 auto;
+        padding: 0 32px 0 118px;
+      }
+      // @media (max-width: 1023px) {
+      //   padding: 0 32px 0 118px;
+      // }
+
+      @media (max-width: 768px) {
+        padding: 0 32px 0 118px;
+
+        // flex: 0 0 calc(100% / 5 * 3);
+      }
+
+      @media (max-width: 767px) {
+        padding: 0 0 16px 0;
+
+        // flex: 0 0 calc(100% / 5 * 3);
+      }
+    }
+    .orderContainer {
+      display: flex;
+      flex-direction: column;
+    }
   }
 }

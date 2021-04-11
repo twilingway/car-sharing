@@ -1,8 +1,8 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getOrderSelect, setStep } from '../../store/order';
+import { getOrderSelect, setOrderStep } from '../../store/order';
 
-import Order from './Order';
+import OrderInfo from './OrderInfo';
 
 import style from './order-container.module.scss';
 
@@ -33,17 +33,17 @@ const BUTTONNAME = [
   },
 ];
 
-function OrderContainer() {
+function OrderInfoContainer() {
   const orderRedux = useSelector(getOrderSelect);
   const dispatch = useDispatch();
 
   const handleOrderButtonClick = (id) => {
-    dispatch(setStep(id + 1));
+    dispatch(setOrderStep(id + 1));
   };
 
   return (
     <div className={style.wrapper}>
-      <Order
+      <OrderInfo
         order={orderRedux}
         buttonName={BUTTONNAME}
         onClickHandler={handleOrderButtonClick}
@@ -52,4 +52,4 @@ function OrderContainer() {
   );
 }
 
-export default OrderContainer;
+export default OrderInfoContainer;

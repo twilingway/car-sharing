@@ -3,11 +3,7 @@ import React from 'react';
 
 import style from './filter-date.module.scss';
 
-function FilterDate({ id, filterName, onChangeDate }) {
-  const handleChangeData = (event) => {
-    onChangeDate(event.target.value);
-  };
-
+function FilterDate({ id, filterName, onChangeDateTo, onChangeDateFrom }) {
   function showCurrentTime() {
     const currDate = new Date();
     const year = currDate.getFullYear();
@@ -37,7 +33,7 @@ function FilterDate({ id, filterName, onChangeDate }) {
 
   return (
     <section className={style.type}>
-      <fieldset id={id} className={style.group} onChange={handleChangeData}>
+      <fieldset id={id} className={style.group}>
         <div className={style.item}>
           <legend>{filterName}</legend>
           <span>С</span>
@@ -46,13 +42,18 @@ function FilterDate({ id, filterName, onChangeDate }) {
               type="datetime-local"
               name={filterName}
               defaultValue={showCurrentTime()}
+              onChange={(event) => onChangeDateFrom(event.target.value)}
             />
           </label>
         </div>
         <div className={style.item}>
           <span>По</span>
           <label htmlFor="input">
-            <input type="datetime-local" name={filterName} />
+            <input
+              type="datetime-local"
+              name={filterName}
+              onChange={(event) => onChangeDateTo(event.target.value)}
+            />
           </label>
         </div>
       </fieldset>
