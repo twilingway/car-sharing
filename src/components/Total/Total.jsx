@@ -9,13 +9,15 @@ function Total({ order }) {
   return (
     <div className={style.content}>
       <div className={style.about}>
-        <div className={style.carName}>{order.model}</div>
-        <div className={style.carNumber}>К 761 НА 73</div>
-        <div className={style.fuel}>
-          <span>Топливо</span> 100%
-        </div>
+        <div className={style.carName}>{order.carId.name}</div>
+        <div className={style.carNumber}>{order.carId.number}</div>
+        {order.isFullTank && (
+          <div className={style.fuel}>
+            <span>Топливо</span> 100%
+          </div>
+        )}
         <div className={style.available}>
-          <span>Доступна с</span> 12.06.2019 12:00
+          <span>Доступна с</span> {new Date(order.dateFrom).toLocaleString()}
         </div>
       </div>
       <div className={style.carImage}>
