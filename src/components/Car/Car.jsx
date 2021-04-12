@@ -30,7 +30,11 @@ function Car({ car, onCarSelect, isSelect }) {
       <div className={style.image}>
         <img
           loading="lazy"
-          src={isImgError ? nocar : car.thumbnail?.path}
+          src={
+            isImgError
+              ? nocar
+              : `https://api-factory.simbirsoft1.com${car.thumbnail?.path}`
+          }
           alt={car.name}
           onError={(event) => hangleOnLoadImgError(event)}
         />
