@@ -18,10 +18,10 @@ function Layout() {
       </div>
 
       <main className={style.main}>
-        <section className={style.orderContentContainer}>
+        <section className={style.params}>
           <OrderContentContainer />
         </section>
-        <section className={style.orderContainer}>
+        <section className={style.info}>
           <OrderInfoContainer />
         </section>
       </main>

@@ -4,6 +4,8 @@
   align-items: center;
   .group {
     border: none;
+    display: flex;
+    flex-wrap: wrap;
 
     &.column {
       display: flex;
@@ -64,6 +66,8 @@
     }
 
     label {
+      display: flex;
+      flex-wrap: nowrap;
       font-style: normal;
       font-weight: 300;
       font-size: 14px;

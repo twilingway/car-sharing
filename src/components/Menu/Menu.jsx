@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import React from 'react';
 import cn from 'classnames';
 import PropTypes from 'prop-types';
@@ -38,19 +37,18 @@ function Menu({ onClickMenu }) {
     <div
       className={cn(style.wrapper, {
         [style.active]: true,
-        // [style.deactive]: isOpen === false,
       })}
     >
       <div className={style.container}>
         <div className={style.list}>
           <ul>
-            {/* {MENU.map(({ title, to, id }) => (
+            {MENU.map(({ title, to, id }) => (
               <li key={id}>
                 <Link to={to} onClick={onClickMenu}>
                   {title}
                 </Link>
               </li>
-            ))} */}
+            ))}
           </ul>
         </div>
         <section className={style.network}>
@@ -71,12 +69,9 @@ function Menu({ onClickMenu }) {
 }
 
 Menu.propTypes = {
-  // isOpen: PropTypes.bool,
   onClickMenu: PropTypes.func.isRequired,
 };
 
-Menu.defaultProps = {
-  // isOpen: null,
-};
+Menu.defaultProps = {};
 
 export default Menu;

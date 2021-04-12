@@ -27,7 +27,6 @@ function Points() {
   const dispatch = useDispatch();
 
   const handleSelectCity = (city) => {
-    console.log('city :>> ', city);
     if (city.id) {
       dispatch(setOrderCity(city));
       dispatch(getPointsAsync(city.id));
@@ -66,11 +65,11 @@ function Points() {
             searchKey="name"
           />
         </div>
-        <div className={s.street}>
+        <div className={s.point}>
           <Autocomplete
             options={pointRedux?.street}
             label="Пункт выдачи"
-            placeholder="Начните вводить пункт ..."
+            placeholder="Начните вводить пункт выдачи"
             isBorder
             onOptionSelect={handleSelectPoint}
             defaultValue={orderPoint.address}

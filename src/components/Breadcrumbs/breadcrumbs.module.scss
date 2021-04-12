@@ -6,13 +6,14 @@
 
   border-top: 1px solid var(--grey-light);
   border-bottom: 1px solid var(--grey-light);
+  overflow-x: auto;
 
   @media (min-width: 1440px) {
     justify-content: center;
   }
   ul {
     display: flex;
-    flex-wrap: wrap;
+    // flex-wrap: wrap;
 
     width: 100%;
 
@@ -64,4 +65,41 @@
       }
     }
   }
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+  background-color: white;
+}
+::-webkit-scrollbar-thumb {
+  border-radius: 2px;
+  background-color: var(--grey-dark);
+}
+::-webkit-input-placeholder {
+  /* WebKit, Blink, Edge */
+  color: var(--grey-dark);
+}
+:-moz-placeholder {
+  /* Mozilla Firefox 4 to 18 */
+  color: var(--grey-dark);
+  opacity: 1;
+}
+::-moz-placeholder {
+  /* Mozilla Firefox 19+ */
+  color: var(--grey-dark);
+  opacity: 1;
+}
+:-ms-input-placeholder {
+  /* Internet Explorer 10-11 */
+  color: var(--grey-dark);
+}
+::-ms-input-placeholder {
+  /* Microsoft Edge */
+  color: var(--grey-dark);
+}
+
+::placeholder {
+  /* Most modern browsers support this now. */
+  color: var(--grey-dark);
 }

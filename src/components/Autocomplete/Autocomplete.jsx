@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/no-array-index-key */
 /* eslint-disable react/forbid-prop-types */
@@ -30,7 +31,7 @@ function Autocomplete({
   // const textInput = useRef(null);
 
   const handleChange = (event) => {
-    // onOptionSelect(event.target.value);
+    onOptionSelect(event.target.value);
     setInputValue(event.target.value);
   };
 
@@ -70,7 +71,7 @@ function Autocomplete({
             value={inputValue}
           />
 
-          {defaultValue !== '' && (
+          {defaultValue && (
             <X className={style.clearInput} onClick={handleOnCloseClick} />
           )}
         </label>

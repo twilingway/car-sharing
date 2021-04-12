@@ -52,7 +52,7 @@ function OrderInfo({ order, buttonName, onClickHandler }) {
           </div>
         </div>
       )}
-      {dateTo !== 0 && (
+      {dateTo && (
         <div className={style.params}>
           <span className={style.paramsName}>Длительность аренды</span>
           <div className={style.empty}>{}</div>
