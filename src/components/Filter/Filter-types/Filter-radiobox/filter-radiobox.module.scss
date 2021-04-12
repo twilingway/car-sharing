@@ -75,6 +75,9 @@
       margin-right: 16px;
       color: var(--grey-dark);
       padding-bottom: 8px;
+      &:hover {
+        cursor: pointer;
+      }
       span {
         color: var(--grey-dark);
         &.active {

@@ -100,12 +100,17 @@ function OrderInfo({ order, buttonName, onClickHandler }) {
         </div>
       )}
 
-      <div className={style.price}>
-        <span>
-          <b>Цена:</b>
-        </span>
-        <span> от 8000 до 12000 &#x20bd;</span>
-      </div>
+      {carId.priceMin && (
+        <div className={style.price}>
+          <span>
+            <b>Цена:</b>
+          </span>
+          <span>
+            {' '}
+            от {carId.priceMin} до {carId.priceMax} &#x20bd;
+          </span>
+        </div>
+      )}
       <div className={cn(style.button, { [style.cancel]: step === 6 })}>
         {buttonName
           .filter((item) => item.id === order.step)
