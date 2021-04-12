@@ -66,7 +66,7 @@ function OrderInfo({ order, buttonName, onClickHandler }) {
           <span className={style.paramsName}>Тариф</span>
           <div className={style.empty}>{}</div>
           <div className={style.description}>
-            <div>{rateId.price}</div>
+            <div>{rateId.name}</div>
           </div>
         </div>
       )}

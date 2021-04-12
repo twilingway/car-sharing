@@ -35,51 +35,6 @@ function OrderContentContainer() {
 
   const dispatch = useDispatch();
 
-  // const handleConfirmClick = () => {
-  //   // console.log('handleConfirmClick :>> ');
-  //   dispatch(setOrderStep(6));
-  //   dispatch(setOrderLatStepValidate(5));
-
-  //   const body = {
-  //     orderStatusId: {
-  //       name: 'temp',
-  //       id: '607069ad2aed9a0b9b7e5530',
-  //     },
-  //     cityId: {
-  //       name: 'Ульяновск',
-  //       id: '5e26a128099b810b946c5d87',
-  //     },
-
-  //     pointId: {
-  //       address: 'Нариманова 1, корп.2',
-  //       name: 'База 007',
-  //       id: '5e26a148099b810b946c5d88',
-  //     },
-  //     carId: {
-  //       name: 'Hyundai, Tucson',
-  //       id: '5ea16821099b810b946c62b8',
-  //     },
-  //     color: 'Любой',
-  //     dateFrom: 0,
-  //     dateTo: 0,
-  //     rateId: {
-  //       price: 1999,
-  //       id: '5e26a0e2099b810b946c5d86',
-  //     },
-  //     price: 5000,
-  //     isFullTank: true,
-  //     isNeedChildChair: true,
-  //     isRightWheel: true,
-  //   };
-
-  //   const data = requestHttp(
-  //     'https://api-factory.simbirsoft1.com/api/db/order',
-  //     'POST',
-  //     body
-  //   ).then((res) => console.log('dataRes :>> ', res));
-  //   console.log('data :>> ', data);
-  // };
-
   const handleReturnClick = () => {
     // console.log('Return :>> ');
     // dispatch(setOrderLatStepValidate(4));

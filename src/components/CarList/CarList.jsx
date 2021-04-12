@@ -8,7 +8,11 @@ import {
   getCarByCategoryAsync,
   selectCarLoading,
 } from '../../store/car';
-import { selectCategory, setSelectedCategory } from '../../store/category';
+import {
+  selectCategory,
+  selectCategoryLoading,
+  setSelectedCategory,
+} from '../../store/category';
 import Car from '../Car';
 import FilterRadiobox from '../Filter/Filter-types/Filter-radiobox';
 
@@ -20,6 +24,8 @@ function CarList({ cars, onCarSelect }) {
   const [carSelect, setCarSelect] = useState(null);
 
   const categoryReducer = useSelector(selectCategory);
+  const categoryIsLoading = useSelector(selectCategoryLoading);
+
   const carLoadingReducer = useSelector(selectCarLoading);
 
   const dispatch = useDispatch();
@@ -31,8 +37,8 @@ function CarList({ cars, onCarSelect }) {
 
   const handleRadioChange = (radio) => {
     dispatch(setSelectedCategory(radio));
-    if (radio !== 'Все') {
-      dispatch(getCarByCategoryAsync(radio));
+    if (radio.id !== 'Все') {
+      dispatch(getCarByCategoryAsync(radio.id));
     } else {
       dispatch(getCarAsync());
     }
@@ -40,15 +46,17 @@ function CarList({ cars, onCarSelect }) {
 
   return (
     <>
-      <div className={style.type}>
-        <FilterRadiobox
-          radios={categoryReducer}
-          group="category"
-          isAllRadio
-          defaultChecked="Все"
-          onChangeRadio={handleRadioChange}
-        />
-      </div>
+      {!categoryIsLoading && (
+        <div className={style.type}>
+          <FilterRadiobox
+            radios={categoryReducer}
+            group="category"
+            isAllRadio
+            defaultChecked="Все"
+            onChangeRadio={handleRadioChange}
+          />
+        </div>
+      )}
       {!carLoadingReducer && (
         <section className={style.cars}>
           {cars &&
@@ -62,13 +70,15 @@ function CarList({ cars, onCarSelect }) {
             ))}
         </section>
       )}
-      <span
-        className={cn(style.loader, {
-          [style.loading]: true,
-        })}
-      >
-        {carLoadingReducer && <Ellipse />}
-      </span>
+      {carLoadingReducer && (
+        <span
+          className={cn(style.loader, {
+            [style.loading]: true,
+          })}
+        >
+          <Ellipse />
+        </span>
+      )}
     </>
   );
 }

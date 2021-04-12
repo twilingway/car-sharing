@@ -1,9 +1,21 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { ReactComponent as X } from '../../../../assets/x.svg';
 
 import style from './filter-date.module.scss';
 
-function FilterDate({ id, filterName, onChangeDateTo, onChangeDateFrom }) {
+function FilterDate({
+  filterName,
+  isDateFromDefault = true,
+  dateFrom,
+  dateTo,
+  onChangeDateTo,
+  onChangeDateFrom,
+}) {
+  const [dateFromDefault, setDateFromDefault] = useState('');
+  const [dateToDefault, setDateToDefault] = useState('');
+
   function showCurrentTime() {
     const currDate = new Date();
     const year = currDate.getFullYear();
@@ -31,33 +43,85 @@ function FilterDate({ id, filterName, onChangeDateTo, onChangeDateFrom }) {
     return `${year}-${month}-${date}T${hours}:${minutes}`;
   }
 
+  const handleChangeDateFrom = (event) => {
+    setDateFromDefault(event.target.value);
+    onChangeDateFrom(event.target.value);
+  };
+
+  const handleChangeDateTo = (event) => {
+    setDateToDefault(event.target.value);
+    onChangeDateTo(event.target.value);
+  };
+
+  const handleClearDateFromClick = () => {
+    setDateFromDefault('');
+    onChangeDateFrom('');
+  };
+  const handleClearDateToClick = () => {
+    setDateToDefault('');
+    onChangeDateTo('');
+  };
+
+  useEffect(() => {
+    if (isDateFromDefault) {
+      if (dateFrom === '') {
+        const date = showCurrentTime();
+        setDateFromDefault(date);
+        onChangeDateFrom(date);
+      } else {
+        setDateFromDefault(dateFrom);
+      }
+      setDateToDefault(dateTo);
+    }
+  }, []);
+
   return (
-    <section className={style.type}>
-      <fieldset id={id} className={style.group}>
+    <div className={style.type}>
+      <div className={style.group}>
+        <legend>{filterName}</legend>
         <div className={style.item}>
-          <legend>{filterName}</legend>
           <span>С</span>
-          <label htmlFor="input">
-            <input
-              type="datetime-local"
-              name={filterName}
-              defaultValue={showCurrentTime()}
-              onChange={(event) => onChangeDateFrom(event.target.value)}
-            />
-          </label>
+          <div className={style.container}>
+            <label htmlFor="input">
+              <input
+                type="datetime-local"
+                name={filterName}
+                value={dateFromDefault}
+                onChange={handleChangeDateFrom}
+              />
+
+              {dateFromDefault !== '' && (
+                <X
+                  className={style.clearInput}
+                  onClick={handleClearDateFromClick}
+                />
+              )}
+            </label>
+          </div>
         </div>
+      </div>
+      <div className={style.group}>
         <div className={style.item}>
           <span>По</span>
-          <label htmlFor="input">
-            <input
-              type="datetime-local"
-              name={filterName}
-              onChange={(event) => onChangeDateTo(event.target.value)}
-            />
-          </label>
+          <div className={style.container}>
+            <label htmlFor="input">
+              <input
+                type="datetime-local"
+                name={filterName}
+                value={dateToDefault}
+                onChange={handleChangeDateTo}
+              />
+              {dateToDefault !== '' && (
+                <X
+                  className={style.clearInput}
+                  onClick={handleClearDateToClick}
+                />
+              )}
+            </label>
+          </div>
         </div>
-      </fieldset>
-    </section>
+      </div>
+    </div>
   );
 }
 

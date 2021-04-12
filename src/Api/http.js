@@ -11,21 +11,18 @@ async function requestHttp(url, method = 'GET', body = null, headers = headersCo
 
     let newBody = body;
     const newHeader = headers;
-    console.log('newBody :>> ', newBody);
     if (newBody) {
         newBody = JSON.stringify(newBody);
-        console.log('newBody2 :>> ', newBody);
         newHeader['Content-Type'] = 'application/json';
     }
     const response = await fetch(url, {
         method,
         body: newBody,
         headers: newHeader,
-        // data: { username: 'intern', password: 'intern-S!' }
     });
 
     const data = await response.json();
-    console.log('data2 :>> ', data);
+
 
     if (!response.ok) {
         throw new Error(data.message || 'Something wrong...');

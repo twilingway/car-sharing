@@ -19,18 +19,34 @@ function FilterRadiobox({
   const [active, setActive] = useState('');
 
   const handleChangeRadio = (event) => {
-    setActive(event.target.value);
-    if (typeRadio === 'color') {
-      onChangeRadio(event.target.value);
-    } else {
-      onChangeRadio(event.target.id);
-    }
+    // if (typeRadio === 'color') {
+    //   onChangeRadio(event.id);
+    //   setActive(event.id);
+    // } else if (group === 'category') {
+    //   onChangeRadio(event.id);
+    //   setActive(event.id);
+    // } else {
+    //   onChangeRadio(event.id);
+    //   setActive(event.id);
+    // }
+    console.log('event :>> ', event);
+    onChangeRadio(event);
+    setActive(event);
   };
 
   useEffect(() => {
     if (defaultChecked) {
       setActive(defaultChecked);
-      onChangeRadio(defaultChecked);
+      console.log('defaultChecked :>> ', defaultChecked);
+      console.log('radios :>> ', radios);
+
+      if (!isAllRadio) {
+        radios.map(
+          (item) => item.name === defaultChecked && onChangeRadio(item)
+        );
+      } else {
+        onChangeRadio({ id: defaultChecked });
+      }
     }
   }, []);
 
@@ -39,19 +55,25 @@ function FilterRadiobox({
       <fieldset
         id={id}
         className={cn(style.group, { [style.column]: isColumn === true })}
-        onChange={handleChangeRadio}
       >
         <legend>{groupName}</legend>
         {isAllRadio && radios && (
           <label htmlFor={allRadioText}>
             <input
+              key={allRadioText}
               id={allRadioText}
               type="radio"
               name={group}
               value={allRadioText}
               defaultChecked={defaultChecked === allRadioText}
+              onChange={() => handleChangeRadio({ id: allRadioText })}
             />
-            <span className={cn({ [style.active]: active === allRadioText })}>
+            <span
+              className={cn({
+                [style.active]:
+                  active.id === allRadioText || defaultChecked === allRadioText,
+              })}
+            >
               {allRadioText}
             </span>
           </label>
@@ -62,17 +84,28 @@ function FilterRadiobox({
           radios.map((radio) => (
             <label htmlFor={radio.id}>
               <input
-                key={radio.id}
+                // key={radio.id}
                 id={radio.id}
                 type="radio"
                 name={group}
-                value={radio.name}
+                // value={radio.name}
                 defaultChecked={defaultChecked === radio.name}
+                onChange={() => handleChangeRadio(radio)}
               />
-              <span className={cn({ [style.active]: active === radio.name })}>
+              <span
+                className={cn({
+                  [style.active]:
+                    active.id === radio.id || defaultChecked === radio.name,
+                })}
+              >
                 {radio.name}
               </span>
-              <span className={style.rate}>
+              <span
+                className={cn(style.rate, {
+                  [style.active]:
+                    active.id === radio.id || defaultChecked === radio.name,
+                })}
+              >
                 {rate &&
                   rate.map(
                     (item) =>
@@ -87,15 +120,16 @@ function FilterRadiobox({
           // eslint-disable-next-line react/prop-types
           typeRadio === 'color' &&
           radios.map((radio) => (
-            <label htmlFor={radio.id} key={radio.id}>
+            <label htmlFor={radio} key={radio}>
               <input
-                // id={radio.id}
+                id={radio}
                 type="radio"
                 name={group}
-                value={radio}
+                // value={radio}
                 defaultChecked={defaultChecked === radio}
+                onChange={() => handleChangeRadio({ id: radio })}
               />
-              <span className={cn({ [style.active]: active === radio })}>
+              <span className={cn({ [style.active]: active.id === radio })}>
                 {radio}
               </span>
             </label>

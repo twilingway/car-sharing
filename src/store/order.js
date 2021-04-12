@@ -24,16 +24,16 @@ export const slice = createSlice({
             id: null
         },
         color: null,
-        dateFrom: null,
-        dateTo: null,
+        dateFrom: '',
+        dateTo: '',
         rateId: {
             price: null,
             id: null,
         },
         price: null,
-        isFullTank: false,
-        isNeedChildChair: false,
-        isRightWheel: false
+        isFullTank: null,
+        isNeedChildChair: null,
+        isRightWheel: null
     },
     reducers: {
 
@@ -108,8 +108,13 @@ export const slice = createSlice({
         }),
         setOrderRate: (state, action) => ({
             ...state,
-            rate: { ...action.payload }
+            rateId: { ...action.payload }
         }),
+
+        setOrderService: (state, action) => ({
+            ...state,
+            [action.payload]: !state[action.payload]
+        })
 
     }
 });
@@ -126,7 +131,8 @@ export const {
     setOrderDateFrom,
     setOrderDateTo,
     setOrderColor,
-    setOrderRate
+    setOrderRate,
+    setOrderService
 } = slice.actions;
 
 export const getOrderStepSelect = state => state.order.step;

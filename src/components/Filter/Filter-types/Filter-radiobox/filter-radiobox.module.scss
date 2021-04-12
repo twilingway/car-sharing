@@ -86,6 +86,9 @@
       }
       .rate {
         padding-left: 8px;
+        &.active {
+          color: var(--primary-black);
+        }
       }
     }
   }

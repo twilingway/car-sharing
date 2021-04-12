@@ -4,7 +4,7 @@ import requestHttp from '../Api/http';
 export const slice = createSlice({
     name: 'rateType',
     initialState: {
-        isLoading: false,
+        isLoading: true,
         data: []
     },
     reducers: {

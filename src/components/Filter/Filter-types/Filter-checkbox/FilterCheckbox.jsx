@@ -20,12 +20,18 @@ function FilterCheckbox({
         tempActive[defaultChecked] = true;
         return { ...tempActive };
       });
-      onChangeBox(defaultChecked);
+      checkboxs.map(
+        (item) =>
+          item.name === defaultChecked &&
+          item[item.id] !== true &&
+          onChangeBox(item.id)
+      );
     }
   }, []);
 
   const handleChangeBox = (event) => {
-    onChangeBox(event.target.value);
+    onChangeBox(event.target.id);
+
     setActive((prevState) => {
       const tempActive = { ...prevState };
       tempActive[event.target.value] = event.target.checked;
@@ -43,7 +49,6 @@ function FilterCheckbox({
       >
         <legend>{groupName}</legend>
         {checkboxs &&
-          // eslint-disable-next-line react/prop-types
           checkboxs.map((checkbox) => (
             <label htmlFor={checkbox.id}>
               <input
@@ -53,11 +58,14 @@ function FilterCheckbox({
                 type="checkbox"
                 name={groupName}
                 value={checkbox.name}
-                defaultChecked={defaultChecked === checkbox.name}
+                defaultChecked={
+                  defaultChecked === checkbox.name || checkbox[checkbox.id]
+                }
               />
               <span
                 className={cn(style.span, {
-                  [style.active]: active[checkbox.name] === true,
+                  [style.active]:
+                    active[checkbox.name] === true || checkbox[checkbox.id],
                 })}
               >{`${checkbox.name}${checkbox.price}`}</span>
             </label>

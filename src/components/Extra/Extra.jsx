@@ -10,6 +10,8 @@ import {
   setOrderColor,
   setOrderRate,
   getOrderCarColorsSelect,
+  setOrderService,
+  getOrderSelect,
 } from '../../store/order';
 
 import { getRateAsync, selectRate } from '../../store/rate';
@@ -17,50 +19,7 @@ import { getRateAsync, selectRate } from '../../store/rate';
 import style from './extra.module.scss';
 import { getRateTypeAsync, selectRateType } from '../../store/rateType';
 import { getOrderStatusAsync } from '../../store/orderStatus';
-
-// const RADIOS = [
-//   {
-//     id: 0,
-//     name: 'Любой',
-//   },
-//   {
-//     id: 1,
-//     name: 'Красный',
-//   },
-//   {
-//     id: 2,
-//     name: 'Голубой',
-//   },
-// ];
-
-// const TARIFF = [
-//   {
-//     id: 10,
-//     name: 'Поминутно, 7 ₽/мин',
-//   },
-//   {
-//     id: 11,
-//     name: 'На сутки, 1999 ₽/сутки',
-//   },
-// ];
-
-const SERVICES = [
-  {
-    isFullTank: false,
-    name: 'Полный бак',
-    price: ', 500р',
-  },
-  {
-    isNeedChildChair: false,
-    name: 'Детское кресло',
-    price: ', 200р',
-  },
-  {
-    isRightWheel: false,
-    name: 'Правый руль',
-    price: ', 1600р',
-  },
-];
+import useStepValidator from '../../hooks/useStepValidator';
 
 function Extra() {
   // const orderRedux = useSelector(getOrderSelect);
@@ -69,10 +28,14 @@ function Extra() {
 
   const orderCarColors = useSelector(getOrderCarColorsSelect);
 
+  const orderRedux = useSelector(getOrderSelect);
+
   const dispatch = useDispatch();
 
+  const { checkLastStepValidate } = useStepValidator();
+
   const handleColorChange = (color) => {
-    dispatch(setOrderColor(color));
+    dispatch(setOrderColor(color.id));
   };
 
   const handleChangeDateTo = (date) => {
@@ -85,20 +48,34 @@ function Extra() {
 
   const handleChangeServices = (services) => {
     console.log('services :>> ', services);
-    // dispatch(setServices({ name: services, data: !orderServices[services] }));
+    dispatch(setOrderService(services));
   };
 
   const handleSelectRate = (rate) => {
+    console.log('rate :>> ', rate);
     dispatch(setOrderRate(rate));
   };
 
-  // useEffect(() => {
-  //   if (dateServices.dateEnd !== null && dateServices.dateEnd !== '') {
-  //     dispatch(setOrderLatStepValidate(3));
-  //   } else {
-  //     dispatch(setOrderLatStepValidate(2));
-  //   }
-  // }, [dateServices.dateEnd]);
+  useEffect(() => {
+    checkLastStepValidate();
+    const date1 = new Date(orderRedux.dateFrom);
+    const date2 = new Date(orderRedux.dateTo);
+    const diff = date2 - date1;
+
+    const milliseconds = diff;
+
+    const seconds = milliseconds / 1000;
+
+    const minutes = seconds / 60;
+
+    const hours = minutes / 60;
+
+    const days = hours / 24;
+
+    console.log('date1 :>> ', date1);
+    console.log('date2 :>> ', date2);
+    console.log('date2 - date1 :>> ', `${days}д ${Math.ceil(hours % 24)}ч`);
+  }, [orderRedux.dateFrom, orderRedux.dateTo]);
 
   useEffect(() => {
     dispatch(getRateAsync());
@@ -114,7 +91,7 @@ function Extra() {
           onChangeRadio={handleColorChange}
           groupName="Цвет"
           group="color"
-          defaultChecked="Любой"
+          defaultChecked={orderRedux.color ?? 'Любой'}
           isAllRadio
           allRadioText="Любой"
           typeRadio="color"
@@ -123,27 +100,50 @@ function Extra() {
       <div className={style.date}>
         <FilterDate
           onChangeDateTo={handleChangeDateTo}
+          dateFrom={orderRedux.dateFrom}
+          dateTo={orderRedux.dateTo}
           onChangeDateFrom={handleChangeDateFrom}
           filterName="Дата аренды"
         />
       </div>
       <div className={style.tariff}>
-        <FilterRadiobox
-          radios={rateTypeRedux.data}
-          rate={rateRedux.data}
-          onChangeRadio={handleSelectRate}
-          groupName="Тариф"
-          group="rate"
-          defaultChecked="На сутки"
-          isColumn
-        />
+        {!rateTypeRedux.isLoading && (
+          <FilterRadiobox
+            radios={rateTypeRedux.data}
+            rate={rateRedux.data}
+            onChangeRadio={handleSelectRate}
+            groupName="Тариф"
+            group="rate"
+            defaultChecked={orderRedux.rateId.name ?? 'На сутки'}
+            isColumn
+          />
+        )}
       </div>
       <div className={style.services}>
         <FilterCheckbox
-          checkboxs={SERVICES}
+          checkboxs={[
+            {
+              id: 'isFullTank',
+              isFullTank: orderRedux.isFullTank,
+              name: 'Полный бак',
+              price: ', 500р',
+            },
+            {
+              id: 'isNeedChildChair',
+              isNeedChildChair: orderRedux.isNeedChildChair,
+              name: 'Детское кресло',
+              price: ', 200р',
+            },
+            {
+              id: 'isRightWheel',
+              isRightWheel: orderRedux.isRightWheel,
+              name: 'Правый руль',
+              price: ', 1600р',
+            },
+          ]}
           onChangeBox={handleChangeServices}
           groupName="Доп услуги"
-          defaultChecked="Полный бак"
+          defaultChecked={orderRedux.isFullTank === null && 'Полный бак'}
           isColumn
         />
       </div>

@@ -1,14 +1,38 @@
 .type {
+  // display: flex;
+  //  flex-wrap: wrap;
+  //  align-items: center;
+
   display: flex;
-  flex-wrap: wrap;
-  align-items: center;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0;
+  margin: 0;
+  // margin-top: 32px;
+
   .group {
-    border: none;
-    display: flex;
-    flex-direction: column;
+    // border: none;
+    // display: flex;
+    // flex-direction: column;
+
+    // display: flex;
+    margin-bottom: 15px;
 
     .item {
-      padding-bottom: 12px;
+      // padding-bottom: 12px;
+      display: flex;
+      flex: 1 0 220px;
+
+      span {
+        display: flex;
+        justify-content: flex-end;
+        flex: 1 0 18px;
+        color: var(--primary-black);
+        font-style: normal;
+        font-weight: 300;
+        font-size: 14px;
+        line-height: 16px;
+      }
     }
 
     legend {
@@ -22,36 +46,95 @@
       color: var(--primary-dark);
     }
 
-    input[type='datetime-local'] {
+    .container {
       position: relative;
-      width: 224px;
-      // -webkit-appearance: none;
-      // -moz-appearance: none;
-      // appearance: none;
-      outline: none;
-      border: none;
-      border-bottom: 1px solid var(--grey-dark);
+      display: flex;
+      flex-grow: 1;
+      flex-shrink: 0;
+      flex-basis: calc(100% - 20px);
+      label {
+        display: flex;
+        align-items: center;
+        color: var(--grey-dark);
 
-      &:hover {
-        cursor: pointer;
+        input[type='datetime-local'] {
+          // position: relative;
+          // width: 224px;
+          // -webkit-appearance: none;
+          // -moz-appearance: none;
+          // appearance: none;
+          // outline: none;
+          border: none;
+          border-bottom: 1px solid var(--grey-dark);
+          // background: none;
+
+          // margin-left: 8px;
+          // z-index: 1;
+          // outline: none;
+          // border: none;
+          // color: var(--primary-black);
+          // font-family: 'Roboto', sans-serif;
+          // font-style: normal;
+          // font-weight: 300;
+          // font-size: 14px;
+          // line-height: 16px;
+          // white-space: nowrap;
+          // overflow: hidden;
+          // padding: 0 8px 0 5px;
+          // text-overflow: ellipsis;
+          // outline: none;
+
+          margin-left: 8px;
+
+          z-index: 1;
+          outline: none;
+
+          color: var(--primary-black);
+
+          font-family: 'Roboto', sans-serif;
+          font-style: normal;
+          font-weight: 300;
+          font-size: 14px;
+          line-height: 16px;
+
+          white-space: nowrap; /* Запрещаем перенос строк */
+          overflow: hidden; /* Обрезаем все, что не помещается в область */
+
+          padding: 0 8px 0 5px; /* Поля вокруг текста */
+          text-overflow: ellipsis; /* Добавляем многоточие */
+
+          &:hover {
+            cursor: pointer;
+          }
+        }
+        input[type='datetime-local']::-webkit-calendar-picker-indicator {
+          // width: 100%;
+          // left: -1.5em;
+          // background: none;
+          // position: absolute;
+
+          background: transparent;
+          bottom: 0;
+          color: transparent;
+          cursor: pointer;
+          height: auto;
+          left: 0;
+          position: absolute;
+          right: 0;
+          top: 0;
+          width: auto;
+        }
+
+        .clearInput {
+          position: relative;
+          right: 10px;
+          z-index: 2;
+          height: 8px;
+          width: 8px;
+
+          cursor: var(--cursor-pointer);
+        }
       }
-    }
-    span {
-      padding-right: 4px;
-
-      font-style: normal;
-      font-weight: 300;
-      font-size: 14px;
-      line-height: 16px;
-    }
-
-    label {
-      font-style: normal;
-      font-weight: 300;
-      font-size: 14px;
-      line-height: 16px;
-      margin-right: 16px;
-      color: var(--grey-dark);
     }
   }
 }
