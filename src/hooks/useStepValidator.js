@@ -36,10 +36,7 @@ export default function useStepValidator() {
     };
 
     useEffect(() => {
-
-        console.log('lastStepValidate :>> ', lastStepValidate);
         dispatch(setOrderLatStepValidate(lastStepValidate));
-
     }, [lastStepValidate]);
 
     return { checkLastStepValidate };

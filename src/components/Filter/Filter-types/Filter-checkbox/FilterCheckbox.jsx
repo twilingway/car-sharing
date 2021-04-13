@@ -50,9 +50,8 @@ function FilterCheckbox({
         <legend>{groupName}</legend>
         {checkboxs &&
           checkboxs.map((checkbox) => (
-            <label htmlFor={checkbox.id}>
+            <label htmlFor={checkbox.id} key={checkbox.id}>
               <input
-                key={checkbox.id}
                 className={style.custom}
                 id={checkbox.id}
                 type="checkbox"

@@ -19,17 +19,6 @@ function FilterRadiobox({
   const [active, setActive] = useState('');
 
   const handleChangeRadio = (event) => {
-    // if (typeRadio === 'color') {
-    //   onChangeRadio(event.id);
-    //   setActive(event.id);
-    // } else if (group === 'category') {
-    //   onChangeRadio(event.id);
-    //   setActive(event.id);
-    // } else {
-    //   onChangeRadio(event.id);
-    //   setActive(event.id);
-    // }
-    console.log('event :>> ', event);
     onChangeRadio(event);
     setActive(event);
   };
@@ -37,9 +26,6 @@ function FilterRadiobox({
   useEffect(() => {
     if (defaultChecked) {
       setActive(defaultChecked);
-      console.log('defaultChecked :>> ', defaultChecked);
-      console.log('radios :>> ', radios);
-
       if (!isAllRadio) {
         radios.map(
           (item) => item.name === defaultChecked && onChangeRadio(item)
@@ -79,16 +65,14 @@ function FilterRadiobox({
           </label>
         )}
         {radios &&
-          // eslint-disable-next-line react/prop-types
           !typeRadio &&
           radios.map((radio) => (
             <label htmlFor={radio.id}>
               <input
-                // key={radio.id}
+                key={radio.id}
                 id={radio.id}
                 type="radio"
                 name={group}
-                // value={radio.name}
                 defaultChecked={defaultChecked === radio.name}
                 onChange={() => handleChangeRadio(radio)}
               />
@@ -117,15 +101,14 @@ function FilterRadiobox({
           ))}
 
         {radios &&
-          // eslint-disable-next-line react/prop-types
           typeRadio === 'color' &&
           radios.map((radio) => (
             <label htmlFor={radio} key={radio}>
               <input
+                key={radio}
                 id={radio}
                 type="radio"
                 name={group}
-                // value={radio}
                 defaultChecked={defaultChecked === radio}
                 onChange={() => handleChangeRadio({ id: radio })}
               />

@@ -22,7 +22,6 @@ import { getOrderStatusAsync } from '../../store/orderStatus';
 import useStepValidator from '../../hooks/useStepValidator';
 
 function Extra() {
-  // const orderRedux = useSelector(getOrderSelect);
   const rateRedux = useSelector(selectRate);
   const rateTypeRedux = useSelector(selectRateType);
 
@@ -47,34 +46,34 @@ function Extra() {
   };
 
   const handleChangeServices = (services) => {
-    console.log('services :>> ', services);
     dispatch(setOrderService(services));
   };
 
   const handleSelectRate = (rate) => {
-    console.log('rate :>> ', rate);
     dispatch(setOrderRate(rate));
   };
 
   useEffect(() => {
     checkLastStepValidate();
-    const date1 = new Date(orderRedux.dateFrom);
-    const date2 = new Date(orderRedux.dateTo);
-    const diff = date2 - date1;
 
-    const milliseconds = diff;
+    // TODO Сделать калькулятор цены
 
-    const seconds = milliseconds / 1000;
+    // const date1 = new Date(orderRedux.dateFrom);
+    // const date2 = new Date(orderRedux.dateTo);
+    // const diff = date2 - date1;
+    // const milliseconds = diff;
 
-    const minutes = seconds / 60;
+    // const seconds = milliseconds / 1000;
 
-    const hours = minutes / 60;
+    // const minutes = seconds / 60;
 
-    const days = hours / 24;
+    // const hours = minutes / 60;
 
-    console.log('date1 :>> ', date1);
-    console.log('date2 :>> ', date2);
-    console.log('date2 - date1 :>> ', `${days}д ${Math.ceil(hours % 24)}ч`);
+    // const days = hours / 24;
+
+    // console.log('date1 :>> ', date1);
+    // console.log('date2 :>> ', date2);
+    // console.log('date2 - date1 :>> ', `${days}д ${Math.ceil(hours % 24)}ч`);
   }, [orderRedux.dateFrom, orderRedux.dateTo]);
 
   useEffect(() => {

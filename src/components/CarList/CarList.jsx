@@ -19,7 +19,6 @@ import FilterRadiobox from '../Filter/Filter-types/Filter-radiobox';
 import { ReactComponent as Ellipse } from '../../assets/ellipse.svg';
 import style from './car-list.module.scss';
 
-// eslint-disable-next-line react/prop-types
 function CarList({ cars, onCarSelect }) {
   const [carSelect, setCarSelect] = useState(null);
 

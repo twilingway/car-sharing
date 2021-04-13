@@ -25,10 +25,7 @@ function Autocomplete({
     setIsComponentVisible,
   } = useComponentVisible(false);
 
-  // const [isFocus, setIsFocus] = useState(false);
   const [inputValue, setInputValue] = useState('');
-
-  // const textInput = useRef(null);
 
   const handleChange = (event) => {
     onOptionSelect(event.target.value);
@@ -38,7 +35,6 @@ function Autocomplete({
   const handleOnOptionClick = (option) => {
     onOptionSelect(option);
     setIsComponentVisible(false);
-    // setIsFocus(false);
   };
 
   const handleOnCloseClick = () => {
@@ -51,6 +47,12 @@ function Autocomplete({
       setInputValue(defaultValue);
     }
   }, [defaultValue]);
+
+  useLayoutEffect(() => {
+    if (defaultValue) {
+      setInputValue(defaultValue);
+    }
+  }, []);
 
   return (
     <div className={style.autocomplete}>
@@ -67,7 +69,6 @@ function Autocomplete({
             onChange={handleChange}
             onClick={() => setIsComponentVisible(true)}
             onKeyDown={() => setIsComponentVisible(true)}
-            defaultValue={defaultValue}
             value={inputValue}
           />
 

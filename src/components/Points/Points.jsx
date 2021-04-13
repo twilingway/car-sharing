@@ -5,7 +5,6 @@ import useStepValidator from '../../hooks/useStepValidator';
 import {
   deleteOrderCity,
   deleteOrderPoint,
-  // deleteOrderCity,
   getOrderCitySelect,
   getOrderPointSelect,
   setOrderCity,
