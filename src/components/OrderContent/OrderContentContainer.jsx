@@ -14,13 +14,15 @@ import {
   // setOrderStep,
   setOrderCity,
   getOrderStepSelect,
+  getOrderLastStepSelect,
+  setOrderStep,
 } from '../../store/order';
 
 import ExtraContainer from '../Extra';
 import TotalContainer from '../Total';
-// import Modal from '../Modal';
-// import Button from '../Button';
-// import OrderConfirmedContainer from '../OrderConfirmed';
+import Modal from '../Modal';
+import Button from '../Button';
+import OrderConfirmedContainer from '../OrderConfirmed';
 import { getCityAsync, getPointsAsync, selectPoint } from '../../store/point';
 import Points from '../Points';
 
@@ -32,13 +34,18 @@ function OrderContentContainer() {
   // const orderRedux = useSelector(getOrderSelect);
 
   const orderStep = useSelector(getOrderStepSelect);
-
+  const orderLastStep = useSelector(getOrderLastStepSelect);
   const dispatch = useDispatch();
 
   const handleReturnClick = () => {
-    // console.log('Return :>> ');
-    // dispatch(setOrderLatStepValidate(4));
-    // dispatch(setOrderStep(4));
+    console.log('Return :>> ');
+    dispatch(setOrderLatStepValidate(4));
+    dispatch(setOrderStep(4));
+  };
+
+  const handleConfirmClick = () => {
+    dispatch(setOrderLatStepValidate(5));
+    dispatch(setOrderStep(6));
   };
 
   return (
@@ -46,36 +53,22 @@ function OrderContentContainer() {
       {orderStep === 1 && <Points />}
       {orderStep === 2 && <CarListContainer />}
       {orderStep === 3 && <ExtraContainer />}
-      {orderStep === 4 && <TotalContainer />}
-      {orderStep === 5 && (
+      {(orderStep === 4 || orderStep === 5) && (
         <>
-          {/* <div className={style.carList}> */}
-          {/* <Modal>
-              <div className={style.confirm}>
-                <div className={style.title}>Подтвердить заказ</div>
-                <div className={style.buttons}>
-                  <div className={style.buttonConfirm}>
-                    <Button
-                      name="Подтвердить"
-                      onClickHandler={handleConfirmClick}
-                    />
-                  </div>
-                  <div className={style.buttonReturn}>
-                    <Button
-                      name="Вернуться"
-                      onClickHandler={handleReturnClick}
-                    />
-                  </div>
-                </div>
-              </div>
-            </Modal> */}
-          {/* </div> */}
+          <TotalContainer />
+          {orderLastStep === 5 && (
+            <Modal
+              onConfirmClick={handleConfirmClick}
+              onReturnClick={handleReturnClick}
+            />
+          )}
         </>
       )}
+
       {orderStep === 6 && (
         <>
           {/* <div className={style.carList}> */}
-          {/* <OrderConfirmedContainer /> */}
+          <OrderConfirmedContainer />
           {/* </div> */}
         </>
       )}

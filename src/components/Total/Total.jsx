@@ -1,11 +1,17 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
-import React from 'react';
-import Hyndai from '../../images/hundai.png';
+import React, { useState } from 'react';
 
+import nocar from '../../images/nocar.png';
 import style from './total.module.scss';
 
 function Total({ order }) {
+  const [isImgError, setIsImgError] = useState(false);
+
+  const hangleOnLoadImgError = (event) => {
+    setIsImgError(true);
+  };
+
   return (
     <div className={style.content}>
       <div className={style.about}>
@@ -21,7 +27,16 @@ function Total({ order }) {
         </div>
       </div>
       <div className={style.carImage}>
-        <img src={Hyndai} alt={order.model} />
+        <img
+          loading="lazy"
+          src={
+            isImgError
+              ? nocar
+              : `https://api-factory.simbirsoft1.com${order.carId.thumbnail?.path}`
+          }
+          alt={order.carId.name}
+          onError={(event) => hangleOnLoadImgError(event)}
+        />
       </div>
     </div>
   );

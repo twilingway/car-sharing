@@ -1,6 +1,11 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getOrderSelect, setOrderStep } from '../../store/order';
+import {
+  getOrderSelect,
+  setOrderLatStepValidate,
+  setOrderStep,
+  // setOrderStep,
+} from '../../store/order';
 
 import OrderInfo from './OrderInfo';
 
@@ -39,6 +44,7 @@ function OrderInfoContainer() {
 
   const handleOrderButtonClick = (id) => {
     dispatch(setOrderStep(id + 1));
+    dispatch(setOrderLatStepValidate(5));
   };
 
   return (

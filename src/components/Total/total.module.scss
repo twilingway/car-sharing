@@ -57,4 +57,21 @@
       }
     }
   }
+  .carImage {
+    width: 256px;
+    height: 116px;
+    overflow: hidden;
+    position: relative;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      object-position: center;
+      position: absolute;
+      top: 0;
+      left: 0;
+      padding: 8px;
+    }
+  }
 }

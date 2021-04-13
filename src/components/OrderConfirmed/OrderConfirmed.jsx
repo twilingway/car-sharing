@@ -1,26 +1,44 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
-import React from 'react';
-import Hyndai from '../../images/hundai.png';
+import React, { useState } from 'react';
+
+import nocar from '../../images/nocar.png';
 
 import style from './order-confirmed.module.scss';
 
 function OrderConfirmed({ order }) {
+  const [isImgError, setIsImgError] = useState(false);
+
+  const hangleOnLoadImgError = (event) => {
+    setIsImgError(true);
+  };
+
   return (
     <div className={style.content}>
       <div className={style.about}>
         <div className={style.title}>Ваш заказ подвержден</div>
-        <div className={style.carName}>{order.model}</div>
-        <div className={style.carNumber}>К 761 НА 73</div>
-        <div className={style.fuel}>
-          <span>Топливо</span> 100%
-        </div>
+        <div className={style.carName}>{order.carId.name}</div>
+        <div className={style.carNumber}>{order.carId.number}</div>
+        {order.isFullTank && (
+          <div className={style.fuel}>
+            <span>Топливо</span> 100%
+          </div>
+        )}
         <div className={style.available}>
-          <span>Доступна с</span> 12.06.2019 12:00
+          <span>Доступна с</span> {new Date(order.dateFrom).toLocaleString()}
         </div>
       </div>
       <div className={style.carImage}>
-        <img src={Hyndai} alt={order.model} />
+        <img
+          loading="lazy"
+          src={
+            isImgError
+              ? nocar
+              : `https://api-factory.simbirsoft1.com${order.carId.thumbnail?.path}`
+          }
+          alt={order.carId.name}
+          onError={(event) => hangleOnLoadImgError(event)}
+        />
       </div>
     </div>
   );
