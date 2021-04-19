@@ -1,29 +1,38 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
-import React, { useState } from 'react';
+import React, { useState, forwardRef } from 'react';
 import cn from 'classnames';
 import nocar from '../../images/nocar.png';
 import style from './car.module.scss';
 
 // eslint-disable-next-line react/prop-types
-function Car({ car, onCarSelect, isSelect }) {
+function Car({ car, onCarSelect, isSelect, carRef }) {
   const [isImgError, setIsImgError] = useState(false);
 
   const hangleOnLoadImgError = (event) => {
     setIsImgError(true);
   };
 
+  // const carEl = useRef();
+  // useImperativeHandle(ref, () => ({
+  //   focus: () => {
+  //     carEl.current.focus();
+  //   },
+  // }));
+
   return (
     <div
       className={cn(style.content, { [style.select]: isSelect === true })}
       tabIndex={0}
       role="button"
+      id={car.id}
       onClick={() => {
         onCarSelect(car.id, car.name);
       }}
       onKeyDown={() => {
         onCarSelect(car.id, car.name);
       }}
+      ref={carRef}
     >
       <div className={style.name}>{car.name}</div>
       <div className={style.price}>{`${car.priceMin} - ${car.priceMax} ₽`}</div>
@@ -43,4 +52,4 @@ function Car({ car, onCarSelect, isSelect }) {
   );
 }
 
-export default Car;
+export default forwardRef(Car);

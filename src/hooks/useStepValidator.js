@@ -1,7 +1,7 @@
 /* eslint-disable no-useless-return */
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getOrderSelect, setOrderLatStepValidate } from '../store/order';
+import { getOrderSelect, setOrderLatStepValidate, deleteOrderService, deleteOrderColor, deleteOrderCar, deleteOrderDate, deleteOrderRate } from '../store/order';
 
 export default function useStepValidator() {
     const orderRedux = useSelector(getOrderSelect);
@@ -11,12 +11,17 @@ export default function useStepValidator() {
 
     const checkLastStepValidate = () => {
 
-        if (orderRedux.dateFrom === '' || orderRedux.dateTo === '') {
+        if (orderRedux.dateFrom === null || orderRedux.dateTo === null) {
             setLastStepValidate(2);
         }
 
         if (orderRedux.cityId.id === null || orderRedux.pointId.id === null) {
             setLastStepValidate(0);
+            dispatch(deleteOrderCar());
+            dispatch(deleteOrderColor());
+            dispatch(deleteOrderRate());
+            dispatch(deleteOrderDate());
+            dispatch(deleteOrderService());
         }
 
         if (orderRedux.cityId.id !== null && orderRedux.pointId.id !== null) {
@@ -25,7 +30,7 @@ export default function useStepValidator() {
             if (orderRedux.carId.id !== null) {
                 setLastStepValidate(2);
 
-                if (orderRedux.dateFrom !== '' && orderRedux.dateTo !== '') {
+                if (orderRedux.dateFrom !== null && orderRedux.dateTo !== null) {
                     setLastStepValidate(3);
                 }
             }

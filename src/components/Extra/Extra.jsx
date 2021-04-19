@@ -1,93 +1,32 @@
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+/* eslint-disable react/prop-types */
+/* eslint-disable no-unused-vars */
+import React from 'react';
+import DatePicker from 'react-datepicker';
 import FilterCheckbox from '../Filter/Filter-types/Filter-checkbox';
-import FilterDate from '../Filter/Filter-types/Filter-date';
 import FilterRadiobox from '../Filter/Filter-types/Filter-radiobox';
-
-import {
-  setOrderDateTo,
-  setOrderDateFrom,
-  setOrderColor,
-  setOrderRate,
-  getOrderCarColorsSelect,
-  setOrderService,
-  getOrderSelect,
-} from '../../store/order';
-
-import { getRateAsync, selectRate } from '../../store/rate';
-
+import FilterDate from '../Filter/Filter-types/Filter-date';
+import 'react-datepicker/dist/react-datepicker.css';
 import style from './extra.module.scss';
-import { getRateTypeAsync, selectRateType } from '../../store/rateType';
-import { getOrderStatusAsync } from '../../store/orderStatus';
-import useStepValidator from '../../hooks/useStepValidator';
 
-function Extra() {
-  const rateRedux = useSelector(selectRate);
-  const rateTypeRedux = useSelector(selectRateType);
-
-  const orderCarColors = useSelector(getOrderCarColorsSelect);
-
-  const orderRedux = useSelector(getOrderSelect);
-
-  const dispatch = useDispatch();
-
-  const { checkLastStepValidate } = useStepValidator();
-
-  const handleColorChange = (color) => {
-    dispatch(setOrderColor(color.id));
-  };
-
-  const handleChangeDateTo = (date) => {
-    dispatch(setOrderDateTo(date));
-  };
-
-  const handleChangeDateFrom = (date) => {
-    dispatch(setOrderDateFrom(date));
-  };
-
-  const handleChangeServices = (services) => {
-    dispatch(setOrderService(services));
-  };
-
-  const handleSelectRate = (rate) => {
-    dispatch(setOrderRate(rate));
-  };
-
-  useEffect(() => {
-    checkLastStepValidate();
-
-    // TODO Сделать калькулятор цены
-
-    // const date1 = new Date(orderRedux.dateFrom);
-    // const date2 = new Date(orderRedux.dateTo);
-    // const diff = date2 - date1;
-    // const milliseconds = diff;
-
-    // const seconds = milliseconds / 1000;
-
-    // const minutes = seconds / 60;
-
-    // const hours = minutes / 60;
-
-    // const days = hours / 24;
-
-    // console.log('date1 :>> ', date1);
-    // console.log('date2 :>> ', date2);
-    // console.log('date2 - date1 :>> ', `${days}д ${Math.ceil(hours % 24)}ч`);
-  }, [orderRedux.dateFrom, orderRedux.dateTo]);
-
-  useEffect(() => {
-    dispatch(getRateAsync());
-    dispatch(getRateTypeAsync());
-    dispatch(getOrderStatusAsync());
-  }, []);
-
+function Extra({
+  orderRedux,
+  rateRedux,
+  rateTypeRedux,
+  onFilterStartPassedTime,
+  onFilterEndPassedTime,
+  onColorChange,
+  orderCarColors,
+  onChangeDateFrom,
+  onChangeDateTo,
+  onSelectRate,
+  onChangeServices,
+}) {
   return (
     <div>
       <div className={style.color}>
         <FilterRadiobox
           radios={orderCarColors}
-          onChangeRadio={handleColorChange}
+          onChangeRadio={onColorChange}
           groupName="Цвет"
           group="color"
           defaultChecked={orderRedux.color ?? 'Любой'}
@@ -96,21 +35,54 @@ function Extra() {
           typeRadio="color"
         />
       </div>
-      <div className={style.date}>
-        <FilterDate
-          onChangeDateTo={handleChangeDateTo}
-          dateFrom={orderRedux.dateFrom}
-          dateTo={orderRedux.dateTo}
-          onChangeDateFrom={handleChangeDateFrom}
-          filterName="Дата аренды"
-        />
+
+      <div className={style.type}>
+        <div className={style.group}>
+          <legend>Дата аренды</legend>
+          <div className={style.datapickerWrapper}>
+            <span>C</span>
+            <DatePicker
+              selected={orderRedux?.dateFrom}
+              onChange={(date) => onChangeDateFrom(date)}
+              showTimeSelect
+              filterTime={onFilterStartPassedTime}
+              timeFormat="HH:mm"
+              timeIntervals={1}
+              dateFormat="dd.MM.yyyy HH:mm"
+              timeCaption="time"
+              minDate={new Date()}
+              isClearable
+              placeholderText="Ведите дату и время"
+              className={style.datapicker}
+            />
+          </div>
+          <div className={style.datapickerWrapper}>
+            <span>По</span>
+            <DatePicker
+              selected={orderRedux?.dateTo}
+              onChange={(date) => onChangeDateTo(date)}
+              showTimeSelect
+              timeFormat="HH:mm"
+              timeIntervals={1}
+              dateFormat="dd.MM.yyyy HH:mm"
+              timeCaption="time"
+              minDate={orderRedux?.dateFrom}
+              filterTime={onFilterEndPassedTime}
+              isClearable
+              placeholderText="Ведите дату и время"
+              className={style.datapicker}
+              onKeyDown={(date) => {}}
+              disabled={!orderRedux.dateFrom}
+            />
+          </div>
+        </div>
       </div>
       <div className={style.tariff}>
         {!rateTypeRedux.isLoading && (
           <FilterRadiobox
             radios={rateTypeRedux.data}
             rate={rateRedux.data}
-            onChangeRadio={handleSelectRate}
+            onChangeRadio={onSelectRate}
             groupName="Тариф"
             group="rate"
             defaultChecked={orderRedux.rateId.name ?? 'На сутки'}
@@ -140,7 +112,7 @@ function Extra() {
               price: ', 1600р',
             },
           ]}
-          onChangeBox={handleChangeServices}
+          onChangeBox={onChangeServices}
           groupName="Доп услуги"
           defaultChecked={orderRedux.isFullTank === null && 'Полный бак'}
           isColumn

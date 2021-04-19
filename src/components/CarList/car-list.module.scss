@@ -10,26 +10,30 @@
 
 .cars {
   display: flex;
+  align-content: flex-start;
   flex: 0 0 auto;
 
   flex-wrap: wrap;
 
   overflow-y: auto;
-  height: calc(100vh - 224px);
+  height: calc(100vh - 264px);
+  // margin-bottom: 64px;
+  // padding-bottom: 64px;
 
   @media (max-width: 1024px) {
-    flex-direction: column;
+    // flex-direction: column;
   }
-  @media (max-width: 767px) {
-    height: 410px;
+  @media (max-width: 768px) {
+    // height: none;
     width: calc(100% - 16px);
-    flex-direction: column;
+    // flex-direction: column;
   }
 
-  @media (max-width: 425px) {
-    height: 210px;
-    width: 317px;
-    flex-direction: column;
+  @media (max-width: 538px) {
+    // height: 210px;
+    // width: 317px;
+    // // flex-direction: column;
+    flex: 1 1 auto;
     justify-content: center;
   }
 }

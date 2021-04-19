@@ -31,7 +31,7 @@ function FilterRadiobox({
           (item) => item.name === defaultChecked && onChangeRadio(item)
         );
       } else {
-        onChangeRadio({ id: defaultChecked });
+        // onChangeRadio({ name: defaultChecked });
       }
     }
   }, []);
@@ -52,7 +52,9 @@ function FilterRadiobox({
               name={group}
               value={allRadioText}
               defaultChecked={defaultChecked === allRadioText}
-              onChange={() => handleChangeRadio({ id: allRadioText })}
+              onChange={() =>
+                handleChangeRadio({ id: null, name: allRadioText })
+              }
             />
             <span
               className={cn({
@@ -60,7 +62,7 @@ function FilterRadiobox({
                   active.id === allRadioText || defaultChecked === allRadioText,
               })}
             >
-              {allRadioText}
+              {allRadioText[0].toUpperCase() + allRadioText.slice(1)}
             </span>
           </label>
         )}
@@ -82,7 +84,7 @@ function FilterRadiobox({
                     active.id === radio.id || defaultChecked === radio.name,
                 })}
               >
-                {radio.name}
+                {radio.name[0].toUpperCase() + radio.name.slice(1)}
               </span>
               <span
                 className={cn(style.rate, {
@@ -110,13 +112,31 @@ function FilterRadiobox({
                 type="radio"
                 name={group}
                 defaultChecked={defaultChecked === radio}
-                onChange={() => handleChangeRadio({ id: radio })}
+                onChange={() => handleChangeRadio(radio)}
               />
               <span className={cn({ [style.active]: active.id === radio })}>
-                {radio}
+                {radio[0].toUpperCase() + radio.slice(1)}
               </span>
             </label>
           ))}
+        {/* 
+        {radios &&
+          typeRadio === 'category' &&
+          radios.map((radio) => (
+            <label htmlFor={radio} key={radio}>
+              <input
+                key={radio}
+                id={radio}
+                type="radio"
+                name={group}
+                defaultChecked={defaultChecked === radio}
+                onChange={() => handleChangeRadio({ id: radio })}
+              />
+              <span className={cn({ [style.active]: active.id === radio })}>
+                {radio[0].toUpperCase() + radio.slice(1)}
+              </span>
+            </label>
+          ))} */}
       </fieldset>
     </section>
   );

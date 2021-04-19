@@ -6,7 +6,6 @@ export const slice = createSlice({
     initialState: {
         isLoading: true,
         data: [],
-        selectedCategory: ''
     },
     reducers: {
 
@@ -21,21 +20,18 @@ export const slice = createSlice({
                 data: action.payload
             }
         ),
-        setSelectedCategory: (state, action) => ({
-            ...state,
-            selectedCategory: action.payload
-        })
+
     }
 });
 
 export const {
     fetchCategory,
     setCategory,
-    setSelectedCategory,
 } = slice.actions;
 
 export const selectCategory = state => state.category.data;
 export const selectCategoryLoading = state => state.category.isLoading;
+
 
 export const getCategoryAsync = () => async (dispatch) => {
     dispatch(fetchCategory());

@@ -40,7 +40,7 @@
 
     @media (max-width: 650px) {
       flex-direction: column;
-      overflow-y: auto;
+      // overflow-y: auto;
       height: max-content;
     }
 
@@ -85,9 +85,26 @@
         flex: 0 0 352px;
       }
       @media (max-width: 1024px) {
+        display: none;
+        // flex: 0 0 320px;
+
+        &.orderInfoActive {
+          display: flex;
+          flex: 0 0 100%;
+          position: absolute;
+          background-color: white;
+        }
       }
       @media (max-width: 768px) {
-        flex: 0 0 320px;
+        // display: none;
+        // // flex: 0 0 320px;
+
+        // &.orderInfoActive {
+        //   display: flex;
+        //   flex: 0 0 100%;
+        //   position: absolute;
+        //   background-color: white;
+        // }
       }
     }
   }

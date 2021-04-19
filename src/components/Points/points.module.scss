@@ -15,3 +15,37 @@
     margin-bottom: 15px;
   }
 }
+
+.reactSelectContainer {
+  width: 200px;
+  __control {
+    width: 400px !important;
+    outline: none;
+    border-radius: 0;
+    border: none;
+    border-bottom: 1px solid red;
+    box-shadow: none;
+
+    cursor: pointer;
+  }
+}
+
+.reactSelectContainer__control {
+  width: 200px;
+
+  width: 400px !important;
+  outline: none;
+  border-radius: 0;
+  border: none;
+  border-bottom: 1px solid red;
+  box-shadow: none;
+
+  cursor: pointer;
+}
+
+.reactSelectContainer {
+  &__value {
+    cursor: pointer;
+    color: green;
+  }
+}

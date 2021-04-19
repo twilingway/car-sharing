@@ -9,8 +9,6 @@ import {
 
 import OrderInfo from './OrderInfo';
 
-import style from './order-container.module.scss';
-
 const BUTTONNAME = [
   {
     id: 1,
@@ -48,13 +46,13 @@ function OrderInfoContainer() {
   };
 
   return (
-    <div className={style.wrapper}>
+    <>
       <OrderInfo
         order={orderRedux}
         buttonName={BUTTONNAME}
         onClickHandler={handleOrderButtonClick}
       />
-    </div>
+    </>
   );
 }
 

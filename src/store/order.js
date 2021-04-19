@@ -6,6 +6,10 @@ export const slice = createSlice({
 
         step: 1,
         lastStepValidate: 0,
+        selectedCategory: {
+            id: null,
+            name: null
+        },
         orderStatusId: {
             name: '',
             id: ''
@@ -24,8 +28,8 @@ export const slice = createSlice({
             id: null
         },
         color: null,
-        dateFrom: '',
-        dateTo: '',
+        dateFrom: null,
+        dateTo: null,
         rateId: {
             price: null,
             id: null,
@@ -50,13 +54,15 @@ export const slice = createSlice({
             [key]: action.payload
         }),
 
-        setOrderCity: (state, action) => ({
-            ...state,
-            cityId: {
-                id: action.payload.id,
-                name: action.payload.name,
-            }
-        }),
+        setOrderCity: (state, action) => (
+
+            {
+                ...state,
+                cityId: {
+                    id: action.payload.value,
+                    name: action.payload.label,
+                }
+            }),
 
         deleteOrderCity: (state) => ({
             ...state,
@@ -69,9 +75,9 @@ export const slice = createSlice({
         setOrderPoint: (state, action) => ({
             ...state,
             pointId: {
-                id: action.payload.id,
+                id: action.payload.value,
                 name: action.payload.name,
-                address: action.payload.address,
+                address: action.payload.label,
             }
         }),
 
@@ -93,6 +99,19 @@ export const slice = createSlice({
             }
         }),
 
+        deleteOrderCar: (state) => ({
+            ...state,
+            carId: {
+                name: null,
+                id: null
+            }
+        }),
+
+        setOrderSelectedCategory: (state, action) => ({
+            ...state,
+            selectedCategory: action.payload
+        }),
+
         setOrderDateFrom: (state, action) => ({
             ...state,
             dateFrom: action.payload
@@ -101,20 +120,42 @@ export const slice = createSlice({
             ...state,
             dateTo: action.payload
         }),
+        deleteOrderDate: (state) => ({
+            ...state,
+            dateFrom: null,
+            dateTo: null,
+        }),
 
         setOrderColor: (state, action) => ({
             ...state,
             color: action.payload
         }),
+        deleteOrderColor: (state) => ({
+            ...state,
+            color: null,
+        }),
         setOrderRate: (state, action) => ({
             ...state,
             rateId: { ...action.payload }
+        }),
+        deleteOrderRate: (state) => ({
+            ...state,
+            rateId: {
+                price: null,
+                id: null,
+            },
         }),
 
         setOrderService: (state, action) => ({
             ...state,
             [action.payload]: !state[action.payload]
-        })
+        }),
+        deleteOrderService: (state) => ({
+            ...state,
+            isFullTank: null,
+            isNeedChildChair: null,
+            isRightWheel: null
+        }),
 
     }
 });
@@ -123,16 +164,22 @@ export const {
     setOrderStep,
     setOrderLatStepValidate,
     setOrderByKey,
-    setOrderPoint,
     setOrderCity,
-    setOrderCar,
     deleteOrderCity,
+    setOrderPoint,
     deleteOrderPoint,
+    setOrderCar,
+    deleteOrderCar,
+    setOrderSelectedCategory,
     setOrderDateFrom,
     setOrderDateTo,
+    deleteOrderDate,
     setOrderColor,
+    deleteOrderColor,
     setOrderRate,
-    setOrderService
+    deleteOrderRate,
+    setOrderService,
+    deleteOrderService,
 } = slice.actions;
 
 export const getOrderStepSelect = state => state.order.step;
@@ -145,5 +192,7 @@ export const getOrderCarSelect = state => state.order.carId;
 export const getOrderCitySelect = state => state.order.cityId;
 export const getOrderPointSelect = state => state.order.pointId;
 export const getOrderCarColorsSelect = state => state.order.carId.colors;
+
+export const selectOrderSelectedCategory = state => state.order.selectedCategory;
 
 export default slice.reducer;

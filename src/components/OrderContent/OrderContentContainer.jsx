@@ -14,7 +14,7 @@ import ExtraContainer from '../Extra';
 import TotalContainer from '../Total';
 import Modal from '../Modal';
 import OrderConfirmedContainer from '../OrderConfirmed';
-import Points from '../Points';
+import PointsContainer from '../Points';
 
 function OrderContentContainer() {
   const orderStep = useSelector(getOrderStepSelect);
@@ -33,7 +33,7 @@ function OrderContentContainer() {
 
   return (
     <OrderContent>
-      {orderStep === 1 && <Points />}
+      {orderStep === 1 && <PointsContainer />}
       {orderStep === 2 && <CarListContainer />}
       {orderStep === 3 && <ExtraContainer />}
       {(orderStep === 4 || orderStep === 5) && (

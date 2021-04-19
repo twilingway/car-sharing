@@ -13,30 +13,35 @@ function Total({ order }) {
   };
 
   return (
-    <div className={style.content}>
-      <div className={style.about}>
-        <div className={style.carName}>{order.carId.name}</div>
-        <div className={style.carNumber}>{order.carId.number}</div>
-        {order.isFullTank && (
-          <div className={style.fuel}>
-            <span>Топливо</span> 100%
+    <div className={style.wrapper}>
+      <div className={style.content}>
+        <div className={style.about}>
+          <div className={style.carName}>{order.carId.name}</div>
+          {order.carId.number && (
+            <div className={style.carNumber}>{order.carId.number}</div>
+          )}
+          {order.isFullTank && (
+            <div className={style.fuel}>
+              <span>Топливо</span> 100%
+            </div>
+          )}
+          <div className={style.available}>
+            <span>Доступна с</span>{' '}
+            {new Date(order.dateFrom).toLocaleString().slice(0, -3)}
           </div>
-        )}
-        <div className={style.available}>
-          <span>Доступна с</span> {new Date(order.dateFrom).toLocaleString()}
         </div>
-      </div>
-      <div className={style.carImage}>
-        <img
-          loading="lazy"
-          src={
-            isImgError
-              ? nocar
-              : `https://api-factory.simbirsoft1.com${order.carId.thumbnail?.path}`
-          }
-          alt={order.carId.name}
-          onError={(event) => hangleOnLoadImgError(event)}
-        />
+        <div className={style.carImage}>
+          <img
+            loading="lazy"
+            src={
+              isImgError
+                ? nocar
+                : `https://api-factory.simbirsoft1.com${order.carId.thumbnail?.path}`
+            }
+            alt={order.carId.name}
+            onError={(event) => hangleOnLoadImgError(event)}
+          />
+        </div>
       </div>
     </div>
   );

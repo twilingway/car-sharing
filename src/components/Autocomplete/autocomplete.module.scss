@@ -10,8 +10,10 @@
     // flex-grow: 1;
     //  text-align: end;
     display: flex;
+    align-items: center;
     justify-content: flex-end;
-    flex: 1 0 91px;
+    padding: 2px 8px 0 0;
+    flex: 1 0 99px;
     color: var(--primary-black);
 
     //  width: 155px;

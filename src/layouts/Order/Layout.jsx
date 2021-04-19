@@ -1,29 +1,38 @@
-import React from 'react';
-
+import React, { useState } from 'react';
+import cn from 'classnames';
 import BreadCrumbsContainer from '../../components/Breadcrumbs';
 import Header from '../../components/Header';
 import OrderInfoContainer from '../../components/OrderInfo';
 import OrderContentContainer from '../../components/OrderContent';
 
-import style from './layout.module.scss';
+import s from './layout.module.scss';
+import Basket from '../../components/Basket';
 
 function Layout() {
+  const [isOrderInfoActive, setIsOrderInfoActive] = useState(false);
   return (
-    <section className={style.body}>
-      <div className={style.header}>
+    <section className={s.body}>
+      <div className={s.header}>
         <Header />
       </div>
-      <div className={style.breadcrumbs}>
+      <div className={s.breadcrumbs}>
         <BreadCrumbsContainer />
       </div>
 
-      <main className={style.main}>
-        <section className={style.params}>
+      <main className={s.main}>
+        <section className={s.params}>
           <OrderContentContainer />
         </section>
-        <section className={style.info}>
+        <section
+          className={cn(s.info, {
+            [s.orderInfoActive]: isOrderInfoActive === true,
+          })}
+        >
           <OrderInfoContainer />
         </section>
+        <Basket
+          onClick={() => setIsOrderInfoActive((prevState) => !prevState)}
+        />
       </main>
     </section>
   );

@@ -1,8 +1,9 @@
+/* eslint-disable prefer-arrow-callback */
 /* eslint-disable react/prop-types */
 import React, { useEffect, useState } from 'react';
 import YandexMap from './YandexMap';
 
-function YandexMapContainer({ city, points, selectedPoint }) {
+function YandexMapContainer({ city, points, selectedPoint, onPointClick }) {
   const [myMap, setMyMap] = useState(null);
   const [isPoints, setIsPoints] = useState(false);
   const [cityCoords, setCityCoords] = useState([54.3008799, 48.37334346]);
@@ -62,13 +63,6 @@ function YandexMapContainer({ city, points, selectedPoint }) {
   }
 
   function setPoints() {
-    const myCollection = new window.ymaps.GeoObjectCollection(null, {
-      preset: 'islands#circleIcon',
-      iconColor: '#3caa3c',
-    });
-
-    const myPoints = [];
-
     points.forEach((point) => {
       window.ymaps
         .geocode(`${city}, ${point.address}`, { result: 1 })
@@ -77,26 +71,25 @@ function YandexMapContainer({ city, points, selectedPoint }) {
           const firstGeoObject = res.geoObjects.get(0);
           // // Координаты геообъекта.
           const coords = firstGeoObject.geometry.getCoordinates();
-          myPoints.push({ coords, text: point.address });
-          // // Область видимости геообъекта.
-          // const bounds = firstGeoObject.properties.get('boundedBy');
 
-          myCollection.add(
-            new window.ymaps.Placemark(
-              coords,
-              {
-                balloonContent: `${city}, ${point.address}, ${point.name} `,
-              },
-              {
-                preset: 'islands#circleIcon',
-                iconColor: '#3caa3c',
-              }
-            )
+          const myPlacemark = new window.ymaps.Placemark(
+            coords,
+            {
+              hintContent: `${city}, ${point.address}, ${point.name} `,
+              balloonContent: `${city}, ${point.address}, ${point.name} `,
+            },
+            {
+              preset: 'islands#circleIcon',
+              iconColor: '#3caa3c',
+            }
           );
+
+          myMap.geoObjects.add(myPlacemark);
+
+          myPlacemark.events.add('click', () => onPointClick(point));
         });
     });
 
-    myMap.geoObjects.add(myCollection);
     setIsPoints(true);
   }
 
