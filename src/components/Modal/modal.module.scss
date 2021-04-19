@@ -86,23 +86,35 @@
             height: 48px;
 
             background: linear-gradient(90deg, #493013 0%, #7b0c3b 100%);
-            border-radius: 4px;
+            border-radius: 8px;
 
             &.loading {
-              background: linear-gradient(90deg, #0ec261 2.61%, #039f67 112.6%);
+              background: linear-gradient(90deg, #493013 0%, #7b0c3b 100%);
             }
 
             &:focus {
-              background: linear-gradient(90deg, #0b934a 2.61%, #026e47 112.6%);
+              background: linear-gradient(
+                90deg,
+                darken(#493013, 10) 0%,
+                darken(#7b0c3b, 10) 100%
+              );
             }
 
             &:hover {
-              background: linear-gradient(90deg, #0b934a 2.61%, #026e47 112.6%);
+              background: linear-gradient(
+                90deg,
+                darken(#493013, 10) 0%,
+                darken(#7b0c3b, 10) 100%
+              );
               cursor: var(--cursor-pointer);
             }
 
             &:active {
-              background: linear-gradient(90deg, #076432 2.61%, #013c27 112.6%);
+              background: linear-gradient(
+                90deg,
+                darken(#493013, 20) 0%,
+                darken(#7b0c3b, 20) 100%
+              );
             }
           }
         }
