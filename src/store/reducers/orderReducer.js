@@ -160,6 +160,11 @@ export const slice = createSlice({
             [action.payload]: !state[action.payload]
         }),
 
+        setOrderPrice: (state, action) => ({
+            ...state,
+            price: action.payload
+        }),
+
 
         clearOrder: () => ({
             id: null,
@@ -299,6 +304,7 @@ export const {
     setOrderRate,
     setOrderService,
     setOrderStatusId,
+    setOrderPrice,
     clearOrder,
 } = slice.actions;
 

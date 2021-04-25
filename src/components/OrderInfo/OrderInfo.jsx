@@ -14,6 +14,7 @@ function OrderInfo({ order, onClickHandler }) {
     isFullTank,
     isNeedChildChair,
     isRightWheel,
+    price,
   } = order;
   return (
     <div className={style.wrapper}>
@@ -102,10 +103,13 @@ function OrderInfo({ order, onClickHandler }) {
             <span>
               <b>Цена:</b>
             </span>
-            <span>
-              {' '}
-              от {carId.priceMin} до {carId.priceMax} &#x20bd;
-            </span>
+            {price ? (
+              <span> {Math.ceil(price)} &#x20bd;</span>
+            ) : (
+              <span>
+                от {carId.priceMin} до {carId.priceMax} &#x20bd;
+              </span>
+            )}
           </div>
         )}
         <StepButtonContainer onClickHandler={onClickHandler} order={order} />

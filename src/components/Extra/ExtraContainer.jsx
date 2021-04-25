@@ -19,9 +19,11 @@ import { selectRate } from '../../store/selectors/rateSelectors';
 import fetchRateType from '../../store/thunks/rateTypeThunks';
 import { selectRateType } from '../../store/selectors/rateTypeSelectors';
 import Extra from './Extra';
+import usePriceCalculator from '../../hooks/usePriceCalculator';
 
 function ExtraContainer() {
   const dispatch = useDispatch();
+  const { calculatePrice } = usePriceCalculator();
   const orderRedux = useSelector(selectOrder);
   const rateRedux = useSelector(selectRate);
   const rateTypeRedux = useSelector(selectRateType);
@@ -99,26 +101,15 @@ function ExtraContainer() {
 
   useEffect(() => {
     checkLastStepValidate();
-
-    // TODO Сделать калькулятор цены
-
-    // const date1 = new Date(orderRedux.dateFrom);
-    // const date2 = new Date(orderRedux.dateTo);
-    // const diff = date2 - date1;
-    // const milliseconds = diff;
-
-    // const seconds = milliseconds / 1000;
-
-    // const minutes = seconds / 60;
-
-    // const hours = minutes / 60;
-
-    // const days = hours / 24;
-
-    // console.log('date1 :>> ', date1);
-    // console.log('date2 :>> ', date2);
-    // console.log('date2 - date1 :>> ', `${days}д ${Math.ceil(hours % 24)}ч`);
-  }, [orderRedux.dateFrom, orderRedux.dateTo]);
+    calculatePrice();
+  }, [
+    orderRedux.dateFrom,
+    orderRedux.dateTo,
+    orderRedux.rateId.id,
+    orderRedux.isFullTank,
+    orderRedux.isNeedChildChair,
+    orderRedux.isRightWheel,
+  ]);
 
   return (
     <Extra
