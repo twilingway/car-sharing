@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Points from './Points';
@@ -8,12 +7,7 @@ import {
   selectOrderCity,
   selectOrderPoint,
 } from '../../store/selectors/orderSelectors';
-import {
-  deleteOrderCity,
-  deleteOrderPoint,
-  setOrderCity,
-  setOrderPoint,
-} from '../../store/reducers/orderReducer';
+import { setOrderCity, setOrderPoint } from '../../store/reducers/orderReducer';
 import { selectPoint } from '../../store/selectors/pointSelectors';
 import { fetchCity, fetchPointById } from '../../store/thunks/pointThunks';
 
@@ -30,11 +24,9 @@ function PointContainer() {
   const handleSelectCity = (city) => {
     if (city?.value) {
       dispatch(setOrderCity(city));
-      dispatch(deleteOrderPoint());
       dispatch(fetchPointById(city.value));
     } else {
-      dispatch(deleteOrderCity());
-      dispatch(deleteOrderPoint());
+      dispatch(setOrderCity({ value: null, label: null }));
     }
   };
 
@@ -42,7 +34,7 @@ function PointContainer() {
     if (point?.value) {
       dispatch(setOrderPoint(point));
     } else {
-      dispatch(deleteOrderPoint());
+      dispatch(setOrderPoint({ value: null, label: null, name: null }));
     }
   };
   const handlePointClick = (point) => {

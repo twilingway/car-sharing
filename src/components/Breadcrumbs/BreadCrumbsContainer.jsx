@@ -8,25 +8,8 @@ import {
 } from '../../store/selectors/orderSelectors';
 import { setOrderStep } from '../../store/reducers/orderReducer';
 import BreadCrumbs from './BreadCrumbs';
-
-const CRUMBS = [
-  {
-    id: 1,
-    name: 'Местоположение',
-  },
-  {
-    id: 2,
-    name: 'Модель',
-  },
-  {
-    id: 3,
-    name: 'Дополнительно',
-  },
-  {
-    id: 4,
-    name: 'Итого',
-  },
-];
+import CRUMBS from './crumbs.json';
+import { setBasketStatus } from '../../store/reducers/basketReducer';
 
 function BreadCrumbsContainer() {
   const history = useHistory();
@@ -37,6 +20,7 @@ function BreadCrumbsContainer() {
 
   const handleSetStepClick = (id) => {
     dispatch(setOrderStep(id));
+    dispatch(setBasketStatus(false));
     if (id === 6 && orderRedux.id) {
       history.push(`/order/${orderRedux.id}`);
     }

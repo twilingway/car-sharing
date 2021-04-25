@@ -66,15 +66,27 @@ export const slice = createSlice({
             cityId: {
                 id: action.payload.value,
                 name: action.payload.label,
-            }
-        }),
-
-        deleteOrderCity: (state) => ({
-            ...state,
-            cityId: {
-                id: null,
+            },
+            pointId: {
+                address: null,
                 name: null,
-            }
+                id: null,
+            },
+            carId: {
+                name: null,
+                id: null
+            },
+            color: null,
+            dateFrom: null,
+            dateTo: null,
+            rateId: {
+                price: null,
+                id: null,
+            },
+            price: null,
+            isFullTank: null,
+            isNeedChildChair: null,
+            isRightWheel: null,
         }),
 
         setOrderPoint: (state, action) => ({
@@ -83,31 +95,40 @@ export const slice = createSlice({
                 id: action.payload.value,
                 name: action.payload.name,
                 address: action.payload.label,
-            }
-        }),
-
-        deleteOrderPoint: (state) => ({
-            ...state,
-            pointId: {
-                id: null,
+            },
+            carId: {
                 name: null,
-                address: null,
-            }
+                id: null
+            },
+            color: null,
+            dateFrom: null,
+            dateTo: null,
+            rateId: {
+                price: null,
+                id: null,
+            },
+            price: null,
+            isFullTank: null,
+            isNeedChildChair: null,
+            isRightWheel: null,
         }),
 
         setOrderCar: (state, action) => ({
             ...state,
             carId: {
                 ...action.payload
-            }
-        }),
-
-        deleteOrderCar: (state) => ({
-            ...state,
-            carId: {
-                name: null,
-                id: null
-            }
+            },
+            color: null,
+            dateFrom: null,
+            dateTo: null,
+            rateId: {
+                price: null,
+                id: null,
+            },
+            price: null,
+            isFullTank: null,
+            isNeedChildChair: null,
+            isRightWheel: null,
         }),
 
         setOrderSelectedCategory: (state, action) => ({
@@ -123,42 +144,22 @@ export const slice = createSlice({
             ...state,
             dateTo: action.payload
         }),
-        deleteOrderDate: (state) => ({
-            ...state,
-            dateFrom: null,
-            dateTo: null,
-        }),
 
         setOrderColor: (state, action) => ({
             ...state,
             color: action.payload
         }),
-        deleteOrderColor: (state) => ({
-            ...state,
-            color: null,
-        }),
+
         setOrderRate: (state, action) => ({
             ...state,
             rateId: { ...action.payload }
-        }),
-        deleteOrderRate: (state) => ({
-            ...state,
-            rateId: {
-                price: null,
-                id: null,
-            },
         }),
 
         setOrderService: (state, action) => ({
             ...state,
             [action.payload]: !state[action.payload]
         }),
-        deleteOrderService: (state) => ({
-            ...state,
-            isFullTank: null,
-            isNeedChildChair: null,
-            isRightWheel: null
-        }),
+
 
         clearOrder: () => ({
             id: null,
@@ -289,21 +290,14 @@ export const {
     setOrderLatStepValidate,
     setOrderByKey,
     setOrderCity,
-    deleteOrderCity,
     setOrderPoint,
-    deleteOrderPoint,
     setOrderCar,
-    deleteOrderCar,
     setOrderSelectedCategory,
     setOrderDateFrom,
     setOrderDateTo,
-    deleteOrderDate,
     setOrderColor,
-    deleteOrderColor,
     setOrderRate,
-    deleteOrderRate,
     setOrderService,
-    deleteOrderService,
     setOrderStatusId,
     clearOrder,
 } = slice.actions;

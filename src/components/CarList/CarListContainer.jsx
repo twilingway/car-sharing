@@ -6,10 +6,6 @@ import {
   selectOrderSelectedCategory,
 } from '../../store/selectors/orderSelectors';
 import {
-  deleteOrderColor,
-  deleteOrderDate,
-  deleteOrderRate,
-  deleteOrderService,
   setOrderCar,
   setOrderSelectedCategory,
 } from '../../store/reducers/orderReducer';
@@ -30,10 +26,6 @@ function CarListContainer() {
 
   const handleCarSelect = (car) => {
     dispatch(setOrderCar(car));
-    dispatch(deleteOrderColor());
-    dispatch(deleteOrderRate());
-    dispatch(deleteOrderDate());
-    dispatch(deleteOrderService());
   };
 
   const handleRadioChange = (radio) => {

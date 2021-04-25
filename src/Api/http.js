@@ -22,12 +22,8 @@ async function requestHttp(url, method = 'GET', body = null, headers = headersCo
         method,
         headers,
         data: newBody
-    })
-        .then((response) => response.data
-        )
-        .catch((error) => error);
-
-    return res;
+    });
+    return res.data;
 }
 
 export default requestHttp;

@@ -1,12 +1,9 @@
 /* eslint-disable react/prop-types */
-
 import React from 'react';
-import cn from 'classnames';
-import Button from '../Button';
-
 import style from './order.module.scss';
+import StepButtonContainer from '../StepButton';
 
-function OrderInfo({ order, buttonName, onClickHandler }) {
+function OrderInfo({ order, onClickHandler }) {
   const {
     cityId,
     pointId,
@@ -14,7 +11,6 @@ function OrderInfo({ order, buttonName, onClickHandler }) {
     dateTo,
     color,
     rateId,
-    step,
     isFullTank,
     isNeedChildChair,
     isRightWheel,
@@ -112,18 +108,7 @@ function OrderInfo({ order, buttonName, onClickHandler }) {
             </span>
           </div>
         )}
-        <div className={cn(style.button, { [style.cancel]: step === 6 })}>
-          {buttonName
-            .filter((item) => item.id === order.step)
-            .map((item) => (
-              <Button
-                key={item.id}
-                name={item.name}
-                disabled={order.lastStepValidate < item.id}
-                onClickHandler={() => onClickHandler && onClickHandler(item.id)}
-              />
-            ))}
-        </div>
+        <StepButtonContainer onClickHandler={onClickHandler} order={order} />
       </div>
     </div>
   );

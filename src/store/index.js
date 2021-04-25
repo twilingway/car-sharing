@@ -7,6 +7,7 @@ import categoryReducer from './reducers/categoryReducer';
 import rateReducer from './reducers/rateReducer';
 import rateTypeReducer from './reducers/rateTypeReducer';
 import orderStatusReducer from './reducers/orderStatusReducer';
+import basketReducer from './reducers/basketReducer';
 
 export default configureStore({
     reducer: {
@@ -18,5 +19,6 @@ export default configureStore({
         rate: rateReducer,
         rateType: rateTypeReducer,
         orderStatus: orderStatusReducer,
+        basket: basketReducer
     }
 });

@@ -32,20 +32,8 @@
       font-size: 18px;
       line-height: 21px;
 
-      padding-top: 64px;
+      padding-top: 32px;
       padding-bottom: 26px;
-
-      @media (min-width: 1440px) {
-        padding-top: 32px;
-      }
-
-      @media (max-width: 1439px) {
-        padding-top: 32px;
-      }
-
-      @media (max-width: 650px) {
-        padding-top: 8px;
-      }
     }
 
     .params {
@@ -100,41 +88,6 @@
       line-height: 16px;
 
       padding-top: 32px;
-    }
-
-    .button {
-      padding-top: 32px;
-
-      &.cancel {
-        button {
-          width: 287px;
-          height: 48px;
-          background: linear-gradient(90deg, #493013 0%, #7b0c3b 100%);
-          border-radius: 4px;
-
-          &:hover {
-            background: linear-gradient(
-              90deg,
-              darken(#493013, 10) 0%,
-              darken(#7b0c3b, 10) 100%
-            );
-            background-blend-mode: darken;
-            cursor: pointer;
-          }
-          &:active {
-            background: linear-gradient(
-              90deg,
-              darken(#493013, 20) 0%,
-              darken(#7b0c3b, 20) 100%
-            );
-          }
-        }
-      }
-
-      button {
-        width: 287px;
-        height: 48px;
-      }
     }
   }
 }

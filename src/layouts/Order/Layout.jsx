@@ -1,4 +1,4 @@
-import React, { useEffect, useLayoutEffect, useState } from 'react';
+import React, { useEffect, useLayoutEffect } from 'react';
 import { useRouteMatch, useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import cn from 'classnames';
@@ -17,6 +17,10 @@ import {
 import fetchOrderStatus from '../../store/thunks/orderStatusThunks';
 import { selectOrder } from '../../store/selectors/orderSelectors';
 import s from './layout.module.scss';
+import { setBasketStatus } from '../../store/reducers/basketReducer';
+import selectBasketStatus from '../../store/selectors/basketSelectors';
+import StepButtonContainer from '../../components/StepButton';
+// import Button from '../../components/Button';
 
 function Layout() {
   const orderId = localStorage.getItem('orderId');
@@ -24,7 +28,8 @@ function Layout() {
   const history = useHistory();
   const match = useRouteMatch();
   const orderReducer = useSelector(selectOrder);
-  const [isOrderInfoActive, setIsOrderInfoActive] = useState(false);
+  const basketStatus = useSelector(selectBasketStatus);
+  // const [isOrderInfoActive, setIsOrderInfoActive] = useState(false);
 
   useEffect(() => {
     if (orderReducer.id) {
@@ -75,17 +80,18 @@ function Layout() {
           <main className={s.main}>
             <section className={s.params}>
               <OrderContentContainer />
+              <div className={s.stepButton}>
+                <StepButtonContainer order={orderReducer} />
+              </div>
             </section>
             <section
               className={cn(s.info, {
-                [s.orderInfoActive]: isOrderInfoActive === true,
+                [s.orderInfoActive]: basketStatus === true,
               })}
             >
               <OrderInfoContainer />
             </section>
-            <Basket
-              onClick={() => setIsOrderInfoActive((prevState) => !prevState)}
-            />
+            <Basket onClick={() => dispatch(setBasketStatus(!basketStatus))} />
           </main>
         </>
       )}

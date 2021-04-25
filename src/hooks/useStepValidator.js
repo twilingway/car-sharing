@@ -3,13 +3,12 @@ import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { selectOrder } from '../store/selectors/orderSelectors';
-import { setOrderLatStepValidate, deleteOrderService, deleteOrderColor, deleteOrderCar, deleteOrderDate, deleteOrderRate } from '../store/reducers/orderReducer';
+import { setOrderLatStepValidate } from '../store/reducers/orderReducer';
 
 export default function useStepValidator() {
     const orderRedux = useSelector(selectOrder);
     const dispatch = useDispatch();
     const [lastStepValidate, setLastStepValidate] = useState(orderRedux.lastStepValidate);
-
 
     const checkLastStepValidate = () => {
 
@@ -19,11 +18,6 @@ export default function useStepValidator() {
 
         if (orderRedux.cityId.id === null || orderRedux.pointId.id === null) {
             setLastStepValidate(0);
-            dispatch(deleteOrderCar());
-            dispatch(deleteOrderColor());
-            dispatch(deleteOrderRate());
-            dispatch(deleteOrderDate());
-            dispatch(deleteOrderService());
         }
 
         if (orderRedux.cityId.id !== null && orderRedux.pointId.id !== null) {
@@ -37,9 +31,6 @@ export default function useStepValidator() {
                 }
             }
         }
-
-
-
     };
 
     useEffect(() => {
