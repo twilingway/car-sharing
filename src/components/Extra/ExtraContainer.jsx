@@ -100,8 +100,8 @@ function ExtraContainer() {
   }, []);
 
   useEffect(() => {
-    checkLastStepValidate();
     calculatePrice();
+    checkLastStepValidate();
   }, [
     orderRedux.dateFrom,
     orderRedux.dateTo,

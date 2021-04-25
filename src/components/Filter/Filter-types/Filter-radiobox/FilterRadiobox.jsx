@@ -31,6 +31,8 @@ function FilterRadiobox({
         radios.map(
           (item) => item.name === defaultChecked && onChangeRadio(item)
         );
+      } else {
+        onChangeRadio(defaultChecked);
       }
     }
   }, []);

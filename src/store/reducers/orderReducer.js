@@ -32,13 +32,15 @@ export const slice = createSlice({
         dateFrom: null,
         dateTo: null,
         rateId: {
-            price: null,
+            unit: null,
+            name: null,
             id: null,
         },
         price: null,
         isFullTank: null,
         isNeedChildChair: null,
         isRightWheel: null,
+        duration: null,
         error: {}
     },
     reducers: {
@@ -87,6 +89,7 @@ export const slice = createSlice({
             isFullTank: null,
             isNeedChildChair: null,
             isRightWheel: null,
+            duration: null,
         }),
 
         setOrderPoint: (state, action) => ({
@@ -111,6 +114,7 @@ export const slice = createSlice({
             isFullTank: null,
             isNeedChildChair: null,
             isRightWheel: null,
+            duration: null,
         }),
 
         setOrderCar: (state, action) => ({
@@ -129,6 +133,7 @@ export const slice = createSlice({
             isFullTank: null,
             isNeedChildChair: null,
             isRightWheel: null,
+            duration: null,
         }),
 
         setOrderSelectedCategory: (state, action) => ({
@@ -163,6 +168,11 @@ export const slice = createSlice({
         setOrderPrice: (state, action) => ({
             ...state,
             price: action.payload
+        }),
+
+        setOrderDuration: (state, action) => ({
+            ...state,
+            duration: action.payload
         }),
 
 
@@ -305,6 +315,7 @@ export const {
     setOrderService,
     setOrderStatusId,
     setOrderPrice,
+    setOrderDuration,
     clearOrder,
 } = slice.actions;
 

@@ -8,13 +8,13 @@ function OrderInfo({ order, onClickHandler }) {
     cityId,
     pointId,
     carId,
-    dateTo,
     color,
     rateId,
     isFullTank,
     isNeedChildChair,
     isRightWheel,
     price,
+    duration,
   } = order;
   return (
     <div className={style.wrapper}>
@@ -50,12 +50,14 @@ function OrderInfo({ order, onClickHandler }) {
             </div>
           </div>
         )}
-        {dateTo && (
+        {duration && (
           <div className={style.params}>
             <span className={style.paramsName}>Длительность аренды</span>
             <div className={style.empty}>{}</div>
             <div className={style.description}>
-              <div>1д 2ч{}</div>
+              <div>
+                <span>{duration}</span>
+              </div>
             </div>
           </div>
         )}
@@ -104,7 +106,7 @@ function OrderInfo({ order, onClickHandler }) {
               <b>Цена:</b>
             </span>
             {price ? (
-              <span> {Math.ceil(price)} &#x20bd;</span>
+              <span> {price} &#x20bd;</span>
             ) : (
               <span>
                 от {carId.priceMin} до {carId.priceMax} &#x20bd;
