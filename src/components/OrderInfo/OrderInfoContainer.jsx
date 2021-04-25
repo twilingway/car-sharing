@@ -1,11 +1,13 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import {
-  getOrderSelect,
-  setOrderLatStepValidate,
   setOrderStep,
-  // setOrderStep,
-} from '../../store/order';
+  setOrderStatusId,
+} from '../../store/reducers/orderReducer';
+import { selectOrder } from '../../store/selectors/orderSelectors';
+import { selectOrderStatus } from '../../store/selectors/orderStatusSelectors';
+import { putOrder } from '../../store/thunks/orderThunks';
 
 import OrderInfo from './OrderInfo';
 
@@ -37,12 +39,34 @@ const BUTTONNAME = [
 ];
 
 function OrderInfoContainer() {
-  const orderRedux = useSelector(getOrderSelect);
+  const history = useHistory();
+  const orderRedux = useSelector(selectOrder);
+  const orderStatusRedux = useSelector(selectOrderStatus);
   const dispatch = useDispatch();
 
   const handleOrderButtonClick = (id) => {
-    dispatch(setOrderStep(id + 1));
-    dispatch(setOrderLatStepValidate(5));
+    if (orderStatusRedux.data.length > 0) {
+      dispatch(
+        setOrderStatusId(
+          orderStatusRedux.data.find((item) => item.name === 'new')
+        )
+      );
+    }
+    if (id === 6) {
+      const censelledOrder = {
+        ...orderRedux,
+        orderStatusId: orderStatusRedux.data.find(
+          (item) => item.name === 'cancelled'
+        ),
+      };
+      console.log('censelledOrder :>> ', censelledOrder);
+      dispatch(putOrder(censelledOrder));
+
+      localStorage.removeItem('orderId');
+      history.replace('/order');
+    } else {
+      dispatch(setOrderStep(id + 1));
+    }
   };
 
   return (

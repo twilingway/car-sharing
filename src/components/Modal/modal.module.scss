@@ -7,10 +7,6 @@
   top: 0;
   left: 0;
   background: rgba(255, 255, 255, 0.75);
-  // visibility: hidden;
-  // opacity: 0;
-  // transition: all 0.25s ease-in-out;
-  // z-index: 100000;
 }
 
 .root.open {
@@ -70,10 +66,6 @@
           button {
             width: 177px;
             height: 48px;
-
-            // background: linear-gradient(90deg, #0ec261 2.61%, #039f67 112.6%);
-            // background-blend-mode: darken;
-            // border-radius: 8px;
           }
         }
 

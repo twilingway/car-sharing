@@ -17,22 +17,14 @@
 
   overflow-y: auto;
   height: calc(100vh - 264px);
-  // margin-bottom: 64px;
-  // padding-bottom: 64px;
 
   @media (max-width: 1024px) {
-    // flex-direction: column;
   }
   @media (max-width: 768px) {
-    // height: none;
     width: calc(100% - 16px);
-    // flex-direction: column;
   }
 
   @media (max-width: 538px) {
-    // height: 210px;
-    // width: 317px;
-    // // flex-direction: column;
     flex: 1 1 auto;
     justify-content: center;
   }

@@ -2,42 +2,31 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import CarList from './CarList';
 import {
+  selectOrderCar,
+  selectOrderSelectedCategory,
+} from '../../store/selectors/orderSelectors';
+import {
   deleteOrderColor,
   deleteOrderDate,
   deleteOrderRate,
   deleteOrderService,
-  // setOrderLatStepValidate,
-  getOrderCarSelect,
-  selectOrderSelectedCategory,
   setOrderCar,
-  // checkLastStepValidate,
-} from '../../store/order';
+  setOrderSelectedCategory,
+} from '../../store/reducers/orderReducer';
 
-import { getCarAsync, getCarByCategoryAsync, selectCar } from '../../store/car';
-import { getCategoryAsync } from '../../store/category';
+import { fetchCar, fetchCarById } from '../../store/thunks/carThunks';
+import { selectCar } from '../../store/selectors/carSelectors';
+import fetchCategory from '../../store/thunks/categoryThunks';
 import useStepValidator from '../../hooks/useStepValidator';
 
 function CarListContainer() {
-  const orderCar = useSelector(getOrderCarSelect);
+  const orderCar = useSelector(selectOrderCar);
   const dispatch = useDispatch();
 
   const { checkLastStepValidate } = useStepValidator();
 
   const carReducer = useSelector(selectCar);
   const selectedCategory = useSelector(selectOrderSelectedCategory);
-
-  useEffect(() => {
-    if (selectedCategory.id) {
-      dispatch(getCarByCategoryAsync(selectedCategory.id));
-    } else {
-      dispatch(getCarAsync());
-    }
-    dispatch(getCategoryAsync());
-  }, []);
-
-  useEffect(() => {
-    checkLastStepValidate();
-  }, [orderCar]);
 
   const handleCarSelect = (car) => {
     dispatch(setOrderCar(car));
@@ -46,7 +35,36 @@ function CarListContainer() {
     dispatch(deleteOrderDate());
     dispatch(deleteOrderService());
   };
-  return <CarList cars={carReducer.data} onCarSelect={handleCarSelect} />;
+
+  const handleRadioChange = (radio) => {
+    dispatch(setOrderSelectedCategory(radio));
+    if (radio.id) {
+      dispatch(fetchCarById(radio.id));
+    } else {
+      dispatch(fetchCar());
+    }
+  };
+
+  useEffect(() => {
+    checkLastStepValidate();
+  }, [orderCar]);
+
+  useEffect(() => {
+    if (selectedCategory.id) {
+      dispatch(fetchCarById(selectedCategory.id));
+    } else {
+      dispatch(fetchCar());
+    }
+    dispatch(fetchCategory());
+  }, []);
+
+  return (
+    <CarList
+      cars={carReducer.data}
+      onCarSelect={handleCarSelect}
+      onRadioChange={handleRadioChange}
+    />
+  );
 }
 
 export default CarListContainer;

@@ -1,10 +1,12 @@
+/* eslint-disable no-unused-vars */
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getOrderSelect, setOrderLatStepValidate } from '../../store/order';
+import { selectOrder } from '../../store/selectors/orderSelectors';
+import { setOrderLatStepValidate } from '../../store/reducers/orderReducer';
 import Total from './Total';
 
 function TotalContainer() {
-  const orderRedux = useSelector(getOrderSelect);
+  const orderRedux = useSelector(selectOrder);
 
   const dispatch = useDispatch();
 

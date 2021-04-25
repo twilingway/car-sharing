@@ -1,10 +1,12 @@
 /* eslint-disable no-useless-return */
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getOrderSelect, setOrderLatStepValidate, deleteOrderService, deleteOrderColor, deleteOrderCar, deleteOrderDate, deleteOrderRate } from '../store/order';
+
+import { selectOrder } from '../store/selectors/orderSelectors';
+import { setOrderLatStepValidate, deleteOrderService, deleteOrderColor, deleteOrderCar, deleteOrderDate, deleteOrderRate } from '../store/reducers/orderReducer';
 
 export default function useStepValidator() {
-    const orderRedux = useSelector(getOrderSelect);
+    const orderRedux = useSelector(selectOrder);
     const dispatch = useDispatch();
     const [lastStepValidate, setLastStepValidate] = useState(orderRedux.lastStepValidate);
 

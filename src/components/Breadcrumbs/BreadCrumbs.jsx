@@ -22,12 +22,8 @@ function BreadCrumbs({ crumbs, lastStep, step, onStepClick }) {
                 className={style.name}
                 role="button"
                 tabIndex={0}
-                onClick={() =>
-                  lastStep + 1 >= id && step !== 6 && onStepClick(id)
-                }
-                onKeyDown={() =>
-                  lastStep + 1 >= id && step !== 6 && onStepClick(id)
-                }
+                onClick={() => lastStep + 1 >= id && onStepClick(id)}
+                onKeyDown={() => lastStep + 1 >= id && onStepClick(id)}
               >
                 {name}
               </span>

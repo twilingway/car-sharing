@@ -39,7 +39,6 @@ function Slider({ data }) {
                 data.map(({ title, info, img, id }) => (
                   <div
                     className={style.item}
-                    // key={id}
                     style={{ transform: `translateX(-${index}00%` }}
                   >
                     <div className={style.content}>

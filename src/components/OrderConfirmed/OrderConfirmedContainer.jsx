@@ -1,24 +1,12 @@
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { getOrderSelect, setOrderLatStepValidate } from '../../store/order';
+import React from 'react';
+import { useSelector } from 'react-redux';
+import { selectOrder } from '../../store/selectors/orderSelectors';
+
 import OrderConfirmed from './OrderConfirmed';
 
-import style from './order-confirmed-container.module.scss';
-
 function OrderConfirmedContainer() {
-  const orderRedux = useSelector(getOrderSelect);
-
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(setOrderLatStepValidate(6));
-  }, []);
-
-  return (
-    <div className={style.wrapper}>
-      <OrderConfirmed order={orderRedux} />
-    </div>
-  );
+  const orderRedux = useSelector(selectOrder);
+  return <OrderConfirmed order={orderRedux} />;
 }
 
 export default OrderConfirmedContainer;

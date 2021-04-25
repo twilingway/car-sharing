@@ -62,7 +62,7 @@ function OrderInfo({ order, buttonName, onClickHandler }) {
             </div>
           </div>
         )}
-        {rateId.id && (
+        {rateId?.id && (
           <div className={style.params}>
             <span className={style.paramsName}>Тариф</span>
             <div className={style.empty}>{}</div>
@@ -101,7 +101,7 @@ function OrderInfo({ order, buttonName, onClickHandler }) {
           </div>
         )}
 
-        {carId.priceMin && (
+        {carId?.priceMin && (
           <div className={style.price}>
             <span>
               <b>Цена:</b>

@@ -7,20 +7,15 @@
   min-width: 250px;
   max-height: 224px;
   min-height: 171px;
-  // height: max-content;
-  // object-fit: cover;
+
   outline: none;
 
   border: 1px solid var(--grey-light);
 
   @media (max-width: 1024px) {
-    // width: 290px;
-    //height: auto;
   }
 
   @media (max-width: 768px) {
-    // width: 308px;
-    // height: auto;
   }
 
   &:hover {

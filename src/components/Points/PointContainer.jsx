@@ -5,18 +5,21 @@ import Points from './Points';
 
 import useStepValidator from '../../hooks/useStepValidator';
 import {
+  selectOrderCity,
+  selectOrderPoint,
+} from '../../store/selectors/orderSelectors';
+import {
   deleteOrderCity,
   deleteOrderPoint,
-  getOrderCitySelect,
-  getOrderPointSelect,
   setOrderCity,
   setOrderPoint,
-} from '../../store/order';
-import { getCityAsync, getPointsAsync, selectPoint } from '../../store/point';
+} from '../../store/reducers/orderReducer';
+import { selectPoint } from '../../store/selectors/pointSelectors';
+import { fetchCity, fetchPointById } from '../../store/thunks/pointThunks';
 
 function PointContainer() {
-  const orderCity = useSelector(getOrderCitySelect);
-  const orderPoint = useSelector(getOrderPointSelect);
+  const orderCity = useSelector(selectOrderCity);
+  const orderPoint = useSelector(selectOrderPoint);
 
   const pointRedux = useSelector(selectPoint);
 
@@ -28,7 +31,7 @@ function PointContainer() {
     if (city?.value) {
       dispatch(setOrderCity(city));
       dispatch(deleteOrderPoint());
-      dispatch(getPointsAsync(city.value));
+      dispatch(fetchPointById(city.value));
     } else {
       dispatch(deleteOrderCity());
       dispatch(deleteOrderPoint());
@@ -56,7 +59,7 @@ function PointContainer() {
   }, [orderCity, orderPoint]);
 
   useEffect(async () => {
-    dispatch(getCityAsync());
+    dispatch(fetchCity());
   }, []);
 
   return (

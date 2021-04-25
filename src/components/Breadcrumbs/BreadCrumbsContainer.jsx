@@ -1,10 +1,12 @@
 import React from 'react';
+import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import {
-  getOrderLastStepSelect,
-  getOrderStepSelect,
-  setOrderStep,
-} from '../../store/order';
+  selectOrder,
+  selectOrderLastStep,
+  selectOrderStep,
+} from '../../store/selectors/orderSelectors';
+import { setOrderStep } from '../../store/reducers/orderReducer';
 import BreadCrumbs from './BreadCrumbs';
 
 const CRUMBS = [
@@ -26,25 +28,25 @@ const CRUMBS = [
   },
 ];
 
-const orderNumber = [
-  {
-    id: 6,
-    name: 'Заказ номер RU58491823',
-  },
-];
-
 function BreadCrumbsContainer() {
-  const lastStepValidate = useSelector(getOrderLastStepSelect);
-  const step = useSelector(getOrderStepSelect);
+  const history = useHistory();
+  const orderRedux = useSelector(selectOrder);
+  const lastStepValidate = useSelector(selectOrderLastStep);
+  const step = useSelector(selectOrderStep);
   const dispatch = useDispatch();
 
   const handleSetStepClick = (id) => {
     dispatch(setOrderStep(id));
+    if (id === 6 && orderRedux.id) {
+      history.push(`/order/${orderRedux.id}`);
+    }
   };
 
   return (
     <BreadCrumbs
-      crumbs={step === 6 ? orderNumber : CRUMBS}
+      crumbs={
+        step === 6 ? [{ id: 6, name: `Заказ номер ${orderRedux.id}` }] : CRUMBS
+      }
       lastStep={lastStepValidate}
       step={step}
       onStepClick={handleSetStepClick}

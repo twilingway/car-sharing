@@ -2,26 +2,31 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import useStepValidator from '../../hooks/useStepValidator';
 import {
-  getOrderCarColorsSelect,
-  getOrderSelect,
+  selectOrderCarColors,
+  selectOrder,
+} from '../../store/selectors/orderSelectors';
+import {
   setOrderColor,
   setOrderDateFrom,
   setOrderDateTo,
   setOrderRate,
   setOrderService,
-} from '../../store/order';
-import { getOrderStatusAsync } from '../../store/orderStatus';
-import { getRateAsync, selectRate } from '../../store/rate';
-import { getRateTypeAsync, selectRateType } from '../../store/rateType';
+} from '../../store/reducers/orderReducer';
+
+import fetchRate from '../../store/thunks/rateThunks';
+import { selectRate } from '../../store/selectors/rateSelectors';
+
+import fetchRateType from '../../store/thunks/rateTypeThunks';
+import { selectRateType } from '../../store/selectors/rateTypeSelectors';
 import Extra from './Extra';
 
 function ExtraContainer() {
   const dispatch = useDispatch();
-  const orderRedux = useSelector(getOrderSelect);
+  const orderRedux = useSelector(selectOrder);
   const rateRedux = useSelector(selectRate);
   const rateTypeRedux = useSelector(selectRateType);
 
-  const orderCarColors = useSelector(getOrderCarColorsSelect);
+  const orderCarColors = useSelector(selectOrderCarColors);
 
   const { checkLastStepValidate } = useStepValidator();
 
@@ -33,7 +38,7 @@ function ExtraContainer() {
 
   const handleFilterEndPassedTime = (time) => {
     const selectedDate = new Date(time);
-    return orderRedux.dateFrom?.getTime() < selectedDate.getTime();
+    return orderRedux.dateFrom < selectedDate.getTime();
   };
 
   const handleColorChange = (color) => {
@@ -45,30 +50,37 @@ function ExtraContainer() {
   };
 
   const handleChangeDateFrom = (date) => {
-    const currentDate = new Date();
+    const currentDate = new Date().getTime();
 
-    if (date && currentDate > date) {
-      dispatch(setOrderDateFrom(currentDate));
-    } else {
-      dispatch(setOrderDateFrom(date));
-    }
-
-    if (
-      (orderRedux?.dateFrom?.getTime() || currentDate) >=
-      orderRedux?.dateTo?.getTime()
-    ) {
-      dispatch(setOrderDateTo(null));
-    }
     if (!date) {
+      dispatch(setOrderDateFrom(null));
+      return;
+    }
+
+    if (date) {
+      if (currentDate > date.getTime()) {
+        dispatch(setOrderDateFrom(currentDate));
+      } else {
+        dispatch(setOrderDateFrom(date.getTime()));
+      }
+    }
+    if ((date.getTime() || currentDate) >= orderRedux?.dateTo) {
       dispatch(setOrderDateTo(null));
     }
   };
 
   const handleChangeDateTo = (date) => {
-    if (date && orderRedux?.dateFrom > date) {
-      dispatch(setOrderDateTo(orderRedux?.dateFrom));
-    } else {
-      dispatch(setOrderDateTo(date));
+    if (!date) {
+      dispatch(setOrderDateTo(null));
+      return;
+    }
+
+    if (date) {
+      if (orderRedux?.dateFrom > date.getTime()) {
+        dispatch(setOrderDateTo(orderRedux?.dateFrom));
+      } else {
+        dispatch(setOrderDateTo(date.getTime()));
+      }
     }
   };
 
@@ -81,9 +93,8 @@ function ExtraContainer() {
   };
 
   useEffect(() => {
-    dispatch(getRateAsync());
-    dispatch(getRateTypeAsync());
-    dispatch(getOrderStatusAsync());
+    dispatch(fetchRate());
+    dispatch(fetchRateType());
   }, []);
 
   useEffect(() => {

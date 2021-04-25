@@ -1,9 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
+import postOrder, { fetchOrderById, putOrder } from '../thunks/orderThunks';
 
 export const slice = createSlice({
     name: 'order',
     initialState: {
-
+        id: null,
         step: 1,
         lastStepValidate: 0,
         selectedCategory: {
@@ -11,8 +12,8 @@ export const slice = createSlice({
             name: null
         },
         orderStatusId: {
-            name: '',
-            id: ''
+            name: null,
+            id: null
         },
         cityId: {
             name: null,
@@ -37,7 +38,8 @@ export const slice = createSlice({
         price: null,
         isFullTank: null,
         isNeedChildChair: null,
-        isRightWheel: null
+        isRightWheel: null,
+        error: {}
     },
     reducers: {
 
@@ -54,15 +56,18 @@ export const slice = createSlice({
             [key]: action.payload
         }),
 
-        setOrderCity: (state, action) => (
+        setOrderStatusId: (state, action) => ({
+            ...state,
+            orderStatusId: action.payload
+        }),
 
-            {
-                ...state,
-                cityId: {
-                    id: action.payload.value,
-                    name: action.payload.label,
-                }
-            }),
+        setOrderCity: (state, action) => ({
+            ...state,
+            cityId: {
+                id: action.payload.value,
+                name: action.payload.label,
+            }
+        }),
 
         deleteOrderCity: (state) => ({
             ...state,
@@ -93,8 +98,6 @@ export const slice = createSlice({
         setOrderCar: (state, action) => ({
             ...state,
             carId: {
-                // id: action.payload.id,
-                // name: action.payload.name,
                 ...action.payload
             }
         }),
@@ -157,7 +160,128 @@ export const slice = createSlice({
             isRightWheel: null
         }),
 
-    }
+        clearOrder: () => ({
+            id: null,
+            step: 1,
+            lastStepValidate: 0,
+            selectedCategory: {
+                id: null,
+                name: null
+            },
+            orderStatusId: {
+                name: null,
+                id: null
+            },
+            cityId: {
+                name: null,
+                id: null,
+            },
+            pointId: {
+                address: null,
+                name: null,
+                id: null,
+            },
+            carId: {
+                name: null,
+                id: null
+            },
+            color: null,
+            dateFrom: null,
+            dateTo: null,
+            rateId: {
+                price: null,
+                id: null,
+            },
+            price: null,
+            isFullTank: null,
+            isNeedChildChair: null,
+            isRightWheel: null,
+            error: {}
+        })
+
+    },
+    extraReducers: {
+        [postOrder.pending]: (state) => (
+            {
+                ...state,
+                isFetch: true,
+                isSuccess: false,
+                isError: false,
+                error: {}
+            }
+        ),
+
+        [postOrder.fulfilled]: (state, action) => (
+            {
+                ...state,
+                ...action.payload,
+                isFetch: false,
+                isSuccess: true,
+            }
+        ),
+        [postOrder.rejected]: (state, action) => (
+            {
+                ...state,
+                isFetch: false,
+                isError: true,
+                error: action.payload
+            }
+        ),
+        [putOrder.pending]: (state) => (
+            {
+                ...state,
+                isFetch: true,
+                isSuccess: false,
+                isError: false,
+                error: {}
+            }
+        ),
+
+        [putOrder.fulfilled]: (state, action) => (
+            {
+                ...state,
+                ...action.payload,
+                isFetch: false,
+                isSuccess: true,
+            }
+        ),
+        [putOrder.rejected]: (state, action) => (
+            {
+                ...state,
+                isFetch: false,
+                isError: true,
+                error: action.payload
+            }
+        ),
+        [fetchOrderById.pending]: (state) => (
+            {
+                ...state,
+                isFetch: true,
+                isSuccess: false,
+                isError: false,
+                error: {}
+            }
+        ),
+
+        [fetchOrderById.fulfilled]: (state, action) => (
+            {
+                ...state,
+                isFetch: false,
+                isSuccess: true,
+                error: {},
+                ...action.payload
+            }
+        ),
+        [fetchOrderById.rejected]: (state, action) => (
+            {
+                ...state,
+                isFetch: false,
+                isSuccess: false,
+                isError: true,
+                error: action.payload
+            }
+        )
+    },
 });
 
 export const {
@@ -180,19 +304,10 @@ export const {
     deleteOrderRate,
     setOrderService,
     deleteOrderService,
+    setOrderStatusId,
+    clearOrder,
 } = slice.actions;
 
-export const getOrderStepSelect = state => state.order.step;
-export const getOrderLastStepSelect = state => state.order.lastStepValidate;
 
-export const getOrderSelect = state => state.order;
-
-export const getOrderCarSelect = state => state.order.carId;
-
-export const getOrderCitySelect = state => state.order.cityId;
-export const getOrderPointSelect = state => state.order.pointId;
-export const getOrderCarColorsSelect = state => state.order.carId.colors;
-
-export const selectOrderSelectedCategory = state => state.order.selectedCategory;
 
 export default slice.reducer;

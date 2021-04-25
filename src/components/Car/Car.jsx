@@ -13,13 +13,6 @@ function Car({ car, onCarSelect, isSelect, carRef }) {
     setIsImgError(true);
   };
 
-  // const carEl = useRef();
-  // useImperativeHandle(ref, () => ({
-  //   focus: () => {
-  //     carEl.current.focus();
-  //   },
-  // }));
-
   return (
     <div
       className={cn(style.content, { [style.select]: isSelect === true })}
@@ -42,7 +35,7 @@ function Car({ car, onCarSelect, isSelect, carRef }) {
           src={
             isImgError
               ? nocar
-              : `https://api-factory.simbirsoft1.com${car.thumbnail?.path}`
+              : `${process.env.REACT_APP_BASE_URL}${car.thumbnail?.path}`
           }
           alt={car.name}
           onError={(event) => hangleOnLoadImgError(event)}
@@ -51,5 +44,5 @@ function Car({ car, onCarSelect, isSelect, carRef }) {
     </div>
   );
 }
-
-export default forwardRef(Car);
+export default Car;
+// export default forwardRef(Car);

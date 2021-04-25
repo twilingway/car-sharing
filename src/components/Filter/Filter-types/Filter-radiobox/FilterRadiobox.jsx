@@ -1,3 +1,4 @@
+/* eslint-disable react/no-array-index-key */
 /* eslint-disable react/prop-types */
 import React, { useEffect, useState } from 'react';
 import cn from 'classnames';
@@ -30,8 +31,6 @@ function FilterRadiobox({
         radios.map(
           (item) => item.name === defaultChecked && onChangeRadio(item)
         );
-      } else {
-        // onChangeRadio({ name: defaultChecked });
       }
     }
   }, []);
@@ -44,9 +43,8 @@ function FilterRadiobox({
       >
         <legend>{groupName}</legend>
         {isAllRadio && radios && (
-          <label htmlFor={allRadioText}>
+          <label htmlFor={allRadioText} key={allRadioText}>
             <input
-              key={allRadioText}
               id={allRadioText}
               type="radio"
               name={group}
@@ -69,9 +67,9 @@ function FilterRadiobox({
         {radios &&
           !typeRadio &&
           radios.map((radio) => (
-            <label htmlFor={radio.id}>
+            <label htmlFor={radio.id} key={radio.id}>
               <input
-                key={radio.id}
+                // key={radio.id}
                 id={radio.id}
                 type="radio"
                 name={group}
@@ -104,10 +102,10 @@ function FilterRadiobox({
 
         {radios &&
           typeRadio === 'color' &&
-          radios.map((radio) => (
-            <label htmlFor={radio} key={radio}>
+          radios.map((radio, index) => (
+            <label htmlFor={radio} key={`label-${radio}${index}`}>
               <input
-                key={radio}
+                key={`input-${radio}${index}`}
                 id={radio}
                 type="radio"
                 name={group}

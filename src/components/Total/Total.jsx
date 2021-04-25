@@ -36,7 +36,7 @@ function Total({ order }) {
             src={
               isImgError
                 ? nocar
-                : `https://api-factory.simbirsoft1.com${order.carId.thumbnail?.path}`
+                : `${process.env.REACT_APP_BASE_URL}${order.carId.thumbnail?.path}`
             }
             alt={order.carId.name}
             onError={(event) => hangleOnLoadImgError(event)}

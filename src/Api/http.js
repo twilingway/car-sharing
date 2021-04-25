@@ -1,33 +1,34 @@
+const axios = require('axios');
+
+// TODO для админки
 // const base = btoa('5e25c641099b810b946c5d5b:4cbcea96de');
 
 const headersConfig = {
-    'X-Api-Factory-Application-Id': '5e25c641099b810b946c5d5b',
+    'X-Api-Factory-Application-Id': process.env.REACT_APP_X_API_FACTORY_KEY,
+    // TODO для админки
     // Authorization: `Basic ${base}`,
-    // 'Content-type': 'application/json',
 };
 
 async function requestHttp(url, method = 'GET', body = null, headers = headersConfig || {}) {
-
-
     let newBody = body;
     const newHeader = headers;
     if (newBody) {
         newBody = JSON.stringify(newBody);
         newHeader['Content-Type'] = 'application/json';
     }
-    const response = await fetch(url, {
+
+    const res = await axios({
+        url: `${process.env.REACT_APP_API_URL}${url}`,
         method,
-        body: newBody,
-        headers: newHeader,
-    });
+        headers,
+        data: newBody
+    })
+        .then((response) => response.data
+        )
+        .catch((error) => error);
 
-    const data = await response.json();
-
-
-    if (!response.ok) {
-        throw new Error(data.message || 'Something wrong...');
-    }
-    return data;
+    return res;
 }
 
 export default requestHttp;
+

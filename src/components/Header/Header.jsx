@@ -1,11 +1,11 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import cityIcon from '../../assets/city.svg';
-import { getOrderCitySelect } from '../../store/order';
+import { selectOrderCity } from '../../store/selectors/orderSelectors';
 import style from './header.module.scss';
 
 function Header() {
-  const orderCity = useSelector(getOrderCitySelect);
+  const orderCity = useSelector(selectOrderCity);
 
   return (
     <header className={style.header}>

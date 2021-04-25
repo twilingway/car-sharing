@@ -20,6 +20,7 @@ function App() {
               <Switch>
                 <Route path="/" exact component={HomePage} />
                 <Route path="/order" exact component={OrderPage} />
+                <Route path="/order/:id" exact component={OrderPage} />
                 <Route render={() => <Redirect to="/404" />} />
               </Switch>
             </div>

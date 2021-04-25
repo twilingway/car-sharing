@@ -1,14 +1,8 @@
 .autocomplete {
   display: flex;
   flex: 1 0 320px;
-  // justify-content: flex-end;
-  // width: auto;
 
   .label {
-    // display: flex;
-    // flex-basis: auto;
-    // flex-grow: 1;
-    //  text-align: end;
     display: flex;
     align-items: center;
     justify-content: flex-end;
@@ -16,7 +10,6 @@
     flex: 1 0 99px;
     color: var(--primary-black);
 
-    //  width: 155px;
     font-style: normal;
     font-weight: 300;
     font-size: 14px;
@@ -26,10 +19,9 @@
   .container {
     position: relative;
 
-    // width: 224px;
     display: flex;
     flex: 1 0 calc(100% - 91px);
-    //justify-content: flex-end;
+
     label {
       display: flex;
       align-items: center;
@@ -54,12 +46,6 @@
 
         padding: 0 8px 0 5px; /* Поля вокруг текста */
         text-overflow: ellipsis; /* Добавляем многоточие */
-
-        // &.focus {
-        //   width: 100%;
-        //   border-bottom: 1px solid var(--grey-dark);
-        //   text-align: left;
-        // }
 
         &:hover {
           cursor: pointer;
