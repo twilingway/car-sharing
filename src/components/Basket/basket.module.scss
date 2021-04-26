@@ -16,6 +16,10 @@
   @media (max-width: 1024px) {
     display: flex;
   }
+
+  @media (max-width: 320px) {
+    bottom: 16px;
+  }
   img {
     position: relative;
     left: -1px;
