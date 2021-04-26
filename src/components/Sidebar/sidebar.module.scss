@@ -1,0 +1,41 @@
+.root {
+  position: fixed;
+  display: flex;
+  z-index: 50;
+  width: 64px;
+  flex: 0 0 64px;
+  height: 100vh;
+  justify-content: center;
+
+  @media (max-width: 1023px) {
+    width: 86px;
+  }
+
+  @media (max-width: 767px) {
+    height: 0vh;
+  }
+}
+
+.root .navWrapper {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--sidebar-background);
+
+  @media (max-width: 767px) {
+    background: none;
+  }
+
+  .hamburger {
+    position: relative;
+    top: 36px;
+
+    @media (max-width: 767px) {
+      position: absolute;
+      top: 24px;
+      left: 21px;
+    }
+  }
+}

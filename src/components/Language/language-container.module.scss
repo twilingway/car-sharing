@@ -1,0 +1,17 @@
+.wrapper {
+  position: absolute;
+  bottom: 0px;
+  margin-bottom: 16px;
+
+  @media (max-width: 767px) {
+    display: none;
+  }
+
+  &.hidden {
+    display: none;
+
+    @media (max-width: 767px) {
+      display: block;
+    }
+  }
+}

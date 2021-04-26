@@ -1,0 +1,81 @@
+.wrapper {
+  padding: 32px 16px 0 0;
+
+  .content {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    max-width: 738px;
+
+    @media (max-width: 768px) {
+      flex-direction: column;
+      align-items: center;
+      padding: 0 16px;
+    }
+    .about {
+      display: flex;
+      flex-direction: column;
+      min-width: 230px;
+
+      .carName {
+        font-style: normal;
+        font-weight: normal;
+        font-size: 18px;
+        line-height: 21px;
+        padding-bottom: 8px;
+      }
+
+      .carNumber {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 94px;
+        height: 24px;
+        border: 1px solid #999999;
+        box-sizing: border-box;
+        border-radius: 4px;
+        margin-bottom: 8px;
+
+        font-style: normal;
+        font-weight: normal;
+        font-size: 14px;
+        line-height: 16px;
+      }
+
+      .fuel {
+        padding-bottom: 8px;
+        span {
+          font-style: normal;
+          font-weight: bold;
+          font-size: 14px;
+          line-height: 16px;
+        }
+      }
+      .available {
+        span {
+          font-style: normal;
+          font-weight: bold;
+          font-size: 14px;
+          line-height: 16px;
+        }
+      }
+    }
+    .carImage {
+      width: 256px;
+      height: 116px;
+      overflow: hidden;
+      position: relative;
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        object-position: center;
+        position: absolute;
+        top: 0;
+        left: 0;
+        padding: 8px;
+      }
+    }
+  }
+}

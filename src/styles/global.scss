@@ -12,15 +12,22 @@
 html,
 body {
   height: 100%;
+  margin: 0;
+  padding: 0;
   cursor: var(--cursor);
-  font-family: 'Roboto';
+  font-family: 'Roboto', sans-serif;
+}
+
+body {
+  overflow-y: hidden;
+  overflow-x: hidden;
 }
 
 a {
   text-decoration: none;
   color: #ffffff;
   &:hover {
-    cursor: url('../assets/pointer.svg'), auto;
+    cursor: pointer;
     color: var(--primary-accent);
   }
 }

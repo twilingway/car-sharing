@@ -1,0 +1,186 @@
+.button {
+  background: linear-gradient(90deg, #0ec261 2.61%, #039f67 112.6%);
+  background-blend-mode: darken;
+  border-radius: 8px;
+
+  border: none;
+  outline: none;
+
+  &.disable {
+    background: #eeeeee;
+    &:hover {
+      background: #eeeeee;
+      cursor: var(--cursor);
+    }
+  }
+
+  .text {
+    display: flex;
+    justify-content: center;
+
+    color: white;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 21px;
+    text-align: center;
+
+    &.loading > svg {
+      height: 32px;
+      width: 32px;
+
+      animation-name: rotation;
+      animation-duration: 1s;
+      animation-iteration-count: infinite;
+      animation-timing-function: linear;
+    }
+    @keyframes rotation {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+  }
+
+  &.loading {
+    background: linear-gradient(90deg, #0ec261 2.61%, #039f67 112.6%);
+  }
+
+  &:focus {
+    background: linear-gradient(
+      90deg,
+      darken(#0ec261, 10) 2.61%,
+      darken(#039f67, 10) 112.6%
+    );
+  }
+
+  &:hover {
+    background: linear-gradient(
+      90deg,
+      darken(#0ec261, 10) 2.61%,
+      darken(#039f67, 10) 112.6%
+    );
+    cursor: var(--cursor-pointer);
+  }
+
+  &:active {
+    background: linear-gradient(
+      90deg,
+      darken(#0ec261, 20) 2.61%,
+      darken(#039f67, 20) 112.6%
+    );
+  }
+
+  &[data-background='0'] {
+    background: linear-gradient(90deg, #13493f 0%, #0c7b1b 100%);
+    background-blend-mode: darken;
+    &:focus {
+      background: linear-gradient(
+        90deg,
+        darken(#13493f, 10) 0%,
+        darken(#0c7b1b, 10) 100%
+      );
+    }
+
+    &:hover {
+      background: linear-gradient(
+        90deg,
+        darken(#13493f, 10) 0%,
+        darken(#0c7b1b, 10) 100%
+      );
+      cursor: var(--cursor-pointer);
+    }
+
+    &:active {
+      background: linear-gradient(
+        90deg,
+        darken(#13493f, 20) 0%,
+        darken(#0c7b1b, 20) 100%
+      );
+    }
+  }
+  &[data-background='1'] {
+    background: linear-gradient(90deg, #132949 0%, #0c7b67 100%);
+    &:focus {
+      background: linear-gradient(
+        90deg,
+        darken(#132949, 10) 0%,
+        darken(#0c7b67, 10) 100%
+      );
+    }
+
+    &:hover {
+      background: linear-gradient(
+        90deg,
+        darken(#132949, 10) 0%,
+        darken(#0c7b67, 10) 100%
+      );
+      cursor: var(--cursor-pointer);
+    }
+
+    &:active {
+      background: linear-gradient(
+        90deg,
+        darken(#132949, 20) 0%,
+        darken(#0c7b67, 20) 100%
+      );
+    }
+  }
+  &[data-background='2'] {
+    background: linear-gradient(90deg, #493013 0%, #7b0c3b 100%);
+    &:focus {
+      background: linear-gradient(
+        90deg,
+        darken(#493013, 10) 0%,
+        darken(#7b0c3b, 10) 100%
+      );
+    }
+
+    &:hover {
+      background: linear-gradient(
+        90deg,
+        darken(#493013, 10) 0%,
+        darken(#7b0c3b, 10) 100%
+      );
+      cursor: var(--cursor-pointer);
+    }
+
+    &:active {
+      background: linear-gradient(
+        90deg,
+        darken(#493013, 20) 0%,
+        darken(#7b0c3b, 20) 100%
+      );
+    }
+  }
+  &[data-background='3'] {
+    background: linear-gradient(90deg, #281349 0%, #720c7b 100%);
+
+    &:focus {
+      background: linear-gradient(
+        90deg,
+        darken(#281349, 10) 0%,
+        darken(#720c7b, 10) 100%
+      );
+    }
+
+    &:hover {
+      background: linear-gradient(
+        90deg,
+        darken(#281349, 10) 0%,
+        darken(#720c7b, 10) 100%
+      );
+      cursor: var(--cursor-pointer);
+    }
+
+    &:active {
+      background: linear-gradient(
+        90deg,
+        darken(#281349, 20) 0%,
+        darken(#720c7b, 20) 100%
+      );
+    }
+  }
+}
