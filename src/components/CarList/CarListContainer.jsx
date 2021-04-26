@@ -14,6 +14,8 @@ import { fetchCar, fetchCarById } from '../../store/thunks/carThunks';
 import { selectCar } from '../../store/selectors/carSelectors';
 import fetchCategory from '../../store/thunks/categoryThunks';
 import useStepValidator from '../../hooks/useStepValidator';
+import fetchRate from '../../store/thunks/rateThunks';
+import fetchRateType from '../../store/thunks/rateTypeThunks';
 
 function CarListContainer() {
   const orderCar = useSelector(selectOrderCar);
@@ -48,6 +50,8 @@ function CarListContainer() {
       dispatch(fetchCar());
     }
     dispatch(fetchCategory());
+    dispatch(fetchRate());
+    dispatch(fetchRateType());
   }, []);
 
   return (

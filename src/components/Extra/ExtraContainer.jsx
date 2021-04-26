@@ -13,10 +13,7 @@ import {
   setOrderService,
 } from '../../store/reducers/orderReducer';
 
-import fetchRate from '../../store/thunks/rateThunks';
 import { selectRate } from '../../store/selectors/rateSelectors';
-
-import fetchRateType from '../../store/thunks/rateTypeThunks';
 import { selectRateType } from '../../store/selectors/rateTypeSelectors';
 import Extra from './Extra';
 import usePriceCalculator from '../../hooks/usePriceCalculator';
@@ -93,11 +90,6 @@ function ExtraContainer() {
   const handleSelectRate = (rate) => {
     dispatch(setOrderRate(rate));
   };
-
-  useEffect(() => {
-    dispatch(fetchRate());
-    dispatch(fetchRateType());
-  }, []);
 
   useEffect(() => {
     calculatePrice();
