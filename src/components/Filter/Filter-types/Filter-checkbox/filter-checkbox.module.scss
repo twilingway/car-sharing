@@ -1,0 +1,107 @@
+.type {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  .group {
+    border: none;
+
+    &.column {
+      display: flex;
+      flex-direction: column;
+    }
+
+    legend {
+      font-style: normal;
+      font-weight: 300;
+      font-size: 14px;
+      line-height: 16px;
+
+      padding-bottom: 18px;
+
+      color: var(--primary-dark);
+    }
+
+    label {
+      font-style: normal;
+      font-weight: 300;
+      font-size: 14px;
+      line-height: 16px;
+      margin-right: 16px;
+      color: var(--grey-dark);
+      padding-bottom: 8px;
+
+      &:hover {
+        cursor: pointer;
+      }
+
+      .span {
+        color: var(--grey-dark);
+        &.active {
+          color: var(--primary-black);
+        }
+      }
+
+      input[type='checkbox'] {
+        z-index: -1;
+        -moz-appearance: none;
+        -webkit-appearance: none;
+        -o-appearance: none;
+        outline: none;
+      }
+
+      .custom {
+        display: inline-flex;
+        position: relative;
+        align-items: center;
+        user-select: none;
+
+        width: 12px;
+        height: 12px;
+        margin-right: 8px;
+        content: none;
+      }
+
+      .custom::before {
+        content: '\f00c';
+        font-size: 12px;
+        color: transparent !important;
+
+        border: 1px solid var(--grey-dark);
+        opacity: 1;
+
+        width: 12px;
+        height: 12px;
+      }
+      .custom:checked::before {
+        content: '';
+        position: absolute;
+
+        top: 50%;
+        left: 70%;
+        width: 12px;
+        height: 12px;
+        border: none;
+
+        transform: translate(-50%, -50%);
+        background-color: transparent;
+        background-image: url('../../../../assets/checkbox.svg');
+        background-repeat: no-repeat;
+        z-index: 2;
+      }
+
+      .custom:checked::after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 12px;
+        height: 12px;
+
+        background-color: white;
+        transform: translate(-50%, -50%);
+        border: 1px solid var(--primary-accent);
+        visibility: visible;
+      }
+    }
+  }
+}

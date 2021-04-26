@@ -6,7 +6,8 @@ body {
   --grey-light: #eeeeee;
   --sidebar-background: #151b1f;
   --menu-background: #111518;
+
   //cursor
-  --cursor-pointer: url('../assets/pointer.svg'), auto;
-  --cursor: url('../assets/cursor.svg'), auto;
+  --cursor-pointer: pointer;
+  --cursor: cursor;
 }

@@ -1,0 +1,146 @@
+.autocomplete {
+  display: flex;
+  flex: 1 0 320px;
+
+  .label {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 2px 8px 0 0;
+    flex: 1 0 99px;
+    color: var(--primary-black);
+
+    font-style: normal;
+    font-weight: 300;
+    font-size: 14px;
+    line-height: 16px;
+  }
+
+  .container {
+    position: relative;
+
+    display: flex;
+    flex: 1 0 calc(100% - 91px);
+
+    label {
+      display: flex;
+      align-items: center;
+
+      .input {
+        margin-left: 8px;
+
+        z-index: 1;
+        outline: none;
+        border: none;
+
+        color: var(--primary-black);
+
+        font-family: 'Roboto', sans-serif;
+        font-style: normal;
+        font-weight: 300;
+        font-size: 14px;
+        line-height: 16px;
+
+        white-space: nowrap; /* Запрещаем перенос строк */
+        overflow: hidden; /* Обрезаем все, что не помещается в область */
+
+        padding: 0 8px 0 5px; /* Поля вокруг текста */
+        text-overflow: ellipsis; /* Добавляем многоточие */
+
+        &:hover {
+          cursor: pointer;
+        }
+
+        &.border {
+          border-bottom: 1px solid var(--grey-dark);
+        }
+      }
+
+      .clearInput {
+        position: relative;
+        right: 10px;
+        z-index: 2;
+        height: 8px;
+        width: 8px;
+
+        cursor: var(--cursor-pointer);
+      }
+    }
+  }
+
+  .datalist {
+    display: none;
+    overflow-y: auto;
+    height: 140px;
+    background-color: #ffffff;
+    overflow: hidden;
+    overflow-y: auto;
+    &.display {
+      display: flex;
+      flex-direction: column;
+      position: absolute;
+      min-width: 170px;
+      width: max-content;
+      border: 1px solid var(--grey-light);
+      margin-left: 8px;
+      z-index: 999;
+      opacity: 1;
+      top: 15px;
+    }
+  }
+  .option {
+    padding-left: 4px;
+    margin-top: 3px;
+    margin-bottom: 3px;
+    font-style: normal;
+    font-weight: 300;
+    font-size: 14px;
+    line-height: 16px;
+
+    width: 100%;
+    background-color: #ffffff;
+    color: var(--grey-dark);
+
+    &:hover {
+      cursor: pointer;
+      color: var(--primary-accent);
+      background-color: var(--grey-light);
+    }
+  }
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+  background-color: white;
+}
+::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background-color: var(--grey-dark);
+}
+::-webkit-input-placeholder {
+  /* WebKit, Blink, Edge */
+  color: var(--grey-dark);
+}
+:-moz-placeholder {
+  /* Mozilla Firefox 4 to 18 */
+  color: var(--grey-dark);
+  opacity: 1;
+}
+::-moz-placeholder {
+  /* Mozilla Firefox 19+ */
+  color: var(--grey-dark);
+  opacity: 1;
+}
+:-ms-input-placeholder {
+  /* Internet Explorer 10-11 */
+  color: var(--grey-dark);
+}
+::-ms-input-placeholder {
+  /* Microsoft Edge */
+  color: var(--grey-dark);
+}
+
+::placeholder {
+  /* Most modern browsers support this now. */
+  color: var(--grey-dark);
+}

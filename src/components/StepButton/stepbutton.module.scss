@@ -1,0 +1,36 @@
+.button {
+  padding-top: 12px;
+  display: flex;
+  justify-content: center;
+
+  &.cancel {
+    button {
+      width: 287px;
+      height: 48px;
+      background: linear-gradient(90deg, #493013 0%, #7b0c3b 100%);
+      border-radius: 4px;
+
+      &:hover {
+        background: linear-gradient(
+          90deg,
+          darken(#493013, 10) 0%,
+          darken(#7b0c3b, 10) 100%
+        );
+        background-blend-mode: darken;
+        cursor: pointer;
+      }
+      &:active {
+        background: linear-gradient(
+          90deg,
+          darken(#493013, 20) 0%,
+          darken(#7b0c3b, 20) 100%
+        );
+      }
+    }
+  }
+
+  button {
+    width: 287px;
+    height: 48px;
+  }
+}

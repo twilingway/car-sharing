@@ -1,0 +1,27 @@
+.yandexMap {
+  width: calc(100% - 12px);
+  p {
+    font-size: 14px;
+    line-height: 16px;
+    color: var(--primary-black);
+
+    @media (max-width: 767px) {
+      padding: 0;
+    }
+  }
+
+  .map {
+    display: flex;
+    padding-top: 16px;
+    padding-right: 16px;
+    min-height: 40vh;
+    flex: 1 1 100%;
+    @media (max-width: 1024px) {
+      padding-right: 0;
+    }
+    @media (max-width: 767px) {
+      min-height: 240px;
+      padding: 8px 0 0 0;
+    }
+  }
+}

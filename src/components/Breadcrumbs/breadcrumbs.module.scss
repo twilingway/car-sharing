@@ -1,0 +1,102 @@
+.crumbs {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  min-height: 32px;
+
+  border-top: 1px solid var(--grey-light);
+  border-bottom: 1px solid var(--grey-light);
+  overflow-x: auto;
+
+  @media (min-width: 1440px) {
+    justify-content: center;
+  }
+  ul {
+    display: flex;
+    width: 100%;
+    max-width: 1440px;
+
+    padding: 0 128px 0 128px;
+
+    @media (max-width: 1439px) {
+      padding: 0 32px 0 96px;
+    }
+
+    @media (max-width: 1023px) {
+      padding: 0 16px 0 118px;
+    }
+    @media (max-width: 767px) {
+      padding: 4px 16px 4px 16px;
+    }
+
+    li {
+      display: flex;
+      font-style: normal;
+      font-weight: bold;
+      font-size: 14px;
+      line-height: 16px;
+
+      color: var(--grey-dark);
+
+      &.validated {
+        color: var(--primary-dark);
+        &:hover {
+          .name {
+            cursor: pointer;
+          }
+        }
+      }
+
+      &.active {
+        color: var(--primary-accent);
+        outline: none;
+      }
+
+      list-style: none;
+
+      .name {
+        outline: none;
+      }
+      .span {
+        padding: 0 16px;
+      }
+    }
+  }
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+  background-color: white;
+}
+::-webkit-scrollbar-thumb {
+  border-radius: 2px;
+  background-color: var(--grey-dark);
+}
+::-webkit-input-placeholder {
+  /* WebKit, Blink, Edge */
+  color: var(--grey-dark);
+}
+:-moz-placeholder {
+  /* Mozilla Firefox 4 to 18 */
+  color: var(--grey-dark);
+  opacity: 1;
+}
+::-moz-placeholder {
+  /* Mozilla Firefox 19+ */
+  color: var(--grey-dark);
+  opacity: 1;
+}
+:-ms-input-placeholder {
+  /* Internet Explorer 10-11 */
+  color: var(--grey-dark);
+}
+::-ms-input-placeholder {
+  /* Microsoft Edge */
+  color: var(--grey-dark);
+}
+
+::placeholder {
+  /* Most modern browsers support this now. */
+  color: var(--grey-dark);
+}
