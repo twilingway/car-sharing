@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import cn from 'classnames';
 
 import arrowLeft from '../../assets/arrows-left.svg';
 import arrowRight from '../../assets/arrows-right.svg';
@@ -48,7 +48,13 @@ function Slider({ data }) {
                       <Button dataBackground={id} name="Подробнее" />
                     </div>
 
-                    <img className={style.image} src={img} alt="Slider item" />
+                    <img
+                      className={cn(style.image, {
+                        [style.active]: id === index,
+                      })}
+                      src={img}
+                      alt="Slider item"
+                    />
                   </div>
                 ))}
             </div>
@@ -75,7 +81,7 @@ function Slider({ data }) {
               data.map(({ id }) => (
                 <li key={id}>
                   <Dot
-                    className={classNames({ [style.active]: index === id })}
+                    className={cn({ [style.active]: index === id })}
                     onClick={() => {
                       setIndex(id);
                     }}
