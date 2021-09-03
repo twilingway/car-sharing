@@ -49,3 +49,52 @@
     color: green;
   }
 }
+
+.datalistWrapper {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+}
+
+input {
+  position: relative;
+  font-size: 18px;
+  padding: 5px;
+  height: 35px;
+  width: 350px;
+  border: 1px solid blue;
+  outline: none;
+  border-radius: 5px;
+  color: blue;
+  /*   border-bottom: none; */
+}
+datalist {
+  // position: absolute;
+  // top: 15px;
+  background-color: white;
+  border: 1px solid blue;
+  border-radius: 0 0 5px 5px;
+  border-top: none;
+  font-family: sans-serif;
+  width: 350px;
+  padding: 15px;
+  max-height: 10rem;
+  overflow-y: auto;
+}
+.enable {
+  display: block;
+}
+
+option {
+  background-color: white;
+  padding: 4px;
+  color: blue;
+  margin-bottom: 1px;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+option:hover,
+.active {
+  background-color: lightblue;
+}
