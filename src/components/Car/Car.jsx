@@ -30,7 +30,7 @@ function Car({ car, onCarSelect, isSelect, carRef }) {
       <div className={style.name}>{car.name}</div>
       <div className={style.price}>{`${car.priceMin} - ${car.priceMax} ₽`}</div>
       <div className={style.image}>
-        <img
+        {/* <img
           loading="lazy"
           src={
             isImgError
@@ -39,6 +39,16 @@ function Car({ car, onCarSelect, isSelect, carRef }) {
           }
           alt={car.name}
           onError={(event) => hangleOnLoadImgError(event)}
+        /> */}
+        <img
+          loading="lazy"
+          src={
+            car.thumbnail?.path.includes('base64')
+              ? car.thumbnail?.path
+              : `${process.env.REACT_APP_BASE_URL}${car.thumbnail?.path}`
+          }
+          alt={car.name}
+          // onError={(event) => hangleOnLoadImgError(event)}
         />
       </div>
     </div>

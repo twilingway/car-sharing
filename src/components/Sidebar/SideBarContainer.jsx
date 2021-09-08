@@ -11,6 +11,7 @@ function SideBarContainer() {
   const onClickHamburgerOrMenu = () => {
     dispatch(setMenuStatus(!menuIsActiveRedux));
   };
+
   return (
     <>
       {menuIsActiveRedux && <Menu onClickMenu={onClickHamburgerOrMenu} />}
